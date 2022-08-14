@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CarRental.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalET.Controllers
@@ -7,10 +8,19 @@ namespace CarRentalET.Controllers
     [ApiController]
     public class CarRentalController : ControllerBase
     {
+        CarRentalContext _dbContext;
+
+        public CarRentalController(CarRentalContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [HttpGet("GetCars")]
         public IActionResult Get()
         {
-            return Ok(1);
+            var cars = _dbContext.Cars.ToList();
+            return Ok(cars);
         }
+
     }
 }
