@@ -21,6 +21,6 @@ namespace CarRental.Data
             modelBuilder.UseSerialColumns();
         }
 
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
     }
 }

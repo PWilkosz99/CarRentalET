@@ -18,7 +18,7 @@ namespace CarRentalET.Controllers
         [HttpGet("GetCars")]
         public IActionResult Get()
         {
-            var cars = _dbContext.Cars.ToList();
+            var cars = _dbContext.Vehicles.ToList();
             return Ok(cars);
         }
 
