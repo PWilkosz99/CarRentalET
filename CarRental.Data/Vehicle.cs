@@ -10,10 +10,10 @@ namespace CarRental.Data
     public class Vehicle
     {
         public int Id { get; set; }
-        public VehicleModel Model { get; set; }
-        public int Mileage { get; set; }
+        public VehicleModel? Model { get; set; }
+        public int? Mileage { get; set; }
         [DataType(DataType.Date)]
-        public DateTime ProductionDate { get; set; }
-        public VehicleStates State { get; set; }
+        public DateTime? ProductionDate { get; set; }
+        public VehicleStates? State { get; set; }
     }
 }
