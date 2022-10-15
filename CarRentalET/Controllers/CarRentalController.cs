@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalET.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CarRentalController : ControllerBase
     {
         CarRentalContext _dbContext;
@@ -38,6 +38,21 @@ namespace CarRentalET.Controllers
             await _dbContext.VehicleModels.AddAsync(vehicleModel);
             await _dbContext.SaveChangesAsync();
             return Ok(vehicleModel);
+        }
+
+        [HttpDelete("DeleteCarModel/{id}")]
+        public async Task<IActionResult> DeleteCarModel(int id)
+        {
+            var model = await _dbContext.VehicleModels.FindAsync(id);
+
+            if (model != null)
+            {
+                _dbContext.Remove(model);
+                await _dbContext.SaveChangesAsync();
+                return Ok();
+            }
+
+            return BadRequest();
         }
 
     }
