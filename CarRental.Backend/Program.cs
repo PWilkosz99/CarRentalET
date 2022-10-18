@@ -5,7 +5,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000");
+        });
+});
+
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<CarRentalContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("CarRentalDb"))
@@ -24,6 +33,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors();
 
 app.MapControllerRoute(
     name: "default",

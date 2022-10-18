@@ -5,7 +5,7 @@ import './App.css';
 function App() {
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
+    fetch(`https://localhost:5001/api/CarRental/GetCars`)
       .then((response) => console.log(response));
   }, []);
 
