@@ -1,7 +1,9 @@
-import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 function App() {
 
@@ -26,7 +28,14 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      {cars}
+      <div className="page-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+
+        </Routes>
+        {/* {cars} */}
+      </div>
     </div>
   );
 }
