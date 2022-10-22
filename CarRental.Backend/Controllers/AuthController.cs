@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CarRental.Data;
+using CarRentalET.Dtos;
 
 namespace CarRentalET.Controllers
 {
@@ -15,9 +16,16 @@ namespace CarRentalET.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register()
+        public IActionResult Register(RegisterDto dto)
         {
-            return Ok("Hello");
+            var user = new User
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+            };
+
+            return Created("success", _repository.Create(user));
         }
     }
 }
