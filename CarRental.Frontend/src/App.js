@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
+import Register from "./components/Register";
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Dashboard />} />
         </Routes>
         {/* {cars} */}
       </div>

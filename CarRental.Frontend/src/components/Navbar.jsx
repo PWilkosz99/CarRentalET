@@ -14,8 +14,8 @@ export default function Navbar() {
                 <li><Link to="/Link5">Link5</Link></li>
             </ul>
             <div className="nav-login">
-                <span className="sign-up">Sign Up</span>
-                <span className="sign-in">Sign In</span>
+                <span className="sign-up"><Link to="/register">Sign Up</Link></span>
+                <span className="sign-in"><Link to="/login">Sign In</Link></span>
             </div>
         </nav>
     );
