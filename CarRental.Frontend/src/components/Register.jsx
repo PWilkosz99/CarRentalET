@@ -5,13 +5,18 @@ export default function Register() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
-        console.log({
-            name,
-            email,
-            password
-        })
+
+        await fetch('https://localhost:5001/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        });
     }
 
     return (
