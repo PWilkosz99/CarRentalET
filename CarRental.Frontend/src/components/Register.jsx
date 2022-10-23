@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { Navigate } from "react-router-dom";
+
 
 export default function Register() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [redirect, setRedirect] = useState(false);
 
     const submit = async (e) => {
         e.preventDefault();
@@ -17,6 +20,12 @@ export default function Register() {
                 password
             })
         });
+
+        setRedirect(true);
+    }
+
+    if (redirect) {
+        return <Navigate to="/login" />
     }
 
     return (
