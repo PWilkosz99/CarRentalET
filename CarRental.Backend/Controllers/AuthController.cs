@@ -79,5 +79,15 @@ namespace CarRentalET.Controllers
             }
 
         }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
+            return Ok(new
+            {
+                message = "success"
+            });
+        }
     }
 }
