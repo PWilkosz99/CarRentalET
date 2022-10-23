@@ -26,5 +26,10 @@ namespace CarRental.Data
         {
             return _context.Users.FirstOrDefault(x => x.Email == email);
         }
+
+        public User GetById(int id)
+        {
+            return _context.Users.FirstOrDefault(x => x.Id == id);
+        }
     }
 }
