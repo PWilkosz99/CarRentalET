@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navigate } from "react-router-dom";
 
 
-export default function Register() {
+export default function Login(props) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [redirect, setRedirect] = useState(false);
@@ -19,8 +19,8 @@ export default function Register() {
                 password
             })
         });
-
         setRedirect(true);
+        props.setName("");
     }
 
     if (redirect) {

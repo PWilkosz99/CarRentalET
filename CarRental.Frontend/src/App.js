@@ -22,12 +22,9 @@ function App() {
 
         const content = await responde.json();
         setName(content.name);
-        //console.log(content.name)
-
       }
     )();
   });
-
 
   // useEffect(() => {
   //   async function getData() {
@@ -47,14 +44,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar name={name}/>
+      <Navbar name={name} setName={setName} />
       <div className="page-content">
         <Routes>
-          <Route path="/" element={<Home name={name}/>} />
+          <Route path="/" element={<Home name={name} />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login name={name} setName={setName} />} />
         </Routes>
         {/* {cars} */}
       </div>

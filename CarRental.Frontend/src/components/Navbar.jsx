@@ -10,7 +10,7 @@ export default function Navbar(props) {
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
         });
-
+        props.setName('');
     }
 
 
