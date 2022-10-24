@@ -10,16 +10,34 @@ import Login from "./components/Login";
 function App() {
 
   const [data, setData] = useState(null);
+  const [name, setName] = useState();
 
   useEffect(() => {
-    async function getData() {
-      const res = await fetch('https://localhost:5001/api/CarRental/GetCars');
-      const data = await res.json();
-      setData(data);
-      console.log(data);
-    }
-    getData();
-  }, []);
+    (
+      async () => {
+        const responde = await fetch('http://localhost:5000/auth/user', {
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include'
+        });
+
+        const content = await responde.json();
+        setName(content.name);
+        //console.log(content.name)
+
+      }
+    )();
+  });
+
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     const res = await fetch('https://localhost:5001/api/CarRental/GetCars');
+  //     const data = await res.json();
+  //     setData(data);
+  //     console.log(data);
+  //   }
+  //   getData();
+  // }, []);
 
   var cars = data?.map((car) => {
     return (
@@ -29,10 +47,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar name={name}/>
       <div className="page-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home name={name}/>} />
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/register" element={<Register />} />
