@@ -1,4 +1,5 @@
 ﻿using CarRental.Data;
+using CarRentalET.Dtos;
 using CarRentalET.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarRentalET.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api")]
     public class CarRentalController : ControllerBase
     {
         CarRentalContext _dbContext;
@@ -24,18 +25,18 @@ namespace CarRentalET.Controllers
         }
 
         [HttpPost("AddCarModel")]
-        public async Task<IActionResult> AddCarModel(VehicleModel model)
+        public async Task<IActionResult> AddCarModel(VehicleModelDto model)
         {
             var vehicleModel = new VehicleModel()
             {
-                Id = model.Id,
                 Manufacturer = model.Manufacturer,
                 Type = model.Type,
+                Fuel = model.Fuel,
                 Seats = model.Seats,
                 HPs = model.HPs,
                 Axes = model.Axes
             };
-
+             
             await _dbContext.VehicleModels.AddAsync(vehicleModel);
             await _dbContext.SaveChangesAsync();
             return Ok(vehicleModel);
@@ -64,7 +65,7 @@ namespace CarRentalET.Controllers
         }
 
         [HttpPost("AddCar")]
-        public async Task<IActionResult> AddCar(VehiclePOST car)
+        public async Task<IActionResult> AddCar(VehicleDto car)
         {
             var vehicle = new Vehicle()
             {

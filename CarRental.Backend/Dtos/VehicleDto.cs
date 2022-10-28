@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CarRentalET.Models
 {
-    public class VehiclePOST
+    public class VehicleDto
     {
         public int Id { get; set; }
         public int? Model { get; set; }

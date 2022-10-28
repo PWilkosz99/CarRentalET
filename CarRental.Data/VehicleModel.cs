@@ -11,8 +11,9 @@ namespace CarRental.Data
         public int Id { get; set; }
         public string? Manufacturer { get; set; }
         public string? Type { get; set; }
+        public string? Fuel { get; set; }
         public int? Seats { get; set; }
         public int? HPs { get; set; }
-        public int? Axes { get; set; }
+        public string? Axes { get; set; }
     }
 }
