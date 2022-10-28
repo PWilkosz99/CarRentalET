@@ -42,6 +42,28 @@ namespace CarRentalET.Controllers
             return Ok(vehicleModel);
         }
 
+        [HttpPost("EditCarModel/{id}")]
+        public async Task<IActionResult> EditCarModel(int id, VehicleModelDto dto)
+        {
+            var model = _dbContext.VehicleModels.FirstOrDefault(x => x.Id == id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                model.Manufacturer = dto.Manufacturer;
+                model.Type = dto.Type;
+                model.Fuel = dto.Fuel;
+                model.Seats = dto.Seats;
+                model.HPs = dto.HPs;
+                model.Axes = dto.Axes;
+
+                await _dbContext.SaveChangesAsync();
+            }
+            return Ok();
+        }
+
         [HttpDelete("DeleteCarModel/{id}")]
         public async Task<IActionResult> DeleteCarModel(int id)
         {

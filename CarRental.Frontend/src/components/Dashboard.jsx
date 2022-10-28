@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddCarModel from './AddCarModel';
+import EditCarModel from './EditCarModel';
 
 export default function Dashboard() {
   const [Manufacturer, setManufacturer] = useState('');
@@ -33,6 +34,7 @@ export default function Dashboard() {
       //Remove car
       //Edit car */}
       <AddCarModel />
+      <EditCarModel />
       {/* //Remove model
       //Edit model
       //Edit users  */}
