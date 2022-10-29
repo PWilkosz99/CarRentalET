@@ -36,7 +36,7 @@ namespace CarRentalET.Controllers
                 HPs = model.HPs,
                 Axes = model.Axes
             };
-             
+
             await _dbContext.VehicleModels.AddAsync(vehicleModel);
             await _dbContext.SaveChangesAsync();
             return Ok(vehicleModel);
@@ -89,18 +89,27 @@ namespace CarRentalET.Controllers
         [HttpPost("AddCar")]
         public async Task<IActionResult> AddCar(VehicleDto car)
         {
+            var model = _dbContext.VehicleModels.FirstOrDefault(x => x.Id == car.ModelId);
+
+            if (model == null)
+            {
+                return NotFound("Wrong model id");
+            }
+
             var vehicle = new Vehicle()
             {
-                Id = car.Id,
-                Model = await _dbContext.VehicleModels.FindAsync(car.Model),
+                Model = model,
                 Mileage = car.Mileage,
-                ProductionDate = car.ProductionDate,
-                State = car.State
-            };
+                ProductionDate =car.ProductionDate,
+                CostPerDay = car.CostPerDay,
+                Color = car.Color,
+                Notes = car.Notes,
+                State = VehicleStates.Good
+        };
 
             await _dbContext.Vehicles.AddAsync(vehicle);
             await _dbContext.SaveChangesAsync();
-            return Ok(vehicle);
+            return Ok();
         }
 
         [HttpDelete("DeleteCar/{id}")]
