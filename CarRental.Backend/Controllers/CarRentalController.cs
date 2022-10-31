@@ -3,6 +3,7 @@ using CarRentalET.Dtos;
 using CarRentalET.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalET.Controllers
 {
@@ -82,7 +83,7 @@ namespace CarRentalET.Controllers
         [HttpGet("GetCars")]
         public IActionResult GetCars()
         {
-            var cars = _dbContext.Vehicles.ToList();
+            var cars = _dbContext.Vehicles.Include(x => x.Model).ToList(); //Eager loading
             return Ok(cars);
         }
 
@@ -100,20 +101,41 @@ namespace CarRentalET.Controllers
             {
                 Model = model,
                 Mileage = car.Mileage,
-                ProductionDate =car.ProductionDate,
+                ProductionDate = car.ProductionDate,
                 CostPerDay = car.CostPerDay,
                 Color = car.Color,
                 Notes = car.Notes,
                 State = VehicleStates.Good
-        };
+            };
 
             await _dbContext.Vehicles.AddAsync(vehicle);
             await _dbContext.SaveChangesAsync();
             return Ok();
         }
 
-        [HttpDelete("DeleteCar/{id}")]
+        [HttpPost("EditCar/{id}")]
+        public async Task<IActionResult> EditCar(int id, VehicleDto dto)
+        {
+            var model = _dbContext.Vehicles.FirstOrDefault(x => x.Id == id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                model.Mileage = dto.Mileage;
+                model.ProductionDate = dto.ProductionDate;
+                model.CostPerDay = dto.CostPerDay;
+                model.Color = dto.Color;
+                model.Notes = dto.Notes;
+                model.State = VehicleStates.Good;
 
+                await _dbContext.SaveChangesAsync();
+            }
+            return Ok();
+        }
+
+        [HttpDelete("DeleteCar/{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
             var model = await _dbContext.Vehicles.FindAsync(id);

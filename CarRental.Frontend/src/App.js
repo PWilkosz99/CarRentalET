@@ -26,22 +26,6 @@ function App() {
     )();
   });
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const res = await fetch('https://localhost:5001/api/CarRental/GetCars');
-  //     const data = await res.json();
-  //     setData(data);
-  //     console.log(data);
-  //   }
-  //   getData();
-  // }, []);
-
-  var cars = data?.map((car) => {
-    return (
-      <h1>{car.mileage}</h1>
-    )
-  })
-
   return (
     <div className="App">
       <Navbar name={name} setName={setName} />
@@ -53,7 +37,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login name={name} setName={setName} />} />
         </Routes>
-        {/* {cars} */}
       </div>
     </div>
   );
