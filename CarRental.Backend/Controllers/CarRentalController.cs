@@ -148,6 +148,15 @@ namespace CarRentalET.Controllers
             return BadRequest();
         }
 
-
+        [HttpPost("Image")]
+        public async Task<IActionResult> Image([FromForm]ImageDto dto)
+        {
+            var file = dto.Image;
+            using (Stream fileStream = new FileStream($"..//Images//{file.FileName}", FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+            return Ok();
+        }
     }
 }
