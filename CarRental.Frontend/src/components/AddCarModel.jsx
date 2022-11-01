@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export default function AddCarModel() {
+    const [Id, setId] = useState();
     const [Manufacturer, setManufacturer] = useState('');
     const [Type, setType] = useState('');
     const [Fuel, setFuel] = useState('');
@@ -8,10 +9,12 @@ export default function AddCarModel() {
     const [HPs, setHPs] = useState('');
     const [Axes, setAxes] = useState('');
 
+    const [image, setImage] = useState();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:5000/api/AddCarModel', {
+        const response = await fetch('http://localhost:5000/api/AddCarModel', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -24,6 +27,21 @@ export default function AddCarModel() {
                 Axes
             })
         });
+
+        if (response.ok) {
+
+            let id = await response.json();
+            setId(id);
+
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('id', id);
+
+            await fetch('http://localhost:5000/api/Image', {
+                method: 'POST',
+                body: formData
+            })
+        }
     }
 
     return (
@@ -49,7 +67,7 @@ export default function AddCarModel() {
                     <option value="RWD">RWD</option>
                     <option value="AWD">AWD</option>
                 </select>
-
+                <input type="file" placeholder="Image" required onChange={(e) => setImage(e.target.files[0])} />
                 <button className="btn-form" type="submit">Submit</button>
             </form>
         </div>

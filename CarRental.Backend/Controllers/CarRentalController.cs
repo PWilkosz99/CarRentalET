@@ -40,7 +40,7 @@ namespace CarRentalET.Controllers
 
             await _dbContext.VehicleModels.AddAsync(vehicleModel);
             await _dbContext.SaveChangesAsync();
-            return Ok(vehicleModel);
+            return Ok(vehicleModel.Id);
         }
 
         [HttpPost("EditCarModel/{id}")]
@@ -149,14 +149,27 @@ namespace CarRentalET.Controllers
         }
 
         [HttpPost("Image")]
-        public async Task<IActionResult> Image([FromForm]ImageDto dto)
+        public async Task<IActionResult> Image([FromForm] ImageDto dto)
         {
+            var id = dto.Id;
             var file = dto.Image;
-            using (Stream fileStream = new FileStream($"..//Images//{file.FileName}", FileMode.Create))
+            var fileName = id + Path.GetExtension(file.FileName);
+            var dir = $"..//Images//{fileName}";
+
+
+
+            try
             {
-                await file.CopyToAsync(fileStream);
+                using (Stream fileStream = new FileStream(dir, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
             }
-            return Ok();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(dir);
         }
     }
 }

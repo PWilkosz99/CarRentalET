@@ -13,8 +13,6 @@ export default function AddCar() {
     const [color, setColor] = useState();
     const [notes, setNotes] = useState();
 
-    const [image, setImage] = useState();
-
     useEffect(() => {
         (
             async () => {
@@ -54,26 +52,11 @@ export default function AddCar() {
         setAddingMode(false);
     }
 
-    const sendImage = (e) =>{
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('image', image);
-        fetch('http://localhost:5000/api/Image', {
-            method: 'POST',
-            body: formData
-        })
-    }
-
     const carsModels = cars?.map((car) => <AddCarTile key={car.id} car={car} handleChoice={handleChoice} />);
 
     if (!addingMode) {
         return (
             <div className="add-car">
-                <form onSubmit={sendImage}>
-                    <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-                    <button type="submit">Send</button>
-                </form>
                 <h2>Add car</h2>
                 <h3>Select car model</h3>
                 {carsModels}
