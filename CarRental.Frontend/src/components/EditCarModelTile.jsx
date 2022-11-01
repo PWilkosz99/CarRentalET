@@ -45,6 +45,7 @@ export default function EditCarModelTile(props) {
         return (
             <div className="edit-model-tile">
                 <hr />
+                <img src={`/Images/${id}.jpg`} className="car-image" alt={Manufacturer} />
                 <h3>({id}) {Manufacturer} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3>
 
                 <button className="edit-carmodel" onClick={() => setEditMode(!editMode)}>Edit</button>

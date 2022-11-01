@@ -41,3 +41,8 @@ nav ul{
 .page-content{
   padding-top: 100px;
 }
+
+.car-image{
+  max-width: 300px;
+  max-height: 300px;
+}

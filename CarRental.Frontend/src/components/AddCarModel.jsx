@@ -37,7 +37,7 @@ export default function AddCarModel() {
             formData.append('image', image);
             formData.append('id', id);
 
-            await fetch('http://localhost:5000/api/Image', {
+            await fetch('http://localhost:5000/api/SaveImage', {
                 method: 'POST',
                 body: formData
             })

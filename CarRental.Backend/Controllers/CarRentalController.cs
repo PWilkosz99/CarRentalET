@@ -148,19 +148,22 @@ namespace CarRentalET.Controllers
             return BadRequest();
         }
 
-        [HttpPost("Image")]
-        public async Task<IActionResult> Image([FromForm] ImageDto dto)
+        [HttpPost("SaveImage")]
+        public async Task<IActionResult> SaveImage([FromForm] ImageDto dto)
         {
             var id = dto.Id;
             var file = dto.Image;
             var fileName = id + Path.GetExtension(file.FileName);
-            var dir = $"..//Images//{fileName}";
-
-
+            var dir = "..//CarRental.Frontend//public//Images//";
 
             try
             {
-                using (Stream fileStream = new FileStream(dir, FileMode.Create))
+                if (!(Directory.Exists(dir)))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                using (Stream fileStream = new FileStream(dir + fileName, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
