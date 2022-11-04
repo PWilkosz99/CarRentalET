@@ -176,5 +176,47 @@ namespace CarRentalET.Controllers
             }
             return Ok(dir);
         }
+
+        [HttpPost("ReserveCar")]
+        public async Task<IActionResult> ReserveCar(ReservationDto dto)
+        {
+            var user = await _dbContext.Users.FindAsync(dto.UserId);
+            var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
+            if (user != null && vehicle != null)
+            {
+                var reservation = new Reservation
+                {
+                    StartDate = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc),
+                    EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
+                    User = user,
+                    Vehicle = vehicle
+                };
+                await _dbContext.Reservations.AddAsync(reservation);
+                await _dbContext.SaveChangesAsync();
+
+                return Created("Success", reservation);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("GetAvaliableCars")]
+        public async Task<IActionResult> GetAvaliableCars(DatesDto dto)
+        {
+            var startDateUTC = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc);
+            var endDateUTC = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc);
+            var cars = _dbContext.Reservations.Where(x => ((startDateUTC > x.StartDate && startDateUTC < x.EndDate) ||
+                (endDateUTC > x.StartDate && endDateUTC < x.EndDate) || (startDateUTC < x.StartDate && endDateUTC > x.EndDate))).Select(x => x.Vehicle);
+            List<Vehicle> availableCars = new();
+            if (cars.Count() != 0)
+            {
+                availableCars = _dbContext.Vehicles.Where(x => cars.Any(y => y.Id != x.Id)).Include(x => x.Model).ToList();
+            }
+            else
+            {
+                availableCars = _dbContext.Vehicles.Include(x => x.Model).ToList();
+            }
+
+            return Ok(availableCars);
+        }
     }
 }

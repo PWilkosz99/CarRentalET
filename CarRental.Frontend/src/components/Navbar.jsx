@@ -21,8 +21,8 @@ export default function Navbar(props) {
             <IoCarSport color="black" size="5em"/>
             <ul className="nav-links">
                 <li><Link to="/">Home</Link></li>
+                <li><Link to="/rent">Rent</Link></li>
                 <li><Link to="/dashboard">Dashboard</Link></li>
-                <li><Link to="/Link3">Link3</Link></li>
                 <li><Link to="/Link4">Link4</Link></li>
                 <li><Link to="/Link5">Link5</Link></li>
             </ul>

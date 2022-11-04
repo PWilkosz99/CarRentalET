@@ -6,10 +6,10 @@ import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Rent from "./components/Rent";
 
 function App() {
 
-  const [data, setData] = useState(null);
   const [name, setName] = useState();
 
   useEffect(() => {
@@ -32,6 +32,7 @@ function App() {
       <div className="page-content">
         <Routes>
           <Route path="/" element={<Home name={name} />} />
+          <Route path="/rent" element={<Rent />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/register" element={<Register />} />
