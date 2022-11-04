@@ -1,6 +1,8 @@
 ﻿using CarRental.Data;
 using CarRentalET.Dtos;
+using CarRentalET.Helpers;
 using CarRentalET.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +15,14 @@ namespace CarRentalET.Controllers
     {
         CarRentalContext _dbContext;
 
-        public CarRentalController(CarRentalContext dbContext)
+        private readonly IUserRepository _repository;
+        private readonly JwtService _jwtService;
+
+        public CarRentalController(CarRentalContext dbContext, IUserRepository repository, JwtService jwtService)
         {
             _dbContext = dbContext;
+            _repository = repository;
+            _jwtService = jwtService;
         }
 
         [HttpGet("GetCarModels")]
@@ -217,6 +224,43 @@ namespace CarRentalET.Controllers
             }
 
             return Ok(availableCars);
+        }
+
+        [HttpGet("GetReservedCars")]
+        public async Task<IActionResult> GetReservedCars()
+        {
+            List<Reservation> reservations = new();
+            try
+            {
+                var jwt = Request.Cookies["jwt"];
+                var token = _jwtService.Verify(jwt);
+                int userId = int.Parse(token.Issuer);
+                var user = _repository.GetById(userId);
+                if(user != null)
+                {
+                    reservations = _dbContext.Reservations.Where(x => x.User.Id == user.Id).Include(x => x.Vehicle.Model).ToList();
+                    return Ok(reservations);
+                }
+                return BadRequest();
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpDelete("DeleteReservation/{id}")]
+        public async Task<IActionResult> DeleteReservation(int id)
+        {
+            //TODO: Add auth
+            var res = await _dbContext.Reservations.FindAsync(id);
+            if (res != null)
+            {
+                _dbContext.Remove(res);
+                await _dbContext.SaveChangesAsync();
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

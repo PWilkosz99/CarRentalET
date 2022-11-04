@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Rent from "./components/Rent";
+import Reservations from './components/Reservations';
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
           <Route path="/" element={<Home name={name} />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/dashboard" element={<Dashboard />} />
-
+          <Route path="/reservations" element={<Reservations />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login name={name} setName={setName} />} />
         </Routes>
