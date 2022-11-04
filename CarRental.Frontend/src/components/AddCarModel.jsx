@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export default function AddCarModel() {
     const [Id, setId] = useState();
     const [Manufacturer, setManufacturer] = useState('');
+    const [Model, setModel] = useState('');
     const [Type, setType] = useState('');
     const [Fuel, setFuel] = useState('');
     const [Seats, setSeats] = useState('');
@@ -20,6 +21,7 @@ export default function AddCarModel() {
             credentials: 'include',
             body: JSON.stringify({
                 Manufacturer,
+                Model,
                 Type,
                 Fuel,
                 Seats,
@@ -49,6 +51,7 @@ export default function AddCarModel() {
             <h2>Add new car model</h2>
             <form onSubmit={handleSubmit} className="add-model-form">
                 <input className="manufacturer-form" placeholder="Manufacturer" required onChange={e => setManufacturer(e.target.value)} />
+                <input className="model-form" placeholder="Model" required onChange={e => setModel(e.target.value)} />
                 <select className="type-form" value={Type} onChange={e => setType(e.target.value)}>
                     <option value="Sedan">Sedan</option>
                     <option value="Hatchback">Hatchback</option>

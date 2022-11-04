@@ -45,7 +45,7 @@ export default function EditCarTile(props) {
         return (
             <div className="car-tile">
                 <hr />
-                <h2>{carModel.manufacturer} - {carModel.type} - {carModel.fuel} - {carModel.seats} - {carModel.hPs} - {carModel.axes}</h2>
+                <h2>{carModel.manufacturer} - {carModel.model} - {carModel.type} - {carModel.fuel} - {carModel.seats} - {carModel.hPs} - {carModel.axes}</h2>
                 <h2>{mileage} - {String(productionDate)} - {costPerDay} - {state} - {color} - {notes}</h2>
                 <button onClick={() => setEditMode(true)}>Edit</button>
                 <button onClick={removeCar}>Remove</button>

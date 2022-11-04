@@ -3,9 +3,12 @@ import { Navigate } from "react-router-dom";
 
 
 export default function Register() {
-    const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [name, setName] = useState();
+    const [surname, setSurname] = useState();
+    const [address, setAddress] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
     const [redirect, setRedirect] = useState(false);
 
     const submit = async (e) => {
@@ -15,9 +18,12 @@ export default function Register() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name,
                 email,
-                password
+                password,
+                name,
+                surname,
+                address,
+                phoneNumber
             })
         });
 
@@ -29,17 +35,14 @@ export default function Register() {
     }
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className="register-form">
             <h1>Register</h1>
-            <input className="register-form" placeholder="Name" required
-                onChange={e => setName(e.target.value)}
-            />
-            <input type="email" className="register-form" placeholder="Email" required
-                onChange={e => setEmail(e.target.value)}
-            />
-            <input type="password" className="register-form" placeholder="Password" required
-                onChange={e => setPassword(e.target.value)}
-            />
+            <input type="email" className="register-form" placeholder="Email" required onChange={e => setEmail(e.target.value)} />
+            <input type="password" className="register-form" placeholder="Password" required onChange={e => setPassword(e.target.value)} />
+            <input placeholder="Firstname" required onChange={e => setName(e.target.value)} />
+            <input placeholder="Lastname" required onChange={e => setSurname(e.target.value)} />
+            <input placeholder="Adress" required onChange={e => setAddress(e.target.value)} />
+            <input type="tel" placeholder="Phone number" required onChange={e => setPhoneNumber(e.target.value)} />
             <button className="btn-register" type="submit">Submit</button>
         </form>
     );

@@ -23,9 +23,12 @@ namespace CarRentalET.Controllers
         {
             var user = new User
             {
-                Name = dto.Name,
                 Email = dto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Address = dto.Address,
+                PhoneNumber = dto.PhoneNumber,
             };
 
             return Created("success", _repository.Create(user));
@@ -73,7 +76,8 @@ namespace CarRentalET.Controllers
                 var user = _repository.GetById(userId);
 
                 return Ok(user);
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return Unauthorized();
             }

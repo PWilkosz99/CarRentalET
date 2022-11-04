@@ -18,5 +18,6 @@ namespace CarRental.Data
         public string? Color { get; set; }
         public string? Notes { get; set; }
         public VehicleStates? State { get; set; }
+        public User? User { get; set; }
     }
 }

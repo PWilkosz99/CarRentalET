@@ -4,6 +4,7 @@ export default function EditCarModelTile(props) {
 
     const [id, setId] = useState(props.id);
     const [Manufacturer, setManufacturer] = useState(props.manufacturer);
+    const [Model, setModel] = useState(props.model);
     const [Type, setType] = useState(props.type);
     const [Fuel, setFuel] = useState(props.fuel);
     const [Seats, setSeats] = useState(props.seats);
@@ -11,7 +12,7 @@ export default function EditCarModelTile(props) {
     const [Axes, setAxes] = useState(props.axes);
     const [editMode, setEditMode] = useState(false);
 
-    const editCarModel = async (e, car) => {
+    const editCarModel = async (e) => {
         e.preventDefault();
 
         await fetch(`http://localhost:5000/api/EditCarModel/${id}`, {
@@ -20,6 +21,7 @@ export default function EditCarModelTile(props) {
             credentials: 'include',
             body: JSON.stringify({
                 Manufacturer,
+                Model,
                 Type,
                 Fuel,
                 Seats,
@@ -46,7 +48,7 @@ export default function EditCarModelTile(props) {
             <div className="edit-model-tile">
                 <hr />
                 <img src={`/Images/${id}.jpg`} className="car-image" alt={Manufacturer} />
-                <h3>({id}) {Manufacturer} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3>
+                <h3>({id}) {Manufacturer} --- {Model} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3>
 
                 <button className="edit-carmodel" onClick={() => setEditMode(!editMode)}>Edit</button>
                 <button className="delete-carmodel" onClick={() => deleteCarModel(props.id)}>Delete</button>
@@ -58,6 +60,7 @@ export default function EditCarModelTile(props) {
                 <hr />
                 <form onSubmit={editCarModel} className="edit-model-form">
                     <input className="manufacturer-form" placeholder="Manufacturer" value={Manufacturer} required onChange={e => setManufacturer(e.target.value)} />
+                    <input className="model-form" placeholder="Model" value={Model} required onChange={e => setModel(e.target.value)} />
                     <select className="type-form" value={Type} onChange={e => setType(e.target.value)}>
                         <option value="Sedan">Sedan</option>
                         <option value="Hatchback">Hatchback</option>

@@ -31,6 +31,7 @@ namespace CarRentalET.Controllers
             var vehicleModel = new VehicleModel()
             {
                 Manufacturer = model.Manufacturer,
+                Model = model.Model,
                 Type = model.Type,
                 Fuel = model.Fuel,
                 Seats = model.Seats,
@@ -54,6 +55,7 @@ namespace CarRentalET.Controllers
             else
             {
                 model.Manufacturer = dto.Manufacturer;
+                model.Model = dto.Model;
                 model.Type = dto.Type;
                 model.Fuel = dto.Fuel;
                 model.Seats = dto.Seats;

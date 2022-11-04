@@ -72,7 +72,7 @@ export default function AddCar() {
                     <input type="text" placeholder="Car state" onChange={(e) => setState(e.target.value)} />
                     <input type="color" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
                     <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
-                    <button type="submit">Back</button>
+                    <button type="submit">Save</button>
                 </form>
 
             </>
