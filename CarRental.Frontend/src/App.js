@@ -21,7 +21,7 @@ function App() {
           <Navbar name={name} setName={setName} />
           <div className="page-content">
             <Routes>
-              <Route path="/" element={<Home name={name} />} />
+              <Route exact path="/" element={<Home name={name} />} />
               <Route path="/rent" element={<Rent />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/reservations" element={<Reservations />} />

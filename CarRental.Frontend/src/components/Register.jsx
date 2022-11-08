@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from '../contexts/AuthContext';
 
 
@@ -10,7 +10,9 @@ export default function Register() {
     const [surname, setSurname] = useState();
     const [address, setAddress] = useState();
     const [phoneNumber, setPhoneNumber] = useState();
-    const [redirect, setRedirect] = useState(false);
+    // const [redirect, setRedirect] = useState(false);
+
+    const navigate = useNavigate();
 
     const { signup } = useAuth();
 
@@ -18,33 +20,34 @@ export default function Register() {
         e.preventDefault();
         try {
             await signup(email, password);
+            navigate("/");
         } catch {
             alert("ERROR")
         }
     }
 
-    const submit = async (e) => {
-        e.preventDefault();
+    // const submit = async (e) => {
+    //     e.preventDefault();
 
-        await fetch('https://localhost:5001/auth/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email,
-                password,
-                name,
-                surname,
-                address,
-                phoneNumber
-            })
-        });
+    //     await fetch('https://localhost:5001/auth/register', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({
+    //             email,
+    //             password,
+    //             name,
+    //             surname,
+    //             address,
+    //             phoneNumber
+    //         })
+    //     });
 
-        setRedirect(true);
-    }
+    //     setRedirect(true);
+    // }
 
-    if (redirect) {
-        return <Navigate to="/login" />
-    }
+    // if (redirect) {
+    //     return <Navigate to="/login" />
+    // }
 
     return (
         <form onSubmit={handleSubmit} className="register-form">
