@@ -1,9 +1,7 @@
 ﻿using CarRental.Data;
 using CarRentalET.Dtos;
-using CarRentalET.Helpers;
 using CarRentalET.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -190,8 +188,7 @@ namespace CarRentalET.Controllers
         [HttpPost("ReserveCar")]
         public async Task<IActionResult> ReserveCar(ReservationDto dto)
         {
-            //var user = await _dbContext.Users.FindAsync(dto.UserId);
-            var user = this.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
             var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
             if (user != null && vehicle != null)
             {
@@ -237,7 +234,7 @@ namespace CarRentalET.Controllers
             List<Reservation> reservations = new();
             try
             {
-                var user = this.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+                var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
                 if (user != null)
                 {
                     reservations = _dbContext.Reservations.Where(x => x.User == user).Include(x => x.Vehicle.Model).ToList();

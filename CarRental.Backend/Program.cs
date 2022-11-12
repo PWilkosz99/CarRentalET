@@ -1,5 +1,4 @@
 using CarRental.Data;
-using CarRentalET.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -37,9 +36,6 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
 
