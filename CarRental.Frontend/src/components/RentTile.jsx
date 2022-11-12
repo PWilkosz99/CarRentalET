@@ -1,36 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Rent(props) {
 
     const [car, setCars] = useState(props.car);
     const [model, setModel] = useState(props.car.model);
-    const [auth, setAuth] = useState();
+    const { currentUser } = useAuth();
 
     const reserveCar = async () => {
-        const responde = await fetch('http://localhost:5000/auth/user', {
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-        });
 
-        const content = await responde.json();
-        setAuth(content);
-        if (content.status === 401) {
+        if (!currentUser) {
             alert('You must be logged in to reserve a car!');
         } else {
-            console.log(props.startDate)
-            alert(1);
-            console.log(content)
-            const responde = await fetch('http://localhost:5000/api/ReserveCar', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({
-                    vehicleId: car.id,
-                    userId: content.id,
-                    startDate: props.startDate,
-                    endDate: props.endDate
-                })
-            });
+            const responde = await currentUser.getIdToken().then(
+                (token) => {
+                    return fetch('http://localhost:5000/api/ReserveCar', {
+                        method: 'POST',
+                        headers: new Headers({
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            vehicleId: car.id,
+                            userId: currentUser.uid,
+                            startDate: props.startDate,
+                            endDate: props.endDate
+                        })
+                    });
+                }
+            );
         }
     }
 

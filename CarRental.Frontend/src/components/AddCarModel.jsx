@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function AddCarModel() {
     const [Id, setId] = useState();
@@ -11,24 +12,31 @@ export default function AddCarModel() {
     const [Axes, setAxes] = useState('');
 
     const [image, setImage] = useState();
+    const { currentUser } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('http://localhost:5000/api/AddCarModel', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({
-                Manufacturer,
-                Model,
-                Type,
-                Fuel,
-                Seats,
-                HPs,
-                Axes
-            })
-        });
+        const response = await currentUser.getIdToken().then(
+            (token) => {
+                return fetch('http://localhost:5000/api/AddCarModel', {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        Manufacturer,
+                        Model,
+                        Type,
+                        Fuel,
+                        Seats,
+                        HPs,
+                        Axes
+                    })
+                });
+            }
+        );
 
         if (response.ok) {
 
@@ -39,10 +47,18 @@ export default function AddCarModel() {
             formData.append('image', image);
             formData.append('id', id);
 
-            await fetch('http://localhost:5000/api/SaveImage', {
-                method: 'POST',
-                body: formData
-            })
+            await currentUser.getIdToken().then(
+                (token) => {
+                    return fetch('http://localhost:5000/api/SaveImage', {
+                        method: 'POST',
+                        headers: new Headers({
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }),
+                        body: formData
+                    })
+                }
+            );
         }
     }
 

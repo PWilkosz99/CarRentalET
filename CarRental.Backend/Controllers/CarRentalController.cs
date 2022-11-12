@@ -1,9 +1,7 @@
 ﻿using CarRental.Data;
 using CarRentalET.Dtos;
-using CarRentalET.Helpers;
 using CarRentalET.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,14 +13,9 @@ namespace CarRentalET.Controllers
     {
         CarRentalContext _dbContext;
 
-        private readonly IUserRepository _repository;
-        private readonly JwtService _jwtService;
-
-        public CarRentalController(CarRentalContext dbContext, IUserRepository repository, JwtService jwtService)
+        public CarRentalController(CarRentalContext dbContext)
         {
             _dbContext = dbContext;
-            _repository = repository;
-            _jwtService = jwtService;
         }
 
         [HttpGet("GetCarModels")]
@@ -32,6 +25,7 @@ namespace CarRentalET.Controllers
             return Ok(models);
         }
 
+        [Authorize]
         [HttpPost("AddCarModel")]
         public async Task<IActionResult> AddCarModel(VehicleModelDto model)
         {
@@ -51,6 +45,7 @@ namespace CarRentalET.Controllers
             return Ok(vehicleModel.Id);
         }
 
+        [Authorize]
         [HttpPost("EditCarModel/{id}")]
         public async Task<IActionResult> EditCarModel(int id, VehicleModelDto dto)
         {
@@ -74,6 +69,7 @@ namespace CarRentalET.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("DeleteCarModel/{id}")]
         public async Task<IActionResult> DeleteCarModel(int id)
         {
@@ -96,6 +92,7 @@ namespace CarRentalET.Controllers
             return Ok(cars);
         }
 
+        [Authorize]
         [HttpPost("AddCar")]
         public async Task<IActionResult> AddCar(VehicleDto car)
         {
@@ -122,6 +119,7 @@ namespace CarRentalET.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost("EditCar/{id}")]
         public async Task<IActionResult> EditCar(int id, VehicleDto dto)
         {
@@ -144,6 +142,7 @@ namespace CarRentalET.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("DeleteCar/{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
@@ -157,6 +156,7 @@ namespace CarRentalET.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpPost("SaveImage")]
         public async Task<IActionResult> SaveImage([FromForm] ImageDto dto)
         {
@@ -184,10 +184,11 @@ namespace CarRentalET.Controllers
             return Ok(dir);
         }
 
+        [Authorize]
         [HttpPost("ReserveCar")]
         public async Task<IActionResult> ReserveCar(ReservationDto dto)
         {
-            var user = await _dbContext.Users.FindAsync(dto.UserId);
+            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
             var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
             if (user != null && vehicle != null)
             {
@@ -226,29 +227,36 @@ namespace CarRentalET.Controllers
             return Ok(availableCars);
         }
 
+        [Authorize]
         [HttpGet("GetReservedCars")]
         public async Task<IActionResult> GetReservedCars()
         {
             List<Reservation> reservations = new();
             try
             {
-                var jwt = Request.Cookies["jwt"];
-                var token = _jwtService.Verify(jwt);
-                int userId = int.Parse(token.Issuer);
-                var user = _repository.GetById(userId);
-                if(user != null)
+                var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+                if (user != null)
                 {
-                    reservations = _dbContext.Reservations.Where(x => x.User.Id == user.Id).Include(x => x.Vehicle.Model).ToList();
-                    return Ok(reservations);
+                    reservations = _dbContext.Reservations.Where(x => x.User == user).Include(x => x.Vehicle.Model).ToList();
+                    if (reservations.Count() != 0)
+                    {
+                        return Ok(reservations);
+                    }
+                    else
+                    {
+                        return NotFound("Reservartions not found");
+                    }
+
                 }
                 return BadRequest();
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return BadRequest();
             }
         }
 
+        [Authorize]
         [HttpDelete("DeleteReservation/{id}")]
         public async Task<IActionResult> DeleteReservation(int id)
         {

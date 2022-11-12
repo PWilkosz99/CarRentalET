@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function EditCarTile(props) {
     const [car, setCar] = useState(props.car);
@@ -13,31 +14,45 @@ export default function EditCarTile(props) {
     const [color, setColor] = useState(car.color);
     const [notes, setNotes] = useState(car.notes);
 
+    const { currentUser } = useAuth();
+
     const editCar = async (e) => {
         e.preventDefault();
 
-        await fetch(`http://localhost:5000/api/EditCar/${id}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                mileage,
-                productionDate,
-                costPerDay,
-                state,
-                color,
-                notes
-            })
-        });
-
+        await currentUser.getIdToken().then(
+            (token) => {
+                return fetch(`http://localhost:5000/api/EditCar/${id}`, {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': `Bearer ${token}`
+                    }),
+                    body: JSON.stringify({
+                        mileage,
+                        productionDate,
+                        costPerDay,
+                        state,
+                        color,
+                        notes
+                    })
+                });
+            }
+        );
         setEditMode(false);
     }
 
     const removeCar = () => {
         (
             async () => {
-                await fetch(`http://localhost:5000/api/DeleteCar/${id}`, {
-                    method: 'DELETE'
-                });
+                await currentUser.getIdToken().then(
+                    (token) => {
+                        return fetch(`http://localhost:5000/api/DeleteCar/${id}`, {
+                            method: 'DELETE',
+                            headers: new Headers({
+                                'Authorization': `Bearer ${token}`
+                            })
+                        });
+                    }
+                );
             }
         )();
     }

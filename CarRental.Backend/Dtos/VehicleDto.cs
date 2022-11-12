@@ -1,7 +1,4 @@
-﻿using CarRental.Data;
-using System.ComponentModel.DataAnnotations;
-
-namespace CarRentalET.Models
+﻿namespace CarRentalET.Models
 {
     public class VehicleDto
     {

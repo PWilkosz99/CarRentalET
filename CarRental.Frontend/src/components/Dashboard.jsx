@@ -13,7 +13,6 @@ export default function Dashboard() {
 
       <AddCarModel />
       <EditCarModel />
-      {/* //Edit users   */}
       <h2>Dashboard</h2>
     </>
 

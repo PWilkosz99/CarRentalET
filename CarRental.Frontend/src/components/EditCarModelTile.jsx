@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function EditCarModelTile(props) {
 
@@ -12,23 +13,31 @@ export default function EditCarModelTile(props) {
     const [Axes, setAxes] = useState(props.axes);
     const [editMode, setEditMode] = useState(false);
 
+    const { currentUser } = useAuth();
+
     const editCarModel = async (e) => {
         e.preventDefault();
 
-        await fetch(`http://localhost:5000/api/EditCarModel/${id}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({
-                Manufacturer,
-                Model,
-                Type,
-                Fuel,
-                Seats,
-                HPs,
-                Axes
-            })
-        });
+        await currentUser.getIdToken().then(
+            (token) => {
+                return fetch(`http://localhost:5000/api/EditCarModel/${id}`, {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        Manufacturer,
+                        Model,
+                        Type,
+                        Fuel,
+                        Seats,
+                        HPs,
+                        Axes
+                    })
+                });
+            }
+        );
 
         setEditMode(false);
     }
@@ -36,9 +45,17 @@ export default function EditCarModelTile(props) {
     const deleteCarModel = (id) => {
         (
             async () => {
-                await fetch(`http://localhost:5000/api/DeleteCarModel/${id}`, {
-                    method: 'DELETE'
-                });
+
+                await currentUser.getIdToken().then(
+                    (token) => {
+                        return fetch(`http://localhost:5000/api/DeleteCarModel/${id}`, {
+                            method: 'DELETE',
+                            headers: new Headers({
+                                'Authorization': `Bearer ${token}`
+                            })
+                        });
+                    }
+                );
             }
         )();
     }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace CarRentalET.Dtos
+﻿namespace CarRentalET.Dtos
 {
     public class RegisterDto
     {

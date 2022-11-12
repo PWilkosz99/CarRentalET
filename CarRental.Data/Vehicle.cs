@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarRental.Data
+﻿namespace CarRental.Data
 {
     public class Vehicle
     {
@@ -18,6 +10,6 @@ namespace CarRental.Data
         public string? Color { get; set; }
         public string? Notes { get; set; }
         public VehicleStates? State { get; set; }
-        public User? User { get; set; }
+        public String? User { get; set; }
     }
 }
