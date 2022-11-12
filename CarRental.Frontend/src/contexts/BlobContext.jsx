@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 const BlobContext = React.createContext()
 
@@ -7,17 +7,24 @@ export function useBlob() {
 }
 
 export function BlobProvider({ children }) {
-    const bucket = process.env.REACT_APP_BUCKET_ADDRESS
+    const bucketRd = process.env.REACT_APP_BUCKET_ADDRESS_READ
+    const bucketWR = process.env.REACT_APP_BUCKET_ADDRESS_WRITE
+
     function getImage(id) {
-        return bucket + id + '.jpg';
+        return bucketRd + id + '.jpg';
     }
 
-    function saveImage() {
-        return 1;
+    async function saveImage(id, image) {
+        const URI = bucketWR + id + '.jpg';
+        const res = await fetch(URI, {
+            method: 'PUT',
+            body: image
+        })
+        console.log(res);
+        return res.ok;
     }
 
     const value = {
-        bucket,
         getImage,
         saveImage
     }

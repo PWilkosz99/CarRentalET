@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useBlob } from '../contexts/BlobContext';
 
 export default function AddCarModel() {
-    const [Id, setId] = useState();
     const [Manufacturer, setManufacturer] = useState('');
     const [Model, setModel] = useState('');
     const [Type, setType] = useState('');
@@ -13,6 +13,7 @@ export default function AddCarModel() {
 
     const [image, setImage] = useState();
     const { currentUser } = useAuth();
+    const { saveImage } = useBlob();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,28 +38,9 @@ export default function AddCarModel() {
                 });
             }
         );
-
         if (response.ok) {
-
             let id = await response.json();
-            setId(id);
-
-            const formData = new FormData();
-            formData.append('image', image);
-            formData.append('id', id);
-
-            await currentUser.getIdToken().then(
-                (token) => {
-                    return fetch('http://localhost:5000/api/SaveImage', {
-                        method: 'POST',
-                        headers: new Headers({
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }),
-                        body: formData
-                    })
-                }
-            );
+            saveImage(id, image) ? alert('Car model added') : alert('Car model added, but image not saved');
         }
     }
 
