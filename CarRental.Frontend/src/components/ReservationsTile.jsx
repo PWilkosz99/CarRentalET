@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function ReservationsTile(props) {
+    const { currentUser } = useAuth();
 
     const cancelReservation = async () => {
         (
             async () => {
-                await fetch(`http://localhost:5000/api/DeleteReservation/${props.reservation.id}`, {
-                    method: 'DELETE'
-                });
+                await currentUser.getIdToken().then(
+                    (token) => {
+                        return fetch(`http://localhost:5000/api/DeleteReservation/${props.reservation.id}`, {
+                            headers: new Headers({
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }),
+                            method: 'DELETE'
+                        });
+                    }
+                );
             }
         )();
     }

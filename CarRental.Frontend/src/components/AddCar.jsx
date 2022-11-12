@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddCarTile from './AddCarTile';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function AddCar() {
     const [cars, setCars] = useState();
@@ -12,6 +13,8 @@ export default function AddCar() {
     const [state, setState] = useState();
     const [color, setColor] = useState();
     const [notes, setNotes] = useState();
+
+    const { currentUser } = useAuth();
 
     useEffect(() => {
         (
@@ -33,21 +36,27 @@ export default function AddCar() {
 
     const addCar = async (e) => {
         e.preventDefault();
-        console.log(productionDate)
-        await fetch('http://localhost:5000/api/AddCar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({
-                modelId,
-                mileage,
-                productionDate,
-                costPerDay,
-                color,
-                notes,
-                state
-            })
-        });
+
+        await currentUser.getIdToken().then(
+            (token) => {
+                fetch('http://localhost:5000/api/AddCar', {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        modelId,
+                        mileage,
+                        productionDate,
+                        costPerDay,
+                        color,
+                        notes,
+                        state
+                    })
+                });
+            }
+        );
 
         setAddingMode(false);
     }

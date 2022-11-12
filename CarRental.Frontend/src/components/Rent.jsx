@@ -15,7 +15,6 @@ export default function Rent() {
                 const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
                     body: JSON.stringify({
                         startDate,
                         endDate

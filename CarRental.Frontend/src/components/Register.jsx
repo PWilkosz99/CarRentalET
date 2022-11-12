@@ -10,7 +10,6 @@ export default function Register() {
     const [surname, setSurname] = useState();
     const [address, setAddress] = useState();
     const [phoneNumber, setPhoneNumber] = useState();
-    // const [redirect, setRedirect] = useState(false);
 
     const navigate = useNavigate();
 
@@ -25,29 +24,6 @@ export default function Register() {
             alert("ERROR")
         }
     }
-
-    // const submit = async (e) => {
-    //     e.preventDefault();
-
-    //     await fetch('https://localhost:5001/auth/register', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({
-    //             email,
-    //             password,
-    //             name,
-    //             surname,
-    //             address,
-    //             phoneNumber
-    //         })
-    //     });
-
-    //     setRedirect(true);
-    // }
-
-    // if (redirect) {
-    //     return <Navigate to="/login" />
-    // }
 
     return (
         <form onSubmit={handleSubmit} className="register-form">

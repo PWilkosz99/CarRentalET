@@ -4,20 +4,10 @@ import { IoCarSport } from "react-icons/io5";
 import '../App.css';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function Navbar(props) {
-
-    // const logout = async () => {
-    //     await fetch('http://localhost:5000/auth/logout', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         credentials: 'include'
-    //     });
-    //     props.setName('');
-    // }
+export default function Navbar() {
 
     const { currentUser } = useAuth();
     const { logout } = useAuth();
-
 
     const handleLogout = async () => {
         try {
@@ -26,12 +16,10 @@ export default function Navbar(props) {
             alert("ERROR")
         }
     }
-
-
     return (
         <nav>
             {/* <img src="logo192.png" className="nav-logo" /> */}
-            <IoCarSport color="black" size="5em"/>
+            <IoCarSport color="black" size="5em" />
             <ul className="nav-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/rent">Rent</Link></li>

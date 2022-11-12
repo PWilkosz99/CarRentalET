@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import ReservationsTile from './ReservationsTile';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Reservations() {
-    const [auth, setAuth] = useState('');
     const [reservations, setReservations] = useState();
 
-    useEffect(() => {
-        (
-            async () => {
-                const responde = await fetch('http://localhost:5000/auth/user', {
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include'
-                });
-                const content = await responde.json();
-                setAuth(content);
-            }
-        )();
-    }, []);
+    const { currentUser } = useAuth();
 
     useEffect(() => {
         (
             async () => {
-                const responde = await fetch('http://localhost:5000/api/GetReservedCars', {
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include'
-                });
-                const content = await responde.json();
-                setReservations(content);
+                const responde = await currentUser.getIdToken().then(
+                    (token) => {
+                        return fetch('http://localhost:5000/api/GetReservedCars', {
+                            headers: new Headers({
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }),
+                        });
+                    }
+                );
+                if (responde.status === 200) {
+                    const content = await responde.json();
+                    setReservations(content);
+                } else {
+                    alert("ERROR");
+                }
             }
         )();
-    }, [auth]);
+    }, [currentUser]);
 
     const reservationsTiles = reservations?.map((res) => <ReservationsTile key={res.id} reservation={res} />);
 
 
-    if (auth.status === 401) {
+    if (!currentUser) {
         return (
             <h1>You must be logged in to see your reservations!</h1>
         )
@@ -49,7 +48,7 @@ export default function Reservations() {
                 <h2>Past:</h2>
                 {/* TODO: Add past reservations */}
                 <hr />
-                
+
             </>
         )
     }
