@@ -18,6 +18,8 @@ export default function Home(props) {
 
   console.log(currentUser)
 
+  console.log(process.env.REACT_APP_BUCKET_ADDRESS)
+
   return (
     <>
       <h2>Home page</h2>

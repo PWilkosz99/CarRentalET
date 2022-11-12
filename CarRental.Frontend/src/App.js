@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Rent from "./components/Rent";
 import Reservations from './components/Reservations';
 import { AuthProvider } from './contexts/AuthContext'
+import { BlobProvider } from './contexts/BlobContext';
 
 function App() {
 
@@ -17,19 +18,21 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <div className="App">
-          <Navbar name={name} setName={setName} />
-          <div className="page-content">
-            <Routes>
-              <Route exact path="/" element={<Home name={name} />} />
-              <Route path="/rent" element={<Rent />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/reservations" element={<Reservations />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login name={name} setName={setName} />} />
-            </Routes>
+        <BlobProvider>
+          <div className="App">
+            <Navbar name={name} setName={setName} />
+            <div className="page-content">
+              <Routes>
+                <Route exact path="/" element={<Home name={name} />} />
+                <Route path="/rent" element={<Rent />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login name={name} setName={setName} />} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </BlobProvider>
       </AuthProvider>
     </>
   );

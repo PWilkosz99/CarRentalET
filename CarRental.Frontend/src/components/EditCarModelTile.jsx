@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useBlob } from '../contexts/BlobContext';
 
 export default function EditCarModelTile(props) {
 
@@ -14,6 +15,7 @@ export default function EditCarModelTile(props) {
     const [editMode, setEditMode] = useState(false);
 
     const { currentUser } = useAuth();
+    const { getImage } = useBlob();
 
     const editCarModel = async (e) => {
         e.preventDefault();
@@ -64,7 +66,7 @@ export default function EditCarModelTile(props) {
         return (
             <div className="edit-model-tile">
                 <hr />
-                <img src={`/Images/${id}.jpg`} className="car-image" alt={Manufacturer} />
+                <img src={getImage(id)} className="car-image" alt={Manufacturer} />
                 <h3>({id}) {Manufacturer} --- {Model} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3>
 
                 <button className="edit-carmodel" onClick={() => setEditMode(!editMode)}>Edit</button>
