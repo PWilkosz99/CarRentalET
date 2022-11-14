@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import Register from "./components/Register";
@@ -20,7 +21,7 @@ function App() {
       <AuthProvider>
         <BlobProvider>
           <div className="App">
-            <Navbar name={name} setName={setName} />
+            <Navbar />
             <div className="page-content">
               <Routes>
                 <Route exact path="/" element={<Home name={name} />} />
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login name={name} setName={setName} />} />
               </Routes>
+              <Footer />
             </div>
           </div>
         </BlobProvider>
