@@ -1,8 +1,8 @@
-.App {
+/* .App {
   text-align: center;
 }
 
-nav{
+nav {
   background-color: gray;
   display: flex;
   position: fixed;
@@ -13,36 +13,36 @@ nav{
   padding: 5px;
 }
 
-nav ul{
+nav ul {
   list-style: none;
   display: flex;
   justify-content: space-around;
   width: 80%;
 }
 
-.nav-login{
+.nav-login {
   display: flex;
   justify-content: flex;
   width: 20%;
   justify-content: space-evenly;
 }
 
-.nav-login span{
+.nav-login span {
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.nav-logo{
+.nav-logo {
   padding-left: 36px;
   width: 50px;
 }
 
-.page-content{
+.page-content {
   padding-top: 100px;
 }
 
-.car-image{
+.car-image {
   max-width: 300px;
   max-height: 300px;
-}
+} */
