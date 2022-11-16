@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import Hero from './Hero/Hero';
 
 export default function Home(props) {
   const { currentUser } = useAuth();
@@ -22,6 +23,7 @@ export default function Home(props) {
 
   return (
     <>
+      <Hero />
       <h2>Home page</h2>
       {currentUser ? 'Zalogowano jako ' + currentUser.email : 'Nie zalogowano'}
     </>
