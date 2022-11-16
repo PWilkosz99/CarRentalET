@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Hero from './Hero/Hero';
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+import Logo from '../images/logo192.png'; //tmp
 
 export default function Home(props) {
   const { currentUser } = useAuth();
@@ -24,6 +31,29 @@ export default function Home(props) {
   return (
     <>
       <Hero />
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={10}
+        slidesPerView={5}
+        navigation
+        onSlideChange={() => console.log('slide change')}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        <SwiperSlide><img src={Logo}/><br/>Card</SwiperSlide>
+        ...
+      </Swiper>
+
       <h2>Home page</h2>
       {currentUser ? 'Zalogowano jako ' + currentUser.email : 'Nie zalogowano'}
     </>

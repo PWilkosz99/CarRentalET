@@ -53,10 +53,11 @@ form input:focus {
     height: 40px;
     border-radius: 50%;
     background-color: #f5f5f5;
+    transition: transform 0.5s;
 }
 
 .icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
 button {
