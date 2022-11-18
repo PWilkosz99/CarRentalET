@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './Register.module.css';
 
 export default function Register() {
@@ -19,11 +20,23 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await signup(email, password);
-            navigate("/");
-        } catch {
-            alert("ERROR")
+        if (password !== passwordConf) {
+            toast.warn("Passwords don't match", { position: "bottom-right", theme: "colored" });
+        } else {
+            try {
+                await signup(email, password);
+                navigate("/");
+            } catch (error) {
+                if (error.code === "auth/email-already-in-use") {
+                    toast.warn("Email already in use", { position: "bottom-right", theme: "colored" });
+                } else if (error.code === "auth/invalid-email") {
+                    toast.warn("Invalid email", { position: "bottom-right", theme: "colored" });
+                } else if (error.code === "auth/weak-password") {
+                    toast.warn("Password is too weak", { position: "bottom-right", theme: "colored" });
+                } else {
+                    toast.error("Something went wrong" + error, { position: "bottom-right", theme: "colored" });
+                }
+            }
         }
     }
 
@@ -47,12 +60,13 @@ export default function Register() {
                         <span></span>
                         <label>Password confirmation</label>
                     </div>
-                    <button className={styles.btnRegister} type="submit">Login</button>
+                    <button className={styles.btnRegister} type="submit">Register</button>
                     <div className={styles.linkLogIn}>
                         Do you have an account <Link to="/login">Log in</Link>
                     </div>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 }
