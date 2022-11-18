@@ -27,6 +27,9 @@ export default function Navbar() {
                         <li>
                             <Link to="/">Home</Link>
                         </li>
+                        <li>
+                            <Link to="/rent">Rent</Link>
+                        </li>
                         {currentUser ?
                             <li>
                                 <Link onClick={handleLogout}>Log out</Link>

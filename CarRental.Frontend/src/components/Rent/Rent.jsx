@@ -9,7 +9,6 @@ export default function Rent() {
 
     const selectDate = async (e) => {
         e.preventDefault();
-
         (
             async () => {
                 const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
@@ -29,7 +28,6 @@ export default function Rent() {
 
     }
 
-
     const carsTiles = cars?.map((car) => <RentTile key={car.id} car={car} startDate={startDate} endDate={endDate} />);
 
     return (
@@ -40,6 +38,7 @@ export default function Rent() {
                 <input type="datetime-local" className="start-date" onChange={e => setEndDate(e.target.value)} />
                 <button>Submit</button>
             </form>
+            <hr />
             {carsTiles}
         </>
     )

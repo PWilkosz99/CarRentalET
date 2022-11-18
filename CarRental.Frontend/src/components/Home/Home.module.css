@@ -8,6 +8,10 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.card:hover {
+    cursor: grab;
+}
+
 .card > img{
     width: 100%;
     border-top-left-radius: 10px;

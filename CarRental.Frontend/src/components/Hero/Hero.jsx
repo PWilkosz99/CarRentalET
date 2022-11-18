@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import styles from './Hero.module.css'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Hero() {
     const [fromDate, setFromDate] = useState();
@@ -11,14 +14,14 @@ export default function Hero() {
         e.preventDefault();
         if (fromDate && untilDate) {
             if (fromDate > untilDate) {
-                alert("From date can't be after until date");
+                toast.warn("From date can't be after until date", { position: "bottom-right", theme: "colored" });
             } else if (new Date(fromDate) < todayDate) {
-                alert("From date can't be before today's date");
+                toast.warn("From date can't be before today's date", { position: "bottom-right", theme: "colored" });
             }
             //Go to rent page
             console.log(fromDate, untilDate);
         } else {
-            alert("Please select dates");
+            toast.info("Please select dates", { position: "bottom-right", theme: "colored" });
         }
     }
 
@@ -40,6 +43,7 @@ export default function Hero() {
                     <button onClick={handleSearch} className={styles.btn}>Search</button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     )
 }
