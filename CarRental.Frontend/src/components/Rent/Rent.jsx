@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import RentTile from './RentTile';
+import RentCard from './RentCard.jsx';
+import styles from './Rent.module.css';
 
 export default function Rent() {
 
@@ -28,7 +29,7 @@ export default function Rent() {
 
     }
 
-    const carsTiles = cars?.map((car) => <RentTile key={car.id} car={car} startDate={startDate} endDate={endDate} />);
+    const cards = cars?.map((car) => <RentCard key={car.id} car={car} startDate={startDate} endDate={endDate} />);
 
     return (
         <>
@@ -39,7 +40,9 @@ export default function Rent() {
                 <button>Submit</button>
             </form>
             <hr />
-            {carsTiles}
+            <div className={styles.wrapper}>
+                {cards}
+            </div>
         </>
     )
 }
