@@ -5,7 +5,7 @@
     height: 600px;
 }
 
-form {
+.heroForm {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,12 +17,12 @@ form {
     border-radius: 26px;
 }
 
-form label {
+.heroForm label {
     font-size: 1.6rem;
     padding-bottom: 2px;
 }
 
-form input {
+.heroForm input {
     border: none;
     background-color: transparent;
     font-size: 1.6rem;
@@ -30,7 +30,7 @@ form input {
     width: 100%;
 }
 
-form input:focus {
+.heroForm input:focus {
     outline: none;
 }
 
@@ -60,12 +60,12 @@ form input:focus {
     transform: scale(1.5);
 }
 
-button {
+.btn {
     display: none;
 }
 
 @media screen and (max-width: 720px) {
-    form {
+    .heroForm {
         display: flex;
         flex-direction: column;
         max-width: 100%;

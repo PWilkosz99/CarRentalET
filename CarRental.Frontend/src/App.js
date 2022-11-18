@@ -6,7 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home/Home";
 import Register from "./components/Register";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Rent from "./components/Rent";
 import Reservations from './components/Reservations';
 import { AuthProvider } from './contexts/AuthContext'

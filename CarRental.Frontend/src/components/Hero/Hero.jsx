@@ -25,7 +25,7 @@ export default function Hero() {
 
     return (
         <div className={styles.hero}>
-            <form>
+            <form className={styles.heroForm}>
                 <div className={styles.from}>
                     <span className={styles.border}></span>
                     <label>From</label>
