@@ -43,7 +43,7 @@ export default function Login(props) {
                     </div>
                     <button className={styles.btnLogin} type="submit">Login</button>
                     <div className={styles.linkSignUp}>
-                        You don't have a account? <Link>Sign up</Link>
+                        You don't have a account? <Link to="/register">Sign up</Link>
                     </div>
                 </form>
             </div>
