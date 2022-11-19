@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import styles from './Hero.module.css'
+import { useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
+import styles from './Hero.module.css'
 
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Hero() {
     const [fromDate, setFromDate] = useState();
     const [untilDate, setUntilDate] = useState();
+    const navigate = useNavigate();
+
     const todayDate = new Date();
 
     const handleSearch = (e) => {
@@ -17,9 +20,9 @@ export default function Hero() {
                 toast.warn("From date can't be after until date", { position: "bottom-right", theme: "colored" });
             } else if (new Date(fromDate) < todayDate) {
                 toast.warn("From date can't be before today's date", { position: "bottom-right", theme: "colored" });
+            } else {
+                navigate('/rent', {state: {fromDate, untilDate} });
             }
-            //Go to rent page
-            console.log(fromDate, untilDate);
         } else {
             toast.info("Please select dates", { position: "bottom-right", theme: "colored" });
         }
