@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useBlob } from '../../contexts/BlobContext';
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './Rent.module.css';
 
 import { TbManualGearbox } from "react-icons/tb";
@@ -12,14 +14,16 @@ export default function Rent(props) {
     const [car, setCars] = useState(props.car);
     const [model, setModel] = useState(props.car.model);
     const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     const { getImage } = useBlob();
 
     const reserveCar = async () => {
-
+        console.log(currentUser);
         if (!currentUser) {
-            alert('You must be logged in to reserve a car!');
+            toast.warn("You must be logged in to reserve a car!", { position: "bottom-right", theme: "colored" });
         } else {
+            navigate('/rentdetails', { state: { car, model, startDate: props.startDate, endDate: props.endDate } });
             const responde = await currentUser.getIdToken().then(
                 (token) => {
                     return fetch('http://localhost:5000/api/ReserveCar', {

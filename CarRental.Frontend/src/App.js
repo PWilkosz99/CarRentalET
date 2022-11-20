@@ -8,6 +8,8 @@ import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Rent from "./components/Rent/Rent";
+import RentDetails from "./components/Rent/RentDetails";
+import Payment from "./components/Rent/Payment";
 import Reservations from './components/Reservations';
 import { AuthProvider } from './contexts/AuthContext'
 import { BlobProvider } from './contexts/BlobContext';
@@ -26,6 +28,8 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home name={name} />} />
                 <Route path="/rent" element={<Rent />} />
+                <Route path="/rentdetails" element={<RentDetails />} />
+                <Route path="/payment" element={<Payment />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/reservations" element={<Reservations />} />
                 <Route path="/register" element={<Register />} />
