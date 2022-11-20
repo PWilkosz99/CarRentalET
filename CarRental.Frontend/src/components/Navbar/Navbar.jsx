@@ -51,7 +51,16 @@ export default function Navbar() {
                             <AiOutlineSearch size={25} className={styles.icon} />
                         </li>
                         <li>
-                            <AiOutlineUser size={25} className={styles.icon} />
+                            <div className={styles.userIcon}>
+                                <AiOutlineUser size={25} className={styles.icon} />
+                            </div>
+                            {
+                                currentUser ?
+                                    <span className={styles.userStatus}> User: {currentUser.email}</span>
+                                    :
+                                    <span className={styles.userStatus}> Please log in</span>
+                            }
+
                         </li>
                     </ul>
                 </nav>
