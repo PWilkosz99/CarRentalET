@@ -184,28 +184,28 @@ namespace CarRentalET.Controllers
             return Ok(dir);
         }
 
-        [Authorize]
-        [HttpPost("ReserveCar")]
-        public async Task<IActionResult> ReserveCar(ReservationDto dto)
-        {
-            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
-            var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
-            if (user != null && vehicle != null)
-            {
-                var reservation = new Reservation
-                {
-                    StartDate = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc),
-                    EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
-                    User = user,
-                    Vehicle = vehicle
-                };
-                await _dbContext.Reservations.AddAsync(reservation);
-                await _dbContext.SaveChangesAsync();
+        //[Authorize]
+        //[HttpPost("ReserveCarOld")]
+        //public async Task<IActionResult> ReserveCar2(ReservationDto dto)
+        //{
+        //    var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+        //    var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
+        //    if (user != null && vehicle != null)
+        //    {
+        //        var reservation = new Reservation
+        //        {
+        //            StartDate = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc),
+        //            EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
+        //            User = user,
+        //            Vehicle = vehicle
+        //        };
+        //        await _dbContext.Reservations.AddAsync(reservation);
+        //        await _dbContext.SaveChangesAsync();
 
-                return Created("Success", reservation);
-            }
-            return BadRequest();
-        }
+        //        return Created("Success", reservation);
+        //    }
+        //    return BadRequest();
+        //}
 
         [HttpPost("GetAvaliableCars")]
         public async Task<IActionResult> GetAvaliableCars(DatesDto dto)
@@ -227,34 +227,34 @@ namespace CarRentalET.Controllers
             return Ok(availableCars);
         }
 
-        [Authorize]
-        [HttpGet("GetReservedCars")]
-        public async Task<IActionResult> GetReservedCars()
-        {
-            List<Reservation> reservations = new();
-            try
-            {
-                var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
-                if (user != null)
-                {
-                    reservations = _dbContext.Reservations.Where(x => x.User == user).Include(x => x.Vehicle.Model).ToList();
-                    if (reservations.Count() != 0)
-                    {
-                        return Ok(reservations);
-                    }
-                    else
-                    {
-                        return NotFound("Reservartions not found");
-                    }
+        //[Authorize]
+        //[HttpGet("GetReservedCars")]
+        //public async Task<IActionResult> GetReservedCars()
+        //{
+        //    List<Reservation> reservations = new();
+        //    try
+        //    {
+        //        var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+        //        if (user != null)
+        //        {
+        //            reservations = _dbContext.Reservations.Where(x => x.User == user).Include(x => x.Vehicle.Model).ToList();
+        //            if (reservations.Count() != 0)
+        //            {
+        //                return Ok(reservations);
+        //            }
+        //            else
+        //            {
+        //                return NotFound("Reservartions not found");
+        //            }
 
-                }
-                return BadRequest();
-            }
-            catch (Exception e)
-            {
-                return BadRequest();
-            }
-        }
+        //        }
+        //        return BadRequest();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
         [Authorize]
         [HttpDelete("DeleteReservation/{id}")]
@@ -269,6 +269,62 @@ namespace CarRentalET.Controllers
                 return Ok();
             }
             return BadRequest();
+        }
+
+        [Authorize]
+        [HttpPost("ReserveCar")]
+        public async Task<IActionResult> ReserveCar(ReservationDto dto)
+        {
+            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+            if (user == null)
+            {
+                return NotFound("User not found!");
+            }
+            else
+            {
+                var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
+                if (vehicle == null)
+                {
+                    return NotFound("Car not found!");
+                }
+
+                Client client = new()
+                {
+                    FirebaseID = user,
+                    Firstname = dto.Firstname,
+                    Lastname = dto.Lastname,
+                    Phone = dto.Phone,
+                    Address = dto.Address,
+                    City = dto.City,
+                    Country = dto.Country,
+                    PostalCode = dto.PostalCode,
+                    DrivingLicense = dto.DrivingLicense
+                };
+
+                Payment payment = new()
+                {
+                    Type = "Credit card",
+                    CardNumber = dto.CardNumber,
+                    CardDate = DateOnly.Parse(dto.CardDate),
+                    CVV = dto.CVV,
+                    CardOwnerName = dto.CardOwnerName
+                };
+
+                Reservation reservation = new()
+                {
+                    StartDate = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc),
+                    EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
+                    Client = client,
+                    Payment = payment,
+                    Vehicle = vehicle,
+                };
+
+                await _dbContext.Reservations.AddAsync(reservation);
+                await _dbContext.SaveChangesAsync();
+
+            }
+
+            return Created("aaa", "aaa");
         }
     }
 }

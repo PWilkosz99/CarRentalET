@@ -1,25 +1,65 @@
 import React, { useState, useRef } from 'react'
 import { useLocation } from "react-router-dom";
+import { useAuth } from '../../contexts/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import { useBlob } from '../../contexts/BlobContext';
 import styles from "./Rent.module.css";
 
 export default function Payment(props) {
+
+    const { getImage } = useBlob();
     const { state } = useLocation();
+    const { currentUser } = useAuth();
 
     const cardNumber = useRef();
     const cardName = useRef();
     const cardDate = useRef();
     const cardCvv = useRef();
 
-    const handleSavePayment = (e) => {
-        console.log(cardNumber.current.value)
-        console.log(cardName.current.value)
-        console.log(cardDate.current.value)
-        console.log(cardCvv.current.value)
+    const days = useRef(((new Date(state.endDate)).getTime() - (new Date(state.startDate)).getTime()) / (1000 * 3600 * 24));
 
+    const handleSavePayment = async (e) => {
         e.preventDefault();
-    }
+        if (true) {
+            //validation
+            const response = await currentUser.getIdToken().then(
+                (token) => {
+                    return fetch('http://localhost:5000/api/ReserveCar', {
+                        method: 'POST',
+                        headers: new Headers({
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
 
-    console.log(state)
+                            StartDate: state.startDate,
+                            EndDate: state.endDate,
+
+                            VehicleId: state.car.id,
+
+                            Firstname: state.client.firstName,
+                            Lastname: state.client.lastName,
+                            Phone: state.client.phone,
+                            Address: state.client.address,
+                            City: state.client.city,
+                            Country: state.client.country,
+                            PostalCode: state.client.postal,
+                            DrivingLicense: state.client.drivingLicense,
+
+                            CardNumber: cardNumber.current.value,
+                            CardDate: cardDate.current.value,
+                            CVV: cardCvv.current.value,
+                            CardOwnerName: cardName.current.value,
+                        })
+                    });
+                }
+            );
+            console.log(response)
+            if (response.status === 201) {
+                toast.success("Car reserved successfully", { position: "bottom-right", theme: "colored" });
+            }
+        }
+    }
 
     return (
         <>
@@ -28,25 +68,25 @@ export default function Payment(props) {
                 <div className={styles.details_card}>
                     <h1 className={styles.details_title}>Confirm your reservation</h1>
                     <div className={styles.card_left}>
-                        <div className={styles.reservation_details_row}>
+                    <div className={styles.reservation_details_row}>
                             <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>{state.startDate}</span>
                         </div>
                         <div className={styles.reservation_details_row}>
                             <span className={styles.reservation_label}>End date: </span><span className={styles.reservation_value}>{state.endDate}</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Duration: </span><span className={styles.reservation_value}>10 days</span>
+                            <span className={styles.reservation_label}>Duration: </span><span className={styles.reservation_value}>{days.current} days</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Car: </span><span className={styles.reservation_value}>value</span>
+                            <span className={styles.reservation_label}>Car: </span><span className={styles.reservation_value}>{state.car.model.manufacturer} {state.car.model.model}</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Price: </span><span className={styles.reservation_value}>value $</span>
+                            <span className={styles.reservation_label}>Price: </span><span className={styles.reservation_value}>{state.car.costPerDay * days.current} $</span>
                         </div>
                     </div>
                     <div className={styles.card_right}>
                         <div className={styles.car_img}>
-                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+                            <img src={getImage(state.car.model.id)} />
                         </div>
                     </div>
                 </div>
@@ -74,6 +114,7 @@ export default function Payment(props) {
                         </div>
                     </form>
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

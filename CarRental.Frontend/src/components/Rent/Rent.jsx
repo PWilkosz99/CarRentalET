@@ -31,17 +31,21 @@ export default function Rent() {
             } else {
                 (
                     async () => {
-                        const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                startDate: fd,
-                                endDate: ud
-                            })
-                        });
+                        try {
+                            const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    startDate: fd,
+                                    endDate: ud
+                                })
+                            });
 
-                        const content = await responde.json();
-                        setCars(content);
+                            const content = await responde.json();
+                            setCars(content);
+                        } catch {
+                            toast.error("Something went wrong", { position: "bottom-right", theme: "colored" });
+                        }
                     }
                 )();
             }

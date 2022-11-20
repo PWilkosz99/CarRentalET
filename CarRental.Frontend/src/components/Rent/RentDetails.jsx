@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { useBlob } from '../../contexts/BlobContext';
 import styles from "./Rent.module.css";
 
 export default function RentDetails() {
 
+    const { getImage } = useBlob();
     const { state } = useLocation();
     const navigate = useNavigate();
 
@@ -15,6 +17,8 @@ export default function RentDetails() {
     const country = useRef();
     const postal = useRef();
     const drivingLicense = useRef();
+
+    const days = useRef(((new Date(state.endDate)).getTime() - (new Date(state.startDate)).getTime()) / (1000 * 3600 * 24));
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -31,9 +35,9 @@ export default function RentDetails() {
         }
 
         navigate("/payment", { state: { car: state.car, client: client, startDate: state.startDate, endDate: state.endDate } });
-
-        console.log(client)
     }
+
+    console.log(state.car)
 
     return (
         <>
@@ -48,18 +52,18 @@ export default function RentDetails() {
                             <span className={styles.reservation_label}>End date: </span><span className={styles.reservation_value}>{state.endDate}</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Duration: </span><span className={styles.reservation_value}>10 days</span>
+                            <span className={styles.reservation_label}>Duration: </span><span className={styles.reservation_value}>{days.current} days</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Car: </span><span className={styles.reservation_value}>value</span>
+                            <span className={styles.reservation_label}>Car: </span><span className={styles.reservation_value}>{state.car.model.manufacturer} {state.car.model.model}</span>
                         </div>
                         <div className={styles.reservation_details_row}>
-                            <span className={styles.reservation_label}>Price: </span><span className={styles.reservation_value}>value $</span>
+                            <span className={styles.reservation_label}>Price: </span><span className={styles.reservation_value}>{state.car.costPerDay * days.current} $</span>
                         </div>
                     </div>
                     <div className={styles.card_right}>
                         <div className={styles.car_img}>
-                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+                            <img src={getImage(state.car.model.id)} />
                         </div>
                     </div>
                 </div>
@@ -96,7 +100,7 @@ export default function RentDetails() {
                                 <input type="text" required ref={postal} />
                             </div>
                             <div className={styles.reservation_data_row}>
-                                <span className={styles.reservation_label}>Driving license: </span>
+                                <span className={styles.reservation_label}>Driving license number: </span>
                                 <input type="number" required ref={drivingLicense} />
                             </div>
                             <button className={styles.reserve_btn}>Next</button>

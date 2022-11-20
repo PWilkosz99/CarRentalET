@@ -24,23 +24,6 @@ export default function Rent(props) {
             toast.warn("You must be logged in to reserve a car!", { position: "bottom-right", theme: "colored" });
         } else {
             navigate('/rentdetails', { state: { car, model, startDate: props.startDate, endDate: props.endDate } });
-            const responde = await currentUser.getIdToken().then(
-                (token) => {
-                    return fetch('http://localhost:5000/api/ReserveCar', {
-                        method: 'POST',
-                        headers: new Headers({
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }),
-                        body: JSON.stringify({
-                            vehicleId: car.id,
-                            userId: currentUser.uid,
-                            startDate: props.startDate,
-                            endDate: props.endDate
-                        })
-                    });
-                }
-            );
         }
     }
 
