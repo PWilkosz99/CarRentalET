@@ -10,7 +10,7 @@ import Login from "./components/Login/Login";
 import Rent from "./components/Rent/Rent";
 import RentDetails from "./components/Rent/RentDetails";
 import Payment from "./components/Rent/Payment";
-import Reservations from './components/Reservations';
+import Reservations from './components/Reservations/Reservations';
 import { AuthProvider } from './contexts/AuthContext'
 import { BlobProvider } from './contexts/BlobContext';
 

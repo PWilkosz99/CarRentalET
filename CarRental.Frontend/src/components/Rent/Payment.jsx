@@ -68,7 +68,7 @@ export default function Payment(props) {
                 <div className={styles.details_card}>
                     <h1 className={styles.details_title}>Confirm your reservation</h1>
                     <div className={styles.card_left}>
-                    <div className={styles.reservation_details_row}>
+                        <div className={styles.reservation_details_row}>
                             <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>{state.startDate}</span>
                         </div>
                         <div className={styles.reservation_details_row}>

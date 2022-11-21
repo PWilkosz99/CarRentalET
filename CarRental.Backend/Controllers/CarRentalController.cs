@@ -227,34 +227,34 @@ namespace CarRentalET.Controllers
             return Ok(availableCars);
         }
 
-        //[Authorize]
-        //[HttpGet("GetReservedCars")]
-        //public async Task<IActionResult> GetReservedCars()
-        //{
-        //    List<Reservation> reservations = new();
-        //    try
-        //    {
-        //        var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
-        //        if (user != null)
-        //        {
-        //            reservations = _dbContext.Reservations.Where(x => x.User == user).Include(x => x.Vehicle.Model).ToList();
-        //            if (reservations.Count() != 0)
-        //            {
-        //                return Ok(reservations);
-        //            }
-        //            else
-        //            {
-        //                return NotFound("Reservartions not found");
-        //            }
+        [Authorize]
+        [HttpGet("GetReservedCars")]
+        public async Task<IActionResult> GetReservedCars()
+        {
+            List<Reservation> reservations = new();
+            try
+            {
+                var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+                if (user != null)
+                {
+                    reservations = _dbContext.Reservations.Where(x => x.Client.FirebaseID == user).Include(x => x.Vehicle.Model).ToList();
+                    if (reservations.Count() != 0)
+                    {
+                        return Ok(reservations);
+                    }
+                    else
+                    {
+                        return NotFound("Reservartions not found");
+                    }
 
-        //        }
-        //        return BadRequest();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
+                }
+                return BadRequest();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
 
         [Authorize]
         [HttpDelete("DeleteReservation/{id}")]
