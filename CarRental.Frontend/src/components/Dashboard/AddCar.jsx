@@ -16,6 +16,8 @@ export default function AddCar() {
     const [color, setColor] = useState();
     const [notes, setNotes] = useState();
 
+    // #TODO: change to useRef to use onhover and optimaze, validation
+
     const { currentUser } = useAuth();
 
     useEffect(() => {
@@ -71,8 +73,9 @@ export default function AddCar() {
                 <div className={styles.container}>
                     <SideMenu />
                     <div className={styles.content}>
-                        <h2>Add car</h2>
-                        <h3>Select car model</h3>
+                        <div className={styles.dashboard_title}>
+                            <h1>Select car model of car you want to add:</h1>
+                        </div>
                         {carsModels}
                     </div>
                 </div>
@@ -84,15 +87,40 @@ export default function AddCar() {
                 <div className={styles.container}>
                     <SideMenu />
                     <div className={styles.content}>
-                        <form onSubmit={addCar}>
-                            <input type="number" placeholder="Milage" onChange={(e) => setMileage(e.target.value)} />
-                            <input type="month" placeholder="Production date" onChange={(e) => setProductionDate(() => (new Date(e.target.value)))} />
-                            <input type="number" placeholder="Cost per day" onChange={(e) => setcostPerDay(e.target.value)} />
-                            <input type="text" placeholder="Car state" onChange={(e) => setState(e.target.value)} />
-                            <input type="color" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
-                            <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
-                            <button type="submit">Save</button>
-                        </form>
+                        <div className={styles.dashboard_card}>
+                            <div className={styles.dashboard_title}>
+                                <h1>Provide data about car</h1>
+                            </div>
+                            <form className={styles.form} onSubmit={addCar}>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Milage: </span>
+                                    <input type="number" placeholder="Milage" onChange={(e) => setMileage(e.target.value)} />
+                                </div>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Production date: </span>
+                                    <input type="month" placeholder="Production date" onChange={(e) => setProductionDate(() => (new Date(e.target.value)))} />
+                                </div>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Cost per day: </span>
+                                    <input type="number" placeholder="Cost per day" onChange={(e) => setcostPerDay(e.target.value)} />
+                                </div>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Car state: </span>
+                                    <input type="text" placeholder="Car state" onChange={(e) => setState(e.target.value)} />
+                                </div>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Color: </span>
+                                    <input type="color" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
+                                </div>
+                                <div className={styles.form_row}>
+                                    <span className={styles.form_label}>Notes: </span>
+                                    <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
+                                </div>
+                                <div>
+                                    <button className={styles.btn} type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </>
