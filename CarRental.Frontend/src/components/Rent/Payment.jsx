@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useLocation } from "react-router-dom";
 import { useAuth } from '../../contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import { useBlob } from '../../contexts/BlobContext';
 import styles from "./Rent.module.css";
 
@@ -10,6 +11,7 @@ export default function Payment(props) {
     const { getImage } = useBlob();
     const { state } = useLocation();
     const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     const cardNumber = useRef();
     const cardName = useRef();
@@ -50,6 +52,8 @@ export default function Payment(props) {
                             CardDate: cardDate.current.value,
                             CVV: cardCvv.current.value,
                             CardOwnerName: cardName.current.value,
+
+                            Cost: state.car.costPerDay * days.current
                         })
                     });
                 }
@@ -57,6 +61,9 @@ export default function Payment(props) {
             console.log(response)
             if (response.status === 201) {
                 toast.success("Car reserved successfully", { position: "bottom-right", theme: "colored" });
+                navigate("/");
+            }else{
+                toast.error("Something went wrong", { position: "bottom-right", theme: "colored" });
             }
         }
     }

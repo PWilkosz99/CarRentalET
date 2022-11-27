@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReservationsTile from './ReservationsTile';
+import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '../../contexts/AuthContext';
 
 import styles from './Reservations.module.css';
@@ -26,7 +27,7 @@ export default function Reservations() {
                     const content = await responde.json();
                     setReservations(content);
                 } else {
-                    alert("ERROR");
+                    toast.error("Something went wrong", { position: "bottom-right", theme: "colored" });
                 }
             }
         )();

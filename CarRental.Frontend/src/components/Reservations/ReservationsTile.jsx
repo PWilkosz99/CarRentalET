@@ -28,33 +28,27 @@ export default function ReservationsTile(props) {
 
     return (
         <><div className={styles.reservations_card}>
-            <div className={styles.reservations_card_title}>dada</div>
+            <h1 className={styles.reservations_card_title}>{props.reservation.vehicle.model.manufacturer} {props.reservation.vehicle.model.model} {(new Date(props.reservation.vehicle.productionDate)).getFullYear()}</h1>
             <div className={styles.card_left}>
                 <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>Start date: </span><span className={props.reservation.startDate}>20.22.22</span>
+                    <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>{(new Date(props.reservation.startDate)).toLocaleDateString()}</span>
                 </div>
                 <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>End date: </span><span className={props.reservation.endDate}>20.22.22</span>
+                    <span className={styles.reservation_label}>End date: </span><span className={styles.reservation_value}>20.22.22</span>
                 </div>
                 <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>20.22.22</span>
+                    <span className={styles.reservation_label}>Payment method: </span><span className={styles.reservation_value}>Credit card</span>
                 </div>
                 <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>20.22.22</span>
+                    <span className={styles.reservation_label}>Cost: </span><span className={styles.reservation_value}>{props.reservation.cost} zł</span>
                 </div>
-                <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>Start date: </span><span className={styles.reservation_value}>20.22.22</span>
-                </div>
-
-                <h3>{props.reservation.startDate} --- {props.reservation.endDate}</h3>
-                <h4>{props.reservation.vehicle.model.manufacturer} --- {props.reservation.vehicle.model.model}</h4>
             </div>
             <div className={styles.card_right}>
                 <div className={styles.car_img}>
-                    <img src={getImage(1)} />
+                    <img src={getImage(props.reservation.vehicle.model.id)} />
                 </div>
             </div>
-            <button className={styles.cancel_btn} onClick={cancelReservation}>Cancel</button>
+            <button className={styles.cancel_btn} onClick={cancelReservation}>Cancel reservation</button>
         </div>
         </>
     )

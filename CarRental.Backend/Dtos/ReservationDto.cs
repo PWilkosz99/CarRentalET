@@ -19,5 +19,7 @@
         public string CardDate { get; set; }
         public int CVV { get; set; }
         public string CardOwnerName { get; set; }
+
+        public double Cost { get; set; }
     }
 }

@@ -179,33 +179,10 @@ namespace CarRentalET.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex.Message); 
             }
             return Ok(dir);
         }
-
-        //[Authorize]
-        //[HttpPost("ReserveCarOld")]
-        //public async Task<IActionResult> ReserveCar2(ReservationDto dto)
-        //{
-        //    var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
-        //    var vehicle = await _dbContext.Vehicles.FindAsync(dto.VehicleId);
-        //    if (user != null && vehicle != null)
-        //    {
-        //        var reservation = new Reservation
-        //        {
-        //            StartDate = DateTime.SpecifyKind(dto.StartDate, DateTimeKind.Utc),
-        //            EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
-        //            User = user,
-        //            Vehicle = vehicle
-        //        };
-        //        await _dbContext.Reservations.AddAsync(reservation);
-        //        await _dbContext.SaveChangesAsync();
-
-        //        return Created("Success", reservation);
-        //    }
-        //    return BadRequest();
-        //}
 
         [HttpPost("GetAvaliableCars")]
         public async Task<IActionResult> GetAvaliableCars(DatesDto dto)
