@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddCarTile from './AddCarTile';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function AddCar() {
     const [cars, setCars] = useState();

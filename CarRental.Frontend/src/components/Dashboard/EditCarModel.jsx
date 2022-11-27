@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EditCarModelTile from './EditCarModelTile';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function EditCarModel() {
 

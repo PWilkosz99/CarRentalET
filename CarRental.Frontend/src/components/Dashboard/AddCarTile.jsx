@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useBlob } from '../contexts/BlobContext';
+import { useBlob } from '../../contexts/BlobContext';
 
 export default function AddCarTile(props) {
 

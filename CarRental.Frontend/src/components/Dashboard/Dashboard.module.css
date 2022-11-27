@@ -1,0 +1,110 @@
+.container {
+    display: flex;
+    background-color: purple;
+}
+
+.navigation {
+    display: flex;
+    width: 10%;
+    background-color: lightseagreen;
+    border-radius: 0 20px 20px 0;
+}
+
+.navigation ul {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.navigation .tile {
+    display: flex;
+    justify-content: left;
+    padding-left: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+.navigation .tile:hover {
+    background-color: lightblue;
+    border-radius: 0 20px 20px 0;
+}
+
+.navigation li {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    list-style: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navigation .link {
+    display: flex;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.content {
+    display: flex;
+    width: 90%;
+    background-color: pink;
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        background-color: purple;
+    }
+
+    .navigation {
+        display: flex;
+        width: 100%;
+        background-color: lightseagreen;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .navigation ul {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .navigation .tile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navigation li {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        list-style: none;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .navigation .link {
+        display: flex;
+        color: white;
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    .navigation .tile:hover{
+        background-color: lightblue;
+        border-radius: 20px;
+    }
+
+    .content {
+        display: flex;
+        width: 100%;
+        background-color: pink;
+    }
+}

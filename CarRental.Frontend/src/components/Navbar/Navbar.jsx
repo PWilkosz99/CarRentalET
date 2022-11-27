@@ -33,6 +33,9 @@ export default function Navbar() {
                         <li>
                             <Link to="/reservations">Reservations</Link>
                         </li>
+                        <li>
+                            <Link to="/dashboard">Dashboard</Link>
+                        </li>
                         {currentUser ?
                             <li>
                                 <Link onClick={handleLogout}>Log out</Link>

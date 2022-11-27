@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useBlob } from '../contexts/BlobContext';
+import { useAuth } from '../../contexts/AuthContext';
+import { useBlob } from '../../contexts/BlobContext';
 
 export default function AddCarModel() {
     const [Manufacturer, setManufacturer] = useState('');
