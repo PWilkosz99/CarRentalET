@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import EditCarModelTile from './EditCarModelTile';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './Dashboard.module.css';
+import SideMenu from './SideMenu';
 
 export default function EditCarModel() {
 
@@ -31,9 +33,14 @@ export default function EditCarModel() {
     );
 
     return (
-        <div className="edit-model">
-            <h2>Edit car model</h2>
-            {carsToEdit}
-        </div>
+        <>
+            <div className={styles.container}>
+                <SideMenu />
+                <div className={styles.content}>
+                    <h2>Edit car model</h2>
+                    {carsToEdit}
+                </div>
+            </div>
+        </>
     );
 }

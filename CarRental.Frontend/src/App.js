@@ -4,6 +4,10 @@ import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
+import AddCar from "./components/Dashboard/AddCar";
+import AddCarModel from "./components/Dashboard/AddCarModel";
+import EditCar from "./components/Dashboard/EditCar";
+import EditCarModel from "./components/Dashboard/EditCarModel";
 import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
@@ -34,6 +38,10 @@ function App() {
                 <Route path="/reservations" element={<Reservations />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login name={name} setName={setName} />} />
+                <Route path="/addcar" element={<AddCar />} />
+                <Route path="/addcarmodel" element={<AddCarModel />} />
+                <Route path="/editcar" element={<EditCar />} />
+                <Route path="/editcarmodel" element={<EditCarModel />} />
                 {/* About */}
               </Routes>
               <Footer />

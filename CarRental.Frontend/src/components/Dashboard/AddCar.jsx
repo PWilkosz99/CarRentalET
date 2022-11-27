@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AddCarTile from './AddCarTile';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './Dashboard.module.css';
+import SideMenu from './SideMenu';
 
 export default function AddCar() {
     const [cars, setCars] = useState();
@@ -65,25 +67,34 @@ export default function AddCar() {
 
     if (!addingMode) {
         return (
-            <div className="add-car">
-                <h2>Add car</h2>
-                <h3>Select car model</h3>
-                {carsModels}
-            </div>
+            <>
+                <div className={styles.container}>
+                    <SideMenu />
+                    <div className={styles.content}>
+                        <h2>Add car</h2>
+                        <h3>Select car model</h3>
+                        {carsModels}
+                    </div>
+                </div>
+            </>
         );
     } else {
         return (
             <>
-                <form onSubmit={addCar}>
-                    <input type="number" placeholder="Milage" onChange={(e) => setMileage(e.target.value)} />
-                    <input type="month" placeholder="Production date" onChange={(e) => setProductionDate(() => (new Date(e.target.value)))} />
-                    <input type="number" placeholder="Cost per day" onChange={(e) => setcostPerDay(e.target.value)} />
-                    <input type="text" placeholder="Car state" onChange={(e) => setState(e.target.value)} />
-                    <input type="color" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
-                    <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
-                    <button type="submit">Save</button>
-                </form>
-
+                <div className={styles.container}>
+                    <SideMenu />
+                    <div className={styles.content}>
+                        <form onSubmit={addCar}>
+                            <input type="number" placeholder="Milage" onChange={(e) => setMileage(e.target.value)} />
+                            <input type="month" placeholder="Production date" onChange={(e) => setProductionDate(() => (new Date(e.target.value)))} />
+                            <input type="number" placeholder="Cost per day" onChange={(e) => setcostPerDay(e.target.value)} />
+                            <input type="text" placeholder="Car state" onChange={(e) => setState(e.target.value)} />
+                            <input type="color" placeholder="Color" onChange={(e) => setColor(e.target.value)} />
+                            <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
+                            <button type="submit">Save</button>
+                        </form>
+                    </div>
+                </div>
             </>
         )
     }

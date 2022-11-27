@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './Dashboard.module.css';
 
 export default function EditCarTile(props) {
     const [car, setCar] = useState(props.car);

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EditCarTile from './EditCarTile';
+import styles from './Dashboard.module.css';
+import SideMenu from './SideMenu';
 
 export default function EditCar() {
 
@@ -21,9 +23,14 @@ export default function EditCar() {
     const carsToEdit = cars?.map((car) => <EditCarTile key={car.id} car={car} />);
 
     return (
-        <div className="edit-car">
-            <h2>Edit car</h2>
-            {carsToEdit}
-        </div>
+        <>
+            <div className={styles.container}>
+                <SideMenu />
+                <div className={styles.content}>
+                    <h2>Edit car</h2>
+                    {carsToEdit}
+                </div>
+            </div>
+        </>
     );
 }

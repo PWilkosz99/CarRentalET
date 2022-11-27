@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useBlob } from '../../contexts/BlobContext';
+import styles from './Dashboard.module.css';
 
 export default function AddCarTile(props) {
 
