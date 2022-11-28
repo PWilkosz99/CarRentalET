@@ -116,9 +116,7 @@ export default function AddCar() {
                                     <span className={styles.form_label}>Notes: </span>
                                     <input type="text" placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
                                 </div>
-                                <div>
-                                    <button className={styles.btn} type="submit">Save</button>
-                                </div>
+                                <button className={styles.btn} type="submit">Save</button>
                             </form>
                         </div>
                     </div>

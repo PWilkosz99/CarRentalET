@@ -195,6 +195,20 @@
     cursor: pointer;
 }
 
+.dashboard_label {
+    /* padding-left: 10%; */
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.dashboard_value {
+    font-weight: 700;
+    padding-left: 2%;
+    font-size: 26px;
+}
+
+
 @media screen and (max-width: 768px) {
     .container {
         display: flex;
