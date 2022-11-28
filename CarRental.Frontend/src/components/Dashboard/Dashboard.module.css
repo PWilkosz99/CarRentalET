@@ -108,7 +108,22 @@
     border-radius: 10px;
 }
 
-.btn:hover {
+.btns{
+    display: block;
+    width: 40%;
+    height: 42px;
+    background-color: crimson;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.btn:hover,
+.btns:hover {
     background-color: blue;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -202,6 +217,14 @@
     .content {
         display: flex;
         width: 100%;
-        background-color: pink;
+    }
+
+    .dashboard_row_text{
+        width: 100%;
+    }
+
+    .btns{
+        width: 100%;
+        margin-top: 10px;
     }
 }

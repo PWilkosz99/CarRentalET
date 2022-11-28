@@ -27,7 +27,9 @@ export default function EditCar() {
             <div className={styles.container}>
                 <SideMenu />
                 <div className={styles.content}>
-                    <h2>Edit car</h2>
+                    <div className={styles.dashboard_title}>
+                        <h1>Select car you want to edit</h1>
+                    </div>
                     {carsToEdit}
                 </div>
             </div>
