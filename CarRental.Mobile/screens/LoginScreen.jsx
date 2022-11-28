@@ -1,7 +1,11 @@
 import { KeyboardAvoidingView, KeyboardEvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import { REACT_APP_FIREBASE_API_KEY } from "@env"
 
 const LoginScreen = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -11,19 +15,20 @@ const LoginScreen = () => {
                 <Text>LoginScreen</Text>
                 <TextInput
                     placeholder="Email"
-                    // value = { }
-                    // onChangText = {text => }
+                    value={email}
+                    onChangeText={text => setEmail(text)}
                     style={styles.input} />
 
                 <TextInput
                     placeholder="Password"
-                    // value = { }
-                    // onChangText = {text => }
+                    value={password}
+                    onChangeText={text => setPassword(text)}
                     style={styles.input}
                     secureTextEntry />
             </View>
 
             <View style={styles.buttonContainer}>
+                <Text>{REACT_APP_FIREBASE_API_KEY}</Text>
                 <TouchableOpacity
                     onPress={() => { }}
                     style={styles.button}>
