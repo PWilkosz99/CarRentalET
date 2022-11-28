@@ -65,44 +65,98 @@ export default function EditCarModelTile(props) {
 
     if (!editMode) {
         return (
-            <div className="edit-model-tile">
-                <hr />
-                <img src={getImage(id)} className="car-image" alt={Manufacturer} />
-                <h3>({id}) {Manufacturer} --- {Model} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3>
+            <div className={styles.dashboard_card}>
+                <div className={styles.dashboard_title}>
+                    <h1>Provide data about car</h1>
+                </div>
 
-                <button className="edit-carmodel" onClick={() => setEditMode(!editMode)}>Edit</button>
-                <button className="delete-carmodel" onClick={() => deleteCarModel(props.id)}>Delete</button>
+                <div className={styles.dashboard_row}>
+                    <img src={getImage(id)} className={styles.dashboard_card_img} alt={Manufacturer} />
+                </div>
+                {/* <h3>({id}) {Manufacturer} --- {Model} --- {Type} --- {Fuel} --- {Seats} --- {Axes} --- {HPs}</h3> */}
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2>Manufacturer: dadadada</h2>
+                </div>
+                <button className={styles.btns} onClick={() => setEditMode(!editMode)}>Edit</button>
+                <button className={styles.btns} onClick={() => deleteCarModel(props.id)}>Delete</button>
             </div>
         );
     } else {
         return (
             <>
-                <hr />
-                <form onSubmit={editCarModel} className="edit-model-form">
-                    <input className="manufacturer-form" placeholder="Manufacturer" value={Manufacturer} required onChange={e => setManufacturer(e.target.value)} />
-                    <input className="model-form" placeholder="Model" value={Model} required onChange={e => setModel(e.target.value)} />
-                    <select className="type-form" value={Type} onChange={e => setType(e.target.value)}>
-                        <option value="Sedan">Sedan</option>
-                        <option value="Hatchback">Hatchback</option>
-                        <option value="Coupe">Coupe</option>
-                    </select>
-                    <select className="fuel-form" value={Fuel} onChange={e => setFuel(e.target.value)}>
-                        <option value="Petrol">Petrol</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Hybrid">Hybrid</option>
-                        <option value="Electric">Electric</option>
-                    </select>
-                    <input type="number" className="seats-form" placeholder="Seats" required onChange={e => setSeats(e.target.value)} />
-                    <input type="number" className="hps-form" placeholder="HPs" required onChange={e => setHPs(e.target.value)} />
-                    <select className="axes-form" value={Axes} onChange={e => setAxes(e.target.value)}>
-                        <option value="FWD">FWD</option>
-                        <option value="RWD">RWD</option>
-                        <option value="AWD">AWD</option>
-                    </select>
+                <div className={styles.dashboard_card}>
+                    <div className={styles.dashboard_title}>
+                        <h1>Provide data about car</h1>
+                    </div>
+                    <form className={styles.form} onSubmit={editCarModel}>
 
-                    <button className="btn-form" type="submit">Submit</button>
-                    <button className="edit-carmodel" onClick={() => setEditMode(!editMode)}>Back</button>
-                </form>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <input className="manufacturer-form" placeholder="Manufacturer" value={Manufacturer} required onChange={e => setManufacturer(e.target.value)} />
+                        </div>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <input className="model-form" placeholder="Model" value={Model} required onChange={e => setModel(e.target.value)} />
+                        </div>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <select className="type-form" value={Type} onChange={e => setType(e.target.value)}>
+                                <option value="Sedan">Sedan</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Coupe">Coupe</option>
+                            </select>
+                        </div>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <select className="fuel-form" value={Fuel} onChange={e => setFuel(e.target.value)}>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Electric">Electric</option>
+                            </select>
+                        </div>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <input type="number" className="seats-form" placeholder="Seats" required onChange={e => setSeats(e.target.value)} />
+                        </div>
+
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <input type="number" className="hps-form" placeholder="HPs" required onChange={e => setHPs(e.target.value)} />
+                        </div>
+                        <div className={styles.form_row}>
+                            <span className={styles.form_label}>Milage: </span>
+                            <select className="axes-form" value={Axes} onChange={e => setAxes(e.target.value)}>
+                                <option value="FWD">FWD</option>
+                                <option value="RWD">RWD</option>
+                                <option value="AWD">AWD</option>
+                            </select>
+                        </div>
+                        <button className={styles.btns} type="submit">Submit</button>
+                        <button className={styles.btns} onClick={() => setEditMode(!editMode)}>Back</button>
+                    </form>
+                </div>
             </>
         );
     }
