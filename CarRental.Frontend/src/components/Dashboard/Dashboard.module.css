@@ -108,7 +108,7 @@
     border-radius: 10px;
 }
 
-.btns{
+.btns {
     display: block;
     width: 40%;
     height: 42px;
@@ -165,6 +165,33 @@
     border-color: #9b59b6
 }
 
+.form_row>select {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-family: inherit;
+    height: 45px;
+    cursor: inherit;
+    line-height: inherit;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+}
+
+.form_row select:hover {
+    cursor: pointer;
+}
+
+.form_row>input[type="file"] {
+    padding-top: 10px;
+}
+
+.form_row>input[type="file"]:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .container {
         display: flex;
@@ -219,11 +246,11 @@
         width: 100%;
     }
 
-    .dashboard_row_text{
+    .dashboard_row_text {
         width: 100%;
     }
 
-    .btns{
+    .btns {
         width: 100%;
         margin-top: 10px;
     }
