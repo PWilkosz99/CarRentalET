@@ -8,10 +8,6 @@ const HomeScreen = () => {
 
   const navigation = useNavigation();
 
-  const chuj = () => {
-    alert("chuj")
-  }
-
   const handleLogOut = () => {
     signOut(auth)
       .then(() => {
@@ -21,14 +17,14 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleLogOut}
-        style={styles.button}>
-        <Text style={styles.buttonText}>Logout</Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.container}>
+        <Text>Email: {auth.currentUser?.email}</Text>
+        <TouchableOpacity
+          onPress={handleLogOut}
+          style={styles.button}>
+          <Text style={styles.buttonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
   )
 }
 
