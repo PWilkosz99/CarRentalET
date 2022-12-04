@@ -10,7 +10,7 @@ const DrawerContent = () => {
     const Drawer = createDrawerNavigator();
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}
-        screenOptions={{headerShown: true, drawerLabelStyle: styles.drawerLabel, drawerActiveTintColor: 'blue'}}>
+            screenOptions={{ headerShown: true, drawerLabelStyle: styles.drawerLabel, drawerActiveTintColor: 'blue' }}>
             <Drawer.Screen name="Home" component={HomeScreen} options={{
                 drawerIcon: ({ color }) => (
                     <Icon name="home-outline" style={styles.icon} color={color} />
@@ -26,14 +26,9 @@ const DrawerContent = () => {
                     <Icon name="car-outline" style={styles.icon} color={color} />
                 )
             }} />
-            <Drawer.Screen name="Test" component={TestScreen} options={{
+            <Drawer.Screen name="About" component={TestScreen} options={{
                 drawerIcon: ({ color }) => (
-                    <Icon name="balloon-outline" style={styles.icon} color={color} />
-                )
-            }} />
-            <Drawer.Screen name="Logout" component={TestScreen} options={{
-                drawerIcon: ({ color }) => (
-                    <Icon name="home-outline" style={styles.icon} color={color} />
+                    <Icon name="people-outline" style={styles.icon} color={color} />
                 )
             }} />
         </Drawer.Navigator>
