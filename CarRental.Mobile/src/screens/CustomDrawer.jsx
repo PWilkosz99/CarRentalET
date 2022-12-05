@@ -3,8 +3,22 @@ import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawe
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase'
 
 export default function CustomDrawer(props) {
+
+    const navigation = useNavigation();
+
+    const handleLogOut = () => {
+        signOut(auth)
+          .then(() => {
+            navigation.replace("Login")
+          })
+          .catch((error) => alert(error.message));
+      }
+
     return (
         <View style={styles.mainView}>
             <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
@@ -17,7 +31,7 @@ export default function CustomDrawer(props) {
                 </View>
             </DrawerContentScrollView>
             <View style={styles.footer}>
-                <TouchableOpacity onPress={() => { }} style={styles.button}>
+                <TouchableOpacity onPress={handleLogOut} style={styles.button}>
                     <View style={styles.btnContent}>
                     <Icon name="exit-outline" size={22} color="black"/>
                     <Text style={styles.logout}>Logout</Text>

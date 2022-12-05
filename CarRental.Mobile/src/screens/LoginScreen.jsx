@@ -44,18 +44,20 @@ const LoginScreen = () => {
             behavior="padding">
             <View
                 style={styles.inputContaier}>
-                <Text>LoginScreen</Text>
+                <Text style={styles.text}>Log-in to application</Text>
                 <TextInput
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
-                    style={styles.input} />
+                    style={styles.input}
+                    placeholderTextColor='gray' />
 
                 <TextInput
                     placeholder="Password"
                     value={password}
                     onChangeText={text => setPassword(text)}
                     style={styles.input}
+                    placeholderTextColor='gray'
                     secureTextEntry />
             </View>
 
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 10,
         marginTop: 5,
-        color: 'black'
+        color: 'black',
     },
     buttonContainer: {
         width: '60%',
@@ -122,5 +124,11 @@ const styles = StyleSheet.create({
         color: 'lightblue',
         fontWeight: '700',
         fontSize: 16
+    },
+    text: {
+        color: 'black',
+        paddingBottom: 10,
+        fontSize: 20,
+        fontWeight: '700'
     }
 })
