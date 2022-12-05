@@ -28,24 +28,22 @@ function App() {
         <BlobProvider>
           <div className="App">
             <Navbar />
-            <div className="page-content">
-              <Routes>
-                <Route exact path="/" element={<Home name={name} />} />
-                <Route path="/rent" element={<Rent />} />
-                <Route path="/rentdetails" element={<RentDetails />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/reservations" element={<Reservations />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login name={name} setName={setName} />} />
-                <Route path="/addcar" element={<AddCar />} />
-                <Route path="/addcarmodel" element={<AddCarModel />} />
-                <Route path="/editcar" element={<EditCar />} />
-                <Route path="/editcarmodel" element={<EditCarModel />} />
-                {/* About */}
-              </Routes>
-              <Footer />
-            </div>
+            <Routes>
+              <Route exact path="/" element={<Home name={name} />} />
+              <Route path="/rent" element={<Rent />} />
+              <Route path="/rentdetails" element={<RentDetails />} />
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/reservations" element={<Reservations />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login name={name} setName={setName} />} />
+              <Route path="/addcar" element={<AddCar />} />
+              <Route path="/addcarmodel" element={<AddCarModel />} />
+              <Route path="/editcar" element={<EditCar />} />
+              <Route path="/editcarmodel" element={<EditCarModel />} />
+              {/* About */}
+            </Routes>
+            <Footer />
           </div>
         </BlobProvider>
       </AuthProvider>

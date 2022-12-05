@@ -31,7 +31,7 @@ export default function Home(props) {
   console.log(process.env.REACT_APP_BUCKET_ADDRESS)
 
   return (
-    <>
+    <div className={styles.mainPage}>
       <Hero />
       <div className={styles.slider}>
         <Swiper
@@ -74,8 +74,8 @@ export default function Home(props) {
           <SwiperSlide><SwiperCard img="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80" desc="Mercedess" /></SwiperSlide>
         </Swiper>
       </div>
-      <h2>Home page</h2>
-      {currentUser ? 'Zalogowano jako ' + currentUser.email : 'Nie zalogowano'}
-    </>
+      {/* <h2>Home page</h2>
+      {currentUser ? 'Zalogowano jako ' + currentUser.email : 'Nie zalogowano'} */}
+    </div>
   );
 }

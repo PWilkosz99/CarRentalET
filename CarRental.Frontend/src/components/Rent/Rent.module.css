@@ -1,3 +1,7 @@
+.rentPage{
+    min-height: 90%;
+}
+
 .wrapper {
     display: flex;
     flex-wrap: wrap;

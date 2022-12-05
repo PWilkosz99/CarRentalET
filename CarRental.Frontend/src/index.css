@@ -19,3 +19,19 @@ body {
   line-height: 1.3;
   font-family: 'Poppins', sans-serif;
 }
+
+
+body,
+#root,
+.App{
+  height: 100vh
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-contnet {
+  flex: 1;
+}

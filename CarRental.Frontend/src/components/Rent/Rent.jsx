@@ -63,25 +63,26 @@ export default function Rent() {
 
     return (
         <>
-            <h1 className={styles.title_rent}>Select rent date</h1>
-            <form className={styles.heroForm}>
-                <div className={styles.from}>
-                    <span className={styles.border}></span>
-                    <label>From</label>
-                    <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} />
+            <div className={styles.rentPage}>
+                <h1 className={styles.title_rent}>Select rent date</h1>
+                <form className={styles.heroForm}>
+                    <div className={styles.from}>
+                        <span className={styles.border}></span>
+                        <label>From</label>
+                        <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} />
+                    </div>
+                    <div className={styles.until}>
+                        <label>Until</label>
+                        <input type="date" value={untilDate} onChange={e => setUntilDate(e.target.value)} />
+                    </div>
+                    <div className={styles.search_btn}>
+                        <AiOutlineSearch onClick={selectDate} size={25} className={styles.icon} />
+                        <button onClick={selectDate} className={styles.btn}>Search</button>
+                    </div>
+                </form>
+                <div className={styles.wrapper}>
+                    {cards}
                 </div>
-                <div className={styles.until}>
-                    <label>Until</label>
-                    <input type="date" value={untilDate} onChange={e => setUntilDate(e.target.value)} />
-                </div>
-                <div className={styles.search_btn}>
-                    <AiOutlineSearch onClick={selectDate} size={25} className={styles.icon} />
-                    <button onClick={selectDate} className={styles.btn}>Search</button>
-                </div>
-            </form>
-            <hr />
-            <div className={styles.wrapper}>
-                {cards}
             </div>
             <ToastContainer />
         </>
