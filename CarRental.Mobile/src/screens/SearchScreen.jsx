@@ -1,12 +1,22 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react';
+import { TouchableOpacity, Text } from 'react-native';
+import DatePicker from 'react-native-modern-datepicker';
 
 const SearchScreen = () => {
+  const [selectedDate, setSelectedDate] = useState('');
+
   return (
-    <View>
-      <Text>SearchScreen</Text>
-    </View>
-  )
-}
+    <>
+      <DatePicker
+        onSelectedChange={date => setSelectedDate(date)}
+        mode="calendar"
+      />
+      <TouchableOpacity>
+        <Text>Register</Text>
+      </TouchableOpacity>
+    </>
+    // start date(next) -> end date(search) -> car tiles -> car details -> reservation
+  );
+};
 
 export default SearchScreen
