@@ -63,34 +63,34 @@ export default function EditCarTile(props) {
         return (
             <div className={styles.dashboard_card}>
                 <div className={styles.dashboard_title}>
-                    <h1>Samochodzik taki i taki</h1>
+                    <h1>Car name</h1>
                 </div>
                 <div className={styles.dashboard_row}>
                     <img src={getImage(props.car.id)} className={styles.dashboard_card_img} alt={props.car.manufacturer} />
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: dadadada</h2>
+                    <h2>Manufacturer: value</h2>
                 </div>
                 <button className={styles.btns} onClick={() => setEditMode(true)}>Edit</button>
                 <button className={styles.btns} onClick={removeCar}>Remove</button>

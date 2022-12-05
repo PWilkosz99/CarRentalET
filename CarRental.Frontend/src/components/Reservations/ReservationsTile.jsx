@@ -40,7 +40,8 @@ export default function ReservationsTile(props) {
                     <span className={styles.reservation_label}>Payment method: </span><span className={styles.reservation_value}>Credit card</span>
                 </div>
                 <div className={styles.reservation_details_row}>
-                    <span className={styles.reservation_label}>Cost: </span><span className={styles.reservation_value}>{props.reservation.cost} zł</span>
+                    <span className={styles.reservation_label}>Cost: </span><span className={styles.reservation_value}>{props.reservation.cost} zł</span> 
+                    {/* TODO: Fix cost calculation */}
                 </div>
             </div>
             <div className={styles.card_right}>

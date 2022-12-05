@@ -16,14 +16,14 @@ const DrawerContent = () => {
                     <Icon name="home-outline" style={styles.icon} color={color} />
                 )
             }} />
+            <Drawer.Screen name="Search" component={SearchScreen} options={{
+                drawerIcon: ({ color }) => (
+                    <Icon name="car-outline" style={styles.icon} color={color} />
+                )
+            }} />
             <Drawer.Screen name="Reservations" component={HomeScreen} options={{
                 drawerIcon: ({ color }) => (
                     <Icon name="calendar-outline" style={styles.icon} color={color} />
-                )
-            }} />
-            <Drawer.Screen name="Rent" component={HomeScreen} options={{
-                drawerIcon: ({ color }) => (
-                    <Icon name="car-outline" style={styles.icon} color={color} />
                 )
             }} />
             <Drawer.Screen name="About" component={TestScreen} options={{
