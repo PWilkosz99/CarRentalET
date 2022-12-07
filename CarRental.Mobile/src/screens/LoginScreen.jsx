@@ -28,15 +28,15 @@ const LoginScreen = () => {
     }
 
     const handleLogin = (e) => {
-        navigation.replace("Drawer"); //only for testing
-        // signInWithEmailAndPassword(auth, email, password)
-            // .then((userCredential) => {
-            //     const user = userCredential.user;
-            //     console.log(userCredential.user.email)
-            // })
-            // .catch((error) => {
-            //     alert(error.message)
-            // });
+        navigation.replace("Drawer");
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(userCredential.user.email)
+            })
+            .catch((error) => {
+                alert(error.message)
+            });
     }
 
     return (

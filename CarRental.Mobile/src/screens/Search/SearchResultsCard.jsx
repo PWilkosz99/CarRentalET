@@ -23,7 +23,7 @@ const SearchResultsCard = ({navigation}) => {
                 <Text style={styles.text}>Example prop</Text>
             </View>
             <TouchableOpacity onPress={showDetails} style={styles.button}>
-                <Text>Details</Text>
+                <Text style={styles.buttonText}>Details</Text>
             </TouchableOpacity>
         </View>
     )
@@ -38,12 +38,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 10,
         borderRadius: 30,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
         padding: 10,
+        color: 'black'
     },
     textContainer: {
         flex: 1,
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     text: {
         width: '45%',
         padding: 1,
+        color: 'black'
     },
     image: {
         height: 180,
@@ -65,9 +67,15 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#0782F9',
         width: '60%',
-        padding: 15,
+        padding: 10,
         borderRadius: 10,
         alignItems: 'center',
         marginBottom: 10,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: '700',
+        letterSpacing: 5,
     }
 })

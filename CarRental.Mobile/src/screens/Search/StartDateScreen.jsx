@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import DatePicker from 'react-native-modern-datepicker';
+import DatePicker, {getToday} from 'react-native-modern-datepicker';
 
 const StartDateScreen = () => {
   const [startDate, setStartDate] = useState('');
@@ -10,6 +10,7 @@ const StartDateScreen = () => {
 
   const handleClick = () => {
     if (!startDate) return alert('Please select start date')
+    if (startDate < getToday()) return alert('Start date must be after today')
     navigation.navigate('EndDateScreen', { startDate })
   }
 
@@ -23,7 +24,7 @@ const StartDateScreen = () => {
         mode="calendar"
       />
       <TouchableOpacity onPress={handleClick} style={styles.button}>
-        <Text>Next</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
     // start date(next) -> end date(search) -> car tiles -> car details -> reservation
@@ -43,10 +44,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black'
   },
   subtitle: {
     fontSize: 20,
-    marginBottom: 30
+    marginBottom: 30,
+    color: 'black'
   },
   picker: {
     height: '50%',
@@ -62,7 +65,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
+    fontSize: 20,
     fontWeight: '700',
-    fontSize: 16
-  },
+    letterSpacing: 5,
+}
 })

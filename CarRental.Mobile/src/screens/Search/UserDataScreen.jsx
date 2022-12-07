@@ -28,52 +28,60 @@ const UserDataScreen = ({ navigation }) => {
                         value={firstname}
                         autoCompleteType="name"
                         onChangeText={text => setFirstname(text)}
+                        placeholderTextColor='gray'
                         style={styles.inputSmall} />
                     <TextInput
                         placeholder="Lastname"
                         value={lastname}
                         autocompleteType="name"
                         onChangeText={text => setLastname(text)}
+                        placeholderTextColor='gray'
                         style={styles.inputSmall} />
                     <TextInput
                         placeholder="Phone"
                         value={phone}
                         autoCompleteType="tel"
                         onChangeText={text => setPhone(text)}
+                        placeholderTextColor='gray'
                         style={styles.input} />
                     <TextInput
                         placeholder="City"
                         value={city}
                         autoCompleteType="address-level2"
                         onChangeText={text => setCity(text)}
+                        placeholderTextColor='gray'
                         style={styles.inputSmall} />
                     <TextInput
                         placeholder="Postal code"
                         value={postalCode}
                         autoCompleteType="postal-code"
                         onChangeText={text => setPostalCode(text)}
+                        placeholderTextColor='gray'
                         style={styles.inputSmall} />
                     <TextInput
                         placeholder="Address"
                         value={address}
                         autoCompleteType="street-address"
                         onChangeText={text => setAddress(text)}
+                        placeholderTextColor='gray'
                         style={styles.input} />
                     <TextInput
                         placeholder="Country"
                         value={coutry}
                         autoCompleteType="country-name"
                         onChangeText={text => setCountry(text)}
+                        placeholderTextColor='gray'
                         style={styles.input} />
                     <TextInput
                         placeholder="Driving license number"
                         value={drivingLicense}
                         autoCompleteType="cc-number"
                         onChangeText={text => setDrivingLicense(text)}
+                        placeholderTextColor='gray'
                         style={styles.input} />
                 </View>
                 <TouchableOpacity onPress={handleClick} style={styles.button}>
-                    <Text>Confirm</Text>
+                    <Text style={styles.buttonText}>Confirm</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -101,6 +109,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         paddingVertical: 30,
+        color: 'black'
     },
     inputContaier: {
         width: '80%',
@@ -127,7 +136,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000000',
         width: '100%',
-        height: 50
+        height: 50,
     },
     inputSmall: {
         backgroundColor: '#f0f6f6',
@@ -141,4 +150,10 @@ const styles = StyleSheet.create({
         width: '45%',
         height: 50
     },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: '700',
+        letterSpacing: 3,
+    }
 })

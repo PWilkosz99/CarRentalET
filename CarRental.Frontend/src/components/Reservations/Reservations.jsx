@@ -10,6 +10,8 @@ export default function Reservations() {
 
     const { currentUser } = useAuth();
 
+    console.log(currentUser);
+
     useEffect(() => {
         (
             async () => {

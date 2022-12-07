@@ -27,28 +27,32 @@ const PaymentInfoScreen = ({ navigation }) => {
             value={cardNumber}
             autoCompleteType="name"
             onChangeText={text => setCardNumber(text)}
+            placeholderTextColor='gray'
             style={styles.input} />
           <TextInput
             placeholder="Expiration date"
             value={expirationDate}
             autoCompleteType="name"
             onChangeText={text => setExpirationDate(text)}
+            placeholderTextColor='gray'
             style={styles.input} />
           <TextInput
             placeholder="CVV"
             value={cvv}
             autoCompleteType="name"
             onChangeText={text => setCvv(text)}
+            placeholderTextColor='gray'
             style={styles.input} />
           <TextInput
             placeholder="Cardholder"
             value={cardholder}
             autoCompleteType="name"
             onChangeText={text => setCardHolder(text)}
+            placeholderTextColor='gray'
             style={styles.input} />
         </View>
         <TouchableOpacity onPress={handleClick} style={styles.button}>
-          <Text>Confirm</Text>
+          <Text style={styles.buttonText}>Confirm</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     paddingVertical: 30,
+    color: 'black'
   },
   inputContaier: {
     width: '80%',
@@ -116,4 +121,10 @@ const styles = StyleSheet.create({
     width: '45%',
     height: 50
   },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '700',
+    letterSpacing: 3,
+  }
 })

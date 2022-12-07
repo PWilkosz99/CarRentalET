@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import DatePicker from 'react-native-modern-datepicker';
+import DatePicker, { getToday } from 'react-native-modern-datepicker';
 
 const EndDateScreen = ({ route, navigation }) => {
 
@@ -9,8 +9,10 @@ const EndDateScreen = ({ route, navigation }) => {
   const [endDate, setEndDate] = useState('');
 
   const handleClick = () => {
-    if (!endDate) return alert('Please select end date')
-    console.log(startDate, endDate);
+    if (!endDate) return alert('Please select end date');
+    if (startDate >= endDate) return alert('End date must be after start date');
+    if (endDate < getToday()) return alert('End date must be after today')
+
     navigation.navigate('SearchResultsScreen', { startDate, endDate })
   }
 
@@ -25,14 +27,13 @@ const EndDateScreen = ({ route, navigation }) => {
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-          <Text>Go back</Text>
+        <Text style={styles.buttonText}>Go back</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleClick} style={styles.button}>
-          <Text>Next</Text>
+        <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
-    // start date(next) -> end date(search) -> car tiles -> car details -> reservation
   );
 };
 
@@ -49,10 +50,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black'
   },
   subtitle: {
     fontSize: 20,
-    marginBottom: 30
+    marginBottom: 30,
+    color: 'black'
   },
   picker: {
     height: '50%',
@@ -66,14 +69,15 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#0782F9',
-    width: '40%',
+    width: '45%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
   },
   buttonText: {
     color: 'white',
+    fontSize: 20,
     fontWeight: '700',
-    fontSize: 16
-  },
+    letterSpacing: 3,
+}
 })

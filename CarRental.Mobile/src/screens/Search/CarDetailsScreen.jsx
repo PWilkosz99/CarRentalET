@@ -27,7 +27,7 @@ const CarDetailsScreen = ({ navigation }) => {
                     <Text style={styles.text}>Example prop</Text>
                 </View>
                 <TouchableOpacity onPress={handleClick} style={styles.button}>
-                    <Text>Rent</Text>
+                    <Text style={styles.buttonText}>Rent</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -37,7 +37,7 @@ const CarDetailsScreen = ({ navigation }) => {
 export default CarDetailsScreen
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -50,12 +50,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         margin: 20,
         borderRadius: 30,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     title: {
         fontSize: 32,
         fontWeight: 'bold',
         padding: 20,
+        color: 'black'
     },
     textContainer: {
         flex: 1,
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     text: {
         width: '90%',
         padding: 5,
+        color: 'black'
     },
     image: {
         height: 180,
@@ -79,5 +81,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         marginBottom: 15,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: '700',
+        letterSpacing: 5,
     }
 })
