@@ -9,7 +9,9 @@ const EndDateScreen = ({ route, navigation }) => {
   const [endDate, setEndDate] = useState('');
 
   const handleClick = () => {
+    if (!endDate) return alert('Please select end date')
     console.log(startDate, endDate);
+    navigation.navigate('SearchResults', { startDate, endDate })
   }
 
   return (
@@ -21,12 +23,14 @@ const EndDateScreen = ({ route, navigation }) => {
         onSelectedChange={date => setEndDate(date)}
         mode="calendar"
       />
-      <TouchableOpacity onPress={handleClick} style={styles.button}>
-        <Text>Next</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-        <Text>Go back</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
+          <Text>Go back</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleClick} style={styles.button}>
+          <Text>Next</Text>
+        </TouchableOpacity>
+      </View>
     </View>
     // start date(next) -> end date(search) -> car tiles -> car details -> reservation
   );
@@ -54,13 +58,18 @@ const styles = StyleSheet.create({
     height: '50%',
     width: '100%',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    marginTop: 40,
+  },
   button: {
     backgroundColor: '#0782F9',
-    width: '60%',
+    width: '40%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
-    marginTop: 40,
   },
   buttonText: {
     color: 'white',

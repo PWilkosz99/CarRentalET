@@ -9,7 +9,7 @@ const StartDateScreen = () => {
   const navigation = useNavigation()
 
   const handleClick = () => {
-    console.log(startDate);
+    if (!startDate) return alert('Please select start date')
     navigation.navigate('EndDateScreen', { startDate })
   }
 

@@ -5,7 +5,7 @@ import HomeScreen from './HomeScreen';
 import TestScreen from './TestScreen';
 import CustomDrawer from './CustomDrawer';
 import Icon from 'react-native-vector-icons/Ionicons';
-import SearchScreen from './SearchScreen';
+import SearchScreen from './Search/SearchScreen';
 
 const DrawerContent = () => {
     const Drawer = createDrawerNavigator();
