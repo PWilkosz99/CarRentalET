@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import { ScrollView } from 'react-native-gesture-handler'
 
-const SearchResults = () => {
+const CarDetailsScreen = ({ navigation }) => {
+
+    const handleClick = () => {
+        console.log('rent')
+        navigation.navigate('UserDataScreen')
+        // , { startDate, endDate, car }
+    }
+
     return (
-        <ScrollView>
+        <View style={styles.container}>
+            {/* <Text>A lot of informations about car :)</Text> */}
             <View style={styles.card}>
                 <Text style={styles.title}>Mark + Model</Text>
                 {/* <Image style={styles.image} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} /> */}
@@ -19,45 +26,50 @@ const SearchResults = () => {
                     <Text style={styles.text}>Example prop</Text>
                     <Text style={styles.text}>Example prop</Text>
                 </View>
-                <TouchableOpacity onPress={() => { }} style={styles.button}>
-                    <Text>Details</Text>
+                <TouchableOpacity onPress={handleClick} style={styles.button}>
+                    <Text>Rent</Text>
                 </TouchableOpacity>
             </View>
-        </ScrollView>
+        </View>
     )
 }
 
-export default SearchResults
+export default CarDetailsScreen
 
 const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+    },
     card: {
         flex: 1,
-        height: 400,
+        width: '90%',
         backgroundColor: 'white',
-        margin: 10,
+        margin: 20,
         borderRadius: 30,
         alignItems: 'center'
     },
     title: {
-        fontSize: 20,
+        fontSize: 32,
         fontWeight: 'bold',
-        padding: 10,
+        padding: 20,
     },
     textContainer: {
         flex: 1,
-        flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
         width: '90%',
-        marginTop: 10,
+        marginTop: 20,
     },
     text: {
-        width: '45%',
-        padding: 1,
+        width: '90%',
+        padding: 5,
     },
     image: {
         height: 180,
-        width: '100%',
+        width: '90%',
         resizeMode: 'contain',
     },
     button: {
@@ -66,6 +78,6 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: 15,
     }
 })

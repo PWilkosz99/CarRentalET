@@ -11,7 +11,7 @@ const EndDateScreen = ({ route, navigation }) => {
   const handleClick = () => {
     if (!endDate) return alert('Please select end date')
     console.log(startDate, endDate);
-    navigation.navigate('SearchResults', { startDate, endDate })
+    navigation.navigate('SearchResultsScreen', { startDate, endDate })
   }
 
   return (
