@@ -35,10 +35,13 @@ export default function Rent(props) {
                 <span className={styles.mark}>{model.manufacturer} {model.model} {(new Date(car.productionDate)).getFullYear()}</span>
                 <p>{car.costPerDay}$/day</p>
                 <div className={styles.carProps}>
-                    <div className={styles.iconProp}><TbManualGearbox />10</div>
-                    <div className={styles.iconProp}><BsSnow />10</div>
-                    <div className={styles.iconProp}><GiCarSeat />10</div>
+                    <div className={styles.iconProp}><TbManualGearbox />Automatic</div> 
+                    {/* manual or automatic icon */}
+                    <div className={styles.iconProp}><BsSnow />Included</div>
+                    <div className={styles.iconProp}><GiCarSeat />{model.seats}</div>
                     <div className={styles.iconProp}><GiCarDoor />10</div>
+                    <div className={styles.iconProp}>FUEL 10</div>
+                    <div className={styles.iconProp}>HPs 10</div>
                 </div>
                 <button onClick={reserveCar} className={styles.rent_btn}>Rent</button>
             </div>

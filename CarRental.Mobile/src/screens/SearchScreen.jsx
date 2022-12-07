@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import DatePicker from 'react-native-modern-datepicker';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import StartDateScreen from './StartDateScreen';
+import EndDateScreen from './EndDateScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const SearchScreen = () => {
-  const [selectedDate, setSelectedDate] = useState('');
+
+  const Stack = createNativeStackNavigator();
 
   return (
-    <>
-      <DatePicker
-        onSelectedChange={date => setSelectedDate(date)}
-        mode="calendar"
-      />
-      <TouchableOpacity>
-        <Text>Register</Text>
-      </TouchableOpacity>
-    </>
-    // start date(next) -> end date(search) -> car tiles -> car details -> reservation
+    <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false }} name="StartDateScreen" component={StartDateScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="EndDateScreen" component={EndDateScreen} />
+    </Stack.Navigator>
   );
 };
 
 export default SearchScreen
+
+const styles = StyleSheet.create({
+
+})

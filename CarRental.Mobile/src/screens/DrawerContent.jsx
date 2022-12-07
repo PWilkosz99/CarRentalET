@@ -3,9 +3,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import React from 'react'
 import HomeScreen from './HomeScreen';
 import TestScreen from './TestScreen';
-import SearchScreen from './SearchScreen';
 import CustomDrawer from './CustomDrawer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import SearchScreen from './SearchScreen';
 
 const DrawerContent = () => {
     const Drawer = createDrawerNavigator();
