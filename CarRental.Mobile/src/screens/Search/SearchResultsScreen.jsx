@@ -1,45 +1,53 @@
 import { StyleSheet } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import SearchResultsCard from './SearchResultsCard'
 import { auth } from '../../../firebase'
 
 const SearchResultsScreen = ({ route, navigation }) => {
 
-    [startDate, endDate] = [route.params]
+    const [cars, setCars] = useState();
+    const { startDate, endDate } = route.params;
 
-    // console.log(`Bearer ${auth.currentUser.stsTokenManager.accessToken}`)
 
     useEffect(() => {
         (
             async () => {
                 try {
-                    console.log(new Date())
-                    const responde = await fetch('http://localhost:5000/api/GetCars')
-                    // , {
-                    // headers: new Headers({
-                    //     'Authorization': `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
-                    //     'Content-Type': 'application/json'
-                    // }),
-                    // });
+                    let fd = new Date()
+                    fd.setFullYear(startDate.substring(0, 4));
+                    fd.setMonth(startDate.substring(5, 7) - 1);
+                    fd.setDate(startDate.substring(8, 10));
+
+                    let ud = new Date()
+                    ud.setFullYear(endDate.substring(0, 4));
+                    ud.setMonth(endDate.substring(5, 7) - 1);
+                    ud.setDate(endDate.substring(8, 10));
+
+                    const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            startDate: fd,
+                            endDate: ud
+                        })
+                    });
+                    console.log(responde)
                     const content = await responde.json();
+                    setCars(content);
                     console.log(content)
                 } catch (error) {
                     console.log(error)
                 }
-
-
             }
         )();
     }, []);
 
-    // var cars = [1, 2, 3, 4]
-
-    // var results = cars.map((car) => <SearchResultsCard navigation={navigation} />)
+    var results = cars?.map((car) => <SearchResultsCard navigation={navigation} key={car.id} car={car} startDate={startDate} endDate={endDate} />)
 
     return (
         <ScrollView>
-            {/* {results} */}
+            {results}
         </ScrollView>
     )
 }

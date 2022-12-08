@@ -1,33 +1,44 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react'
 
-const CarDetailsScreen = ({ navigation }) => {
+const CarDetailsScreen = ({ route, navigation }) => {
+
+    const { car, startDate, endDate } = route.params;
+
+    console.log(car)
 
     const handleClick = () => {
         console.log('rent')
         navigation.navigate('UserDataScreen')
-        // , { startDate, endDate, car }
     }
+
+    let fd = new Date()
+    fd.setFullYear(startDate.substring(0, 4));
+    fd.setMonth(startDate.substring(5, 7) - 1);
+    fd.setDate(startDate.substring(8, 10));
+
+    let ud = new Date()
+    ud.setFullYear(endDate.substring(0, 4));
+    ud.setMonth(endDate.substring(5, 7) - 1);
+    ud.setDate(endDate.substring(8, 10));
+
+    var duration = (ud.getDate() - fd.getDate());
 
     return (
         <View style={styles.container}>
-            {/* <Text>A lot of informations about car :)</Text> */}
             <View style={styles.card}>
-                <Text style={styles.title}>Mark + Model</Text>
-                {/* <Image style={styles.image} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} /> */}
-                <Image style={styles.image} source={require('./Eiffel_Tower.jpg')} />
+                <Text style={styles.title}>{car.model.manufacturer} {car.model.model}</Text>
+                <Image style={styles.image} source={{ uri: `https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/m5ndEg9KfkvjeJs149ntmrL205mZTMOctjPNO2pQqqaVPlz52NRgDNJT6QUDCLpb/n/fre7obdqx6ap/b/car-rental-bucket/o/${car.model.id}.jpg` }} />
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
-                    <Text style={styles.text}>Example prop</Text>
+                    <View style={styles.row}><MaterialCommunityIcons name="calendar-start" style={styles.icon} /><Text style={styles.text}>Start date: <Text style={styles.value}>{fd.toLocaleDateString()}</Text></Text></View>
+                    <View style={styles.row}><MaterialCommunityIcons name="calendar-end" style={styles.icon} /><Text style={styles.text}>End date: <Text style={styles.value}>{ud.toLocaleDateString()}</Text></Text></View>
+                    <View style={styles.row}><MaterialCommunityIcons name="calendar-arrow-right" style={styles.icon} /><Text style={styles.text}>Duration: <Text style={styles.value}>{duration}</Text> days</Text></View>
+                    <View style={styles.row}><MaterialCommunityIcons name="cash" style={styles.icon} /><Text style={styles.text}>Cost per day: <Text style={styles.value}>{car.costPerDay}$</Text>/day</Text></View>
+                    <View style={styles.row}><MaterialCommunityIcons name="cash-multiple" style={styles.icon} /><Text style={styles.text}>Summary cost: <Text style={styles.value}>{car.costPerDay * duration}$</Text></Text></View>
                 </View>
                 <TouchableOpacity onPress={handleClick} style={styles.button}>
-                    <Text style={styles.buttonText}>Rent</Text>
+                    <Text style={styles.buttonText}>Confirm</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -65,9 +76,16 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     text: {
-        width: '90%',
-        padding: 5,
-        color: 'black'
+        paddingVertical: 7,
+        fontSize: 20,
+        color: 'black',
+        fontWeight: "400",
+    },
+    icon: {
+        color: 'black',
+        fontSize: 30,
+        marginRight: 10,
+        paddingTop: 5,
     },
     image: {
         height: 180,
@@ -87,5 +105,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
         letterSpacing: 5,
+    },
+    row: {
+        width: '90%',
+        padding: 1,
+        color: 'black',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    value: {
+        fontWeight: "900",
     }
 })

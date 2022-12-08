@@ -28,7 +28,6 @@ const LoginScreen = () => {
     }
 
     const handleLogin = (e) => {
-        navigation.replace("Drawer");
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
