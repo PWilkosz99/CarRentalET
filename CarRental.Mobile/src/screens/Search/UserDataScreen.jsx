@@ -1,20 +1,41 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 
-const UserDataScreen = ({ navigation }) => {
+const UserDataScreen = ({ route, navigation }) => {
+
+    const { car, startDate, endDate, cost } = route.params;
 
     const [firstname, setFirstname] = React.useState('');
     const [lastname, setLastname] = React.useState('');
     const [phone, setPhone] = React.useState('');
     const [address, setAddress] = React.useState('');
     const [city, setCity] = React.useState('');
-    const [coutry, setCountry] = React.useState('');
+    const [country, setCountry] = React.useState('');
     const [postalCode, setPostalCode] = React.useState('');
     const [drivingLicense, setDrivingLicense] = React.useState('');
 
     const handleClick = () => {
-        //validation
-        navigation.navigate('PaymentInfoScreen')
+        if(!firstname) return alert('Please provide your firstname');
+        if(!lastname) return alert('Please provide your lastname');
+        if(!phone) return alert('Please provide your phone number');
+        if(!address) return alert('Please provide your address');
+        if(!city) return alert('Please provide your city');
+        if(!country) return alert('Please provide your country');
+        if(!postalCode) return alert('Please provide your postal code');
+        if(!drivingLicense) return alert('Please provide your driving license');
+
+        const user = {
+            firstname,
+            lastname,
+            phone,
+            address,
+            city,
+            country,
+            postalCode,
+            drivingLicense
+        }
+
+        navigation.navigate('PaymentInfoScreen', {user, car, startDate, endDate, cost})
     }
 
 
@@ -67,7 +88,7 @@ const UserDataScreen = ({ navigation }) => {
                         style={styles.input} />
                     <TextInput
                         placeholder="Country"
-                        value={coutry}
+                        value={country}
                         autoCompleteType="country-name"
                         onChangeText={text => setCountry(text)}
                         placeholderTextColor='gray'

@@ -9,8 +9,7 @@ const CarDetailsScreen = ({ route, navigation }) => {
     console.log(car)
 
     const handleClick = () => {
-        console.log('rent')
-        navigation.navigate('UserDataScreen')
+        navigation.navigate('UserDataScreen', { car, startDate, endDate, cost })
     }
 
     let fd = new Date()
@@ -25,6 +24,8 @@ const CarDetailsScreen = ({ route, navigation }) => {
 
     var duration = (ud.getDate() - fd.getDate());
 
+    var cost = car.costPerDay * duration;
+
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -35,7 +36,7 @@ const CarDetailsScreen = ({ route, navigation }) => {
                     <View style={styles.row}><MaterialCommunityIcons name="calendar-end" style={styles.icon} /><Text style={styles.text}>End date: <Text style={styles.value}>{ud.toLocaleDateString()}</Text></Text></View>
                     <View style={styles.row}><MaterialCommunityIcons name="calendar-arrow-right" style={styles.icon} /><Text style={styles.text}>Duration: <Text style={styles.value}>{duration}</Text> days</Text></View>
                     <View style={styles.row}><MaterialCommunityIcons name="cash" style={styles.icon} /><Text style={styles.text}>Cost per day: <Text style={styles.value}>{car.costPerDay}$</Text>/day</Text></View>
-                    <View style={styles.row}><MaterialCommunityIcons name="cash-multiple" style={styles.icon} /><Text style={styles.text}>Summary cost: <Text style={styles.value}>{car.costPerDay * duration}$</Text></Text></View>
+                    <View style={styles.row}><MaterialCommunityIcons name="cash-multiple" style={styles.icon} /><Text style={styles.text}>Summary cost: <Text style={styles.value}>{cost}$</Text></Text></View>
                 </View>
                 <TouchableOpacity onPress={handleClick} style={styles.button}>
                     <Text style={styles.buttonText}>Confirm</Text>

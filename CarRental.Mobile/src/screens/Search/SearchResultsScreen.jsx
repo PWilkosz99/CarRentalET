@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import SearchResultsCard from './SearchResultsCard'
-import { auth } from '../../../firebase'
 
 const SearchResultsScreen = ({ route, navigation }) => {
 
