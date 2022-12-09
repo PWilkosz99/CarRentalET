@@ -9,10 +9,19 @@ import { AiOutlineSearch } from 'react-icons/ai'
 export default function Rent() {
     const { state } = useLocation();
     const [cars, setCars] = useState();
-    const [fromDate, setFromDate] = useState('2000-01-01');
-    const [untilDate, setUntilDate] = useState('2000-01-02');
 
     const todayDate = new Date();
+    
+    const tomorrowDate = new Date(todayDate);
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+
+    const nextWeekDate = new Date(todayDate);
+    nextWeekDate.setDate(nextWeekDate.getDate() + 6);
+    
+    const [fromDate, setFromDate] = useState(tomorrowDate.toLocaleDateString('en-CA'));
+    const [untilDate, setUntilDate] = useState(nextWeekDate.toLocaleDateString('en-CA'));
+
+
 
     useEffect(() => {
         if (state) {
