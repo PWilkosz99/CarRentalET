@@ -13,9 +13,6 @@ const PaymentInfoScreen = ({ route, navigation }) => {
   const [cardholder, setCardHolder] = React.useState('');
 
   const handleClick = async () => {
-    console.log(user.phone)
-
-
     let fd = new Date()
     fd.setFullYear(startDate.substring(0, 4));
     fd.setMonth(startDate.substring(5, 7) - 1);

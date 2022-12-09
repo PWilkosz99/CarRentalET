@@ -294,6 +294,7 @@ namespace CarRentalET.Controllers
                     Client = client,
                     Payment = payment,
                     Vehicle = vehicle,
+                    Cost = dto.Cost
                 };
 
                 await _dbContext.Reservations.AddAsync(reservation);

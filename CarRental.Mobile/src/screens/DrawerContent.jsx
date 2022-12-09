@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import React from 'react'
 import HomeScreen from './HomeScreen';
+import ReseravationsScreen from './Reservations/ReseravationsScreen';
 import CustomDrawer from './CustomDrawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SearchScreen from './Search/SearchScreen';
@@ -21,7 +22,7 @@ const DrawerContent = () => {
                     <Icon name="car-outline" style={styles.icon} color={color} />
                 )
             }} />
-            <Drawer.Screen name="Reservations" component={HomeScreen} options={{
+            <Drawer.Screen name="Reservations" component={ReseravationsScreen} options={{
                 drawerIcon: ({ color }) => (
                     <Icon name="calendar-outline" style={styles.icon} color={color} />
                 )
