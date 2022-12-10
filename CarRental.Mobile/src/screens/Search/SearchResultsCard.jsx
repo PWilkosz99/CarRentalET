@@ -16,8 +16,8 @@ const SearchResultsCard = ({ navigation, car, startDate, endDate }) => {
             <Image style={styles.image} source={{ uri: `https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/m5ndEg9KfkvjeJs149ntmrL205mZTMOctjPNO2pQqqaVPlz52NRgDNJT6QUDCLpb/n/fre7obdqx6ap/b/car-rental-bucket/o/${car.model.id}.jpg` }} />
             <View style={styles.textContainer}>
                 <View style={styles.row}><Ionicons name="cash-outline" style={styles.icon} /><Text style={styles.text}>{car.costPerDay}$/day</Text></View>
-                <View style={styles.row}><Ionicons name="snow-outline" style={styles.icon} /><Text style={styles.text}>#TODO</Text></View>
-                <View style={styles.row}><FontAwesome name="gear" style={styles.icon} /><Text style={styles.text}>#TODO</Text></View>
+                <View style={styles.row}><Ionicons name="snow-outline" style={styles.icon} /><Text style={styles.text}>{car.model.airConditioning}</Text></View>
+                <View style={styles.row}><FontAwesome name="gear" style={styles.icon} /><Text style={styles.text}>{car.model.gearbox}</Text></View>
                 <View style={styles.row}><MaterialCommunityIcons name="fuel" style={styles.icon} /><Text style={styles.text}>{car.model.fuel}</Text></View>
                 <View style={styles.row}><MaterialCommunityIcons name="car-door" style={styles.icon} /><Text style={styles.text}>delete?</Text></View>
                 {/* ?//AXES//PROD */}

@@ -8,11 +8,13 @@ import SideMenu from './SideMenu';
 export default function AddCarModel() {
     const [Manufacturer, setManufacturer] = useState('');
     const [Model, setModel] = useState('');
-    const [Type, setType] = useState('');
-    const [Fuel, setFuel] = useState('');
+    const [Type, setType] = useState('Sedan');
+    const [Fuel, setFuel] = useState('Petrol');
     const [Seats, setSeats] = useState('');
     const [HPs, setHPs] = useState('');
-    const [Axes, setAxes] = useState('');
+    const [Axes, setAxes] = useState('FWD');
+    const [AC, setAC] = useState('false');
+    const [Gearbox, setGearbox] = useState('false');
 
     const [image, setImage] = useState();
     const { currentUser } = useAuth();
@@ -36,7 +38,9 @@ export default function AddCarModel() {
                         Fuel,
                         Seats,
                         HPs,
-                        Axes
+                        Axes,
+                        AC,
+                        Gearbox
                     })
                 });
             }
@@ -59,23 +63,28 @@ export default function AddCarModel() {
                         <form className={styles.form} onSubmit={handleSubmit}>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Manufacturer: </span>
-                                <input className="manufacturer-form" placeholder="Manufacturer" required onChange={e => setManufacturer(e.target.value)} />
+                                <input placeholder="Manufacturer" required onChange={e => setManufacturer(e.target.value)} />
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Model: </span>
-                                <input className="model-form" placeholder="Model" required onChange={e => setModel(e.target.value)} />
+                                <input placeholder="Model" required onChange={e => setModel(e.target.value)} />
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Type: </span>
-                                <select className="type-form" value={Type} onChange={e => setType(e.target.value)}>
+                                <select value={Type} onChange={e => setType(e.target.value)}>
                                     <option value="Sedan">Sedan</option>
                                     <option value="Hatchback">Hatchback</option>
                                     <option value="Coupe">Coupe</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Crosover">Crosover</option>
+                                    <option value="Minivan">Minivan</option>
+                                    <option value="Pickup">Pickup</option>
+                                    <option value="Cabriolet">Cabriolet</option>
                                 </select>
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Fuel: </span>
-                                <select className="fuel-form" value={Fuel} onChange={e => setFuel(e.target.value)}>
+                                <select value={Fuel} onChange={e => setFuel(e.target.value)}>
                                     <option value="Petrol">Petrol</option>
                                     <option value="Diesel">Diesel</option>
                                     <option value="Hybrid">Hybrid</option>
@@ -84,18 +93,32 @@ export default function AddCarModel() {
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Seats: </span>
-                                <input type="number" className="seats-form" placeholder="Seats" required onChange={e => setSeats(e.target.value)} />
+                                <input type="number" placeholder="Seats" required onChange={e => setSeats(e.target.value)} />
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>HPs: </span>
-                                <input type="number" className="hps-form" placeholder="HPs" required onChange={e => setHPs(e.target.value)} />
+                                <input type="number" placeholder="HPs" required onChange={e => setHPs(e.target.value)} />
                             </div>
                             <div className={styles.form_row}>
                                 <span className={styles.form_label}>Axes: </span>
-                                <select className="axes-form" value={Axes} onChange={e => setAxes(e.target.value)}>
+                                <select value={Axes} onChange={e => setAxes(e.target.value)}>
                                     <option value="FWD">FWD</option>
                                     <option value="RWD">RWD</option>
                                     <option value="AWD">AWD</option>
+                                </select>
+                            </div>
+                            <div className={styles.form_row}>
+                                <span className={styles.form_label}>Air conditioning: </span>
+                                <select value={AC} onChange={e => setAC(e.target.value)}>
+                                    <option value="false">NO</option>
+                                    <option value="true">YES</option>
+                                </select>
+                            </div>
+                            <div className={styles.form_row}>
+                                <span className={styles.form_label}>Gearbox: </span>
+                                <select value={Gearbox} onChange={e => setGearbox(e.target.value)}>
+                                    <option value="Manual">MANUAL</option>
+                                    <option value="Automatic">AUTOMATIC</option>
                                 </select>
                             </div>
                             <div className={styles.form_row}>

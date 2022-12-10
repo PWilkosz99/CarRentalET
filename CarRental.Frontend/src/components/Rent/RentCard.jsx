@@ -8,6 +8,8 @@ import styles from './Rent.module.css';
 import { TbManualGearbox } from "react-icons/tb";
 import { BsSnow } from "react-icons/bs";
 import { GiCarSeat, GiCarDoor } from "react-icons/gi";
+import { RiGasStationFill } from "react-icons/ri";
+import { IoSettings } from "react-icons/io5";
 
 export default function Rent(props) {
 
@@ -27,21 +29,21 @@ export default function Rent(props) {
         }
     }
 
+    let AC = model.airConditioning ? "Yes" : "No";
 
     return (
         <>
             <div className={styles.rentCard}>
                 <img src={getImage(model.id)} className={styles.cardImg} />
                 <span className={styles.mark}>{model.manufacturer} {model.model} {(new Date(car.productionDate)).getFullYear()}</span>
-                <p>{car.costPerDay}$/day</p>
+                <p className={styles.cost}>{car.costPerDay}$/day</p>
                 <div className={styles.carProps}>
-                    <div className={styles.iconProp}><TbManualGearbox />Automatic</div> 
+                    <div className={styles.iconProp}><TbManualGearbox /><span className={styles.card_text}>{model.gearbox}</span></div> 
                     {/* manual or automatic icon */}
-                    <div className={styles.iconProp}><BsSnow />Included</div>
-                    <div className={styles.iconProp}><GiCarSeat />{model.seats}</div>
-                    <div className={styles.iconProp}><GiCarDoor />10</div>
-                    <div className={styles.iconProp}>FUEL 10</div>
-                    <div className={styles.iconProp}>HPs 10</div>
+                    <div className={styles.iconProp}><BsSnow /><span className={styles.card_text}>{AC}</span></div>
+                    <div className={styles.iconProp}><GiCarSeat /><span className={styles.card_text}>{model.seats}</span></div>
+                    <div className={styles.iconProp}><RiGasStationFill /><span className={styles.card_text}>{model.fuel}</span></div>
+                    <div className={styles.iconProp}><IoSettings /><span className={styles.card_text}>{model.hPs}HPs</span></div>
                 </div>
                 <button onClick={reserveCar} className={styles.rent_btn}>Rent</button>
             </div>

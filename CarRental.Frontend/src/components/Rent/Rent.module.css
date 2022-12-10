@@ -105,10 +105,6 @@
     flex-direction: column;
 }
 
-/* .until {
-    border-left: 1px solid black;
-    padding-left: 32px;
-} */
 
 .icon {
     display: flex;
@@ -200,16 +196,6 @@
     padding-left: 2%;
 }
 
-/* .reservation_input_box{
-    align-items: right;
-}
-
-.reservation_input_box > input{
-    height: 45px;
-    width: 200px;
-    outline: none;
-} */
-
 .formData {
     display: flex;
     flex-wrap: wrap;
@@ -271,6 +257,40 @@
     transition: all 0.3s ease;
 }
 
+.card_text{
+    padding-left: 7px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.iconProp{
+    font-size: 25px;
+}
+
+.cost{
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1240px){
+    .details_card {
+        margin: 20px 10% 20px 10%;
+    }
+
+    .card_text{
+        padding-left: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    .iconProp{
+        font-size: 15px;
+    }
+
+    .rentCard{
+        width: 30%;
+    }
+}
+
 @media screen and (max-width: 720px) {
     .heroForm {
         display: flex;
@@ -302,5 +322,20 @@
 
     .reservation_data_row {
         width: 100%;
+    }
+
+    .card_text{
+        font-size: 15px;
+        font-weight: 500;
+    }
+    
+    .iconProp{
+        font-size: 20px;
+    }
+
+    .rentCard{
+        margin: 0 0.6rem;
+        width: 45%;
+        margin-top: 10px;
     }
 }

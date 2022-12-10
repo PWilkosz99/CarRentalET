@@ -29,7 +29,15 @@ console.log(props);
             <div className={styles.dashboard_row_text}>
                 <span className={styles.dashboard_label}>HPs: </span><span className={styles.dashboard_value}>{props.car.hPs}</span>
             </div>
-            {/* <h3>({props.car.id}) {props.car.manufacturer} --- {props.car.model} --- {props.car.type} --- {props.car.fuel} --- {props.car.seats} --- {props.car.axes} --- {props.car.hPs}</h3> */}
+            <div className={styles.dashboard_row_text}>
+                <span className={styles.dashboard_label}>Gearbox: </span><span className={styles.dashboard_value}>{props.car.gearbox}</span>
+            </div>
+            <div className={styles.dashboard_row_text}>
+                <span className={styles.dashboard_label}>AC: </span><span className={styles.dashboard_value}>{props.car.airConditioning ? "Yes" : "No"}</span>
+            </div>
+            <div className={styles.dashboard_row_text}>
+                <span className={styles.dashboard_label}>Notes: </span><span className={styles.dashboard_value}>{props.car.hPs}</span>
+            </div>
             <button className={styles.btn} onClick={() => props.handleChoice(props.car.id)}>Select</button>
         </div>
     );

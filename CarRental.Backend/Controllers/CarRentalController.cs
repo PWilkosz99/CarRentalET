@@ -37,7 +37,9 @@ namespace CarRentalET.Controllers
                 Fuel = model.Fuel,
                 Seats = model.Seats,
                 HPs = model.HPs,
-                Axes = model.Axes
+                Axes = model.Axes,
+                Gearbox = model.Gearbox,
+                AirConditioning = model.AirConditioning
             };
 
             await _dbContext.VehicleModels.AddAsync(vehicleModel);

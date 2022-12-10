@@ -9,6 +9,7 @@
         public int Seats { get; set; }
         public int HPs { get; set; }
         public string Axes { get; set; }
-
+        public string Gearbox { get; set; }
+        public bool AirConditioning { get; set; }
     }
 }

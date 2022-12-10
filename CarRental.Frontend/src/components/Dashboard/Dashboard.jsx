@@ -15,15 +15,8 @@ export default function Dashboard() {
       <div className={styles.container}>
         <SideMenu />
         <div className={styles.content}>
-          aaa
         </div>
       </div>
-      {/* <EditCar />
-      <AddCar />
-
-      <AddCarModel />
-      <EditCarModel />
-      <h2>Dashboard</h2> */}
     </>
 
   );

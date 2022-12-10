@@ -63,40 +63,46 @@ export default function EditCarTile(props) {
         return (
             <div className={styles.dashboard_card}>
                 <div className={styles.dashboard_title}>
-                    <h1>Car name</h1>
+                    <h2>{car.model.manufacturer} {car.model.model}</h2>
                 </div>
                 <div className={styles.dashboard_row}>
                     <img src={getImage(props.car.id)} className={styles.dashboard_card_img} alt={props.car.manufacturer} />
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Cost per day: <span className={styles.value}>{costPerDay}</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Mileage: <span className={styles.value}>{mileage}km</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Production date: <span className={styles.value}>{new Date(productionDate).toLocaleDateString()}</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>State: <span className={styles.value}>Avaliable</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Type: <span className={styles.value}>Avaliable</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Fuel: <span className={styles.value}>{carModel.fuel}</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Seats: <span className={styles.value}>{carModel.seats}</span></h2>
                 </div>
                 <div className={styles.dashboard_row_text}>
-                    <h2>Manufacturer: value</h2>
+                    <h2 className={styles.edit_row}>Power: <span className={styles.value}>{carModel.hPs} hps</span></h2>
+                </div>
+                <div className={styles.dashboard_row_text}>
+                    <h2 className={styles.edit_row}>Axes: <span className={styles.value}>{carModel.axes}</span></h2>
+                </div>
+                {/* <div className={styles.dashboard_row_text}>
+                    <h2>Color: {color}</h2>
+                </div> */}
+                <div className={styles.dashboard_row_text}>
+                <h2 className={styles.edit_row}>Notes: <span className={styles.value}>{notes}</span></h2>
                 </div>
                 <button className={styles.btns} onClick={() => setEditMode(true)}>Edit</button>
                 <button className={styles.btns} onClick={removeCar}>Remove</button>
-                {/* <h1>Provide data about car</h1>
-                    <h2>{carModel.manufacturer} - {carModel.model} - {carModel.type} - {carModel.fuel} - {carModel.seats} - {carModel.hPs} - {carModel.axes}</h2>
-                    <h2>{mileage} - {String(productionDate)} - {costPerDay} - {state} - {color} - {notes}</h2> */}
             </div>
 
         );

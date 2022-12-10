@@ -209,6 +209,14 @@
     font-size: 26px;
 }
 
+.value{
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.edit_row{
+    font-weight: 400;
+}
 
 @media screen and (max-width: 768px) {
     .container {

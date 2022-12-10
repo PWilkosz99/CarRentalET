@@ -29,7 +29,7 @@ export default function EditCarModel() {
     }, []);
 
     const carsToEdit = cars?.map((car) =>
-        <EditCarModelTile key={car.id} id={car.id} manufacturer={car.manufacturer} model={car.model} type={car.type} seats={car.seats} fuel={car.fuel} hps={car.hPs} axes={car.axes} />
+        <EditCarModelTile key={car.id} id={car.id} manufacturer={car.manufacturer} model={car.model} type={car.type} seats={car.seats} fuel={car.fuel} hps={car.hPs} axes={car.axes} ac={car.airConditioning} gearbox={car.gearbox}/>
     );
 
     return (
