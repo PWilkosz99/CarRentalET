@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import {
+  Navigation, Pagination, Scrollbar, A11y,
+} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useAuth } from '../../contexts/AuthContext';
 import Hero from '../Hero/Hero';
 import styles from './Home.module.css';
 
-import 'swiper/css'
-import 'swiper/css/navigation'
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-import Logo from '../../images/logo192.png'; //tmp
+import Logo from '../../images/logo192.png'; // tmp
 import SwiperCard from './SwiperCard';
 
 export default function Home(props) {
@@ -26,9 +28,9 @@ export default function Home(props) {
 
   // }
 
-  console.log(currentUser)
+  console.log(currentUser);
 
-  console.log(process.env.REACT_APP_BUCKET_ADDRESS)
+  console.log(process.env.REACT_APP_BUCKET_ADDRESS);
 
   return (
     <div className={styles.mainPage}>
@@ -42,26 +44,26 @@ export default function Home(props) {
           breakpoints={{
             320: {
               slidesPerView: 1,
-              spaceBetween: 10
+              spaceBetween: 10,
             },
             480: {
               slidesPerView: 2,
-              spaceBetween: 20
+              spaceBetween: 20,
             },
             640: {
               slidesPerView: 3,
-              spaceBetween: 30
+              spaceBetween: 30,
             },
             960: {
               slidesPerView: 4,
-              spaceBetween: 40
+              spaceBetween: 40,
             },
             1200: {
               slidesPerView: 5,
-              spaceBetween: 50
-            }
+              spaceBetween: 50,
+            },
           }}
-          loop={true}
+          loop
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log('slide change')}
         >
