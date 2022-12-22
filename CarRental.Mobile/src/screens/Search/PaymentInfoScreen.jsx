@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { auth } from '../../../firebase'
+import {
+  StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity,
+} from 'react-native';
+import React from 'react';
+import { auth } from '../../../firebase';
 
-const PaymentInfoScreen = ({ route, navigation }) => {
-
-  const { user, car, startDate, endDate, cost } = route.params;
-
+function PaymentInfoScreen({ route, navigation }) {
+  const {
+    user, car, startDate, endDate, cost,
+  } = route.params;
 
   const [cardNumber, setCardNumber] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
@@ -13,17 +15,17 @@ const PaymentInfoScreen = ({ route, navigation }) => {
   const [cardholder, setCardHolder] = React.useState('');
 
   const handleClick = async () => {
-    let fd = new Date()
+    const fd = new Date();
     fd.setFullYear(startDate.substring(0, 4));
     fd.setMonth(startDate.substring(5, 7) - 1);
     fd.setDate(startDate.substring(8, 10));
 
-    let ud = new Date()
+    const ud = new Date();
     ud.setFullYear(endDate.substring(0, 4));
     ud.setMonth(endDate.substring(5, 7) - 1);
     ud.setDate(endDate.substring(8, 10));
 
-    let exp = ((20 + expirationDate.substring(3, 7)) + '-' + expirationDate.substring(0, 2));
+    const exp = (`${20 + expirationDate.substring(3, 7)}-${expirationDate.substring(0, 2)}`);
 
     if (!cardNumber) return alert('Please provide your card number');
     if (cardNumber.length < 16) return alert('Please provide a valid card number');
@@ -43,8 +45,8 @@ const PaymentInfoScreen = ({ route, navigation }) => {
     const response = await fetch('http://localhost:5000/api/ReserveCar', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
+        'Content-Type': 'application/json',
       }),
       body: JSON.stringify({
 
@@ -67,25 +69,24 @@ const PaymentInfoScreen = ({ route, navigation }) => {
         CVV: cvv,
         CardOwnerName: cardholder,
 
-        Cost: cost
-      })
+        Cost: cost,
+      }),
     });
 
-    console.log(response.status)
-    console.log(response.statusText)
-    console.log(response.json())
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.json());
 
     if (response.status === 201) {
-      alert("Car reserved successfully");
+      alert('Car reserved successfully');
       navigation.reset({
         index: 0,
         routes: [{ name: 'Drawer' }],
       });
     } else {
-      alert("Something went wrong");
+      alert('Something went wrong');
     }
-  }
-
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -96,40 +97,44 @@ const PaymentInfoScreen = ({ route, navigation }) => {
             placeholder="Cardnumber"
             value={cardNumber}
             autoCompleteType="name"
-            onChangeText={text => setCardNumber(text)}
-            placeholderTextColor='gray'
-            style={styles.input} />
+            onChangeText={(text) => setCardNumber(text)}
+            placeholderTextColor="gray"
+            style={styles.input}
+          />
           <TextInput
             placeholder="Expiration date"
             value={expirationDate}
             autoCompleteType="name"
-            onChangeText={text => setExpirationDate(text)}
-            placeholderTextColor='gray'
-            style={styles.input} />
+            onChangeText={(text) => setExpirationDate(text)}
+            placeholderTextColor="gray"
+            style={styles.input}
+          />
           <TextInput
             placeholder="CVV"
             value={cvv}
             autoCompleteType="name"
-            onChangeText={text => setCvv(text)}
-            placeholderTextColor='gray'
-            style={styles.input} />
+            onChangeText={(text) => setCvv(text)}
+            placeholderTextColor="gray"
+            style={styles.input}
+          />
           <TextInput
             placeholder="Cardholder"
             value={cardholder}
             autoCompleteType="name"
-            onChangeText={text => setCardHolder(text)}
-            placeholderTextColor='gray'
-            style={styles.input} />
+            onChangeText={(text) => setCardHolder(text)}
+            placeholderTextColor="gray"
+            style={styles.input}
+          />
         </View>
         <TouchableOpacity onPress={handleClick} style={styles.button}>
           <Text style={styles.buttonText}>Confirm</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
-  )
+  );
 }
 
-export default PaymentInfoScreen
+export default PaymentInfoScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -144,13 +149,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 40,
     borderRadius: 30,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
     paddingVertical: 30,
-    color: 'black'
+    color: 'black',
   },
   inputContaier: {
     width: '80%',
@@ -177,7 +182,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000',
     width: '100%',
-    height: 50
+    height: 50,
   },
   inputSmall: {
     backgroundColor: '#f0f6f6',
@@ -189,12 +194,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000',
     width: '45%',
-    height: 50
+    height: 50,
   },
   buttonText: {
     color: 'white',
     fontSize: 20,
     fontWeight: '700',
     letterSpacing: 3,
-  }
-})
+  },
+});

@@ -1,34 +1,39 @@
-import { useNavigation } from '@react-navigation/native'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { signOut } from 'firebase/auth'
-import { auth } from '../../firebase'
+import { useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet, Text, TouchableOpacity, View,
+} from 'react-native';
+import React from 'react';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
-const HomeScreen = () => {
-
+function HomeScreen() {
   const navigation = useNavigation();
 
   const handleLogOut = () => {
     signOut(auth)
       .then(() => {
-        navigation.replace("Login")
+        navigation.replace('Login');
       })
       .catch((error) => alert(error.message));
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Email: {auth.currentUser?.email}</Text>
+      <Text style={styles.text}>
+        Email:
+        {auth.currentUser?.email}
+      </Text>
       <TouchableOpacity
         onPress={handleLogOut}
-        style={styles.button}>
+        style={styles.button}
+      >
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
-export default HomeScreen
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -47,9 +52,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: '700',
-    fontSize: 16
+    fontSize: 16,
   },
   text: {
     color: 'black',
-  }
-})
+  },
+});

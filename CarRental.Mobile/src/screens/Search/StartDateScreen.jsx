@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import DatePicker, {getToday} from 'react-native-modern-datepicker';
+import { useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet, TouchableOpacity, Text, View,
+} from 'react-native';
+import DatePicker, { getToday } from 'react-native-modern-datepicker';
 
-const StartDateScreen = () => {
+function StartDateScreen() {
   const [startDate, setStartDate] = useState('');
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const handleClick = () => {
-    if (!startDate) return alert('Please select start date')
-    if (startDate < getToday()) return alert('Start date must be after today')
-    navigation.navigate('EndDateScreen', { startDate })
-  }
+    if (!startDate) return alert('Please select start date');
+    if (startDate < getToday()) return alert('Start date must be after today');
+    navigation.navigate('EndDateScreen', { startDate });
+  };
 
   return (
     <View style={styles.container}>
@@ -20,7 +22,7 @@ const StartDateScreen = () => {
       <Text style={styles.subtitle}>Date you want to rent your car</Text>
       <DatePicker
         style={styles.picker}
-        onSelectedChange={date => setStartDate(date)}
+        onSelectedChange={(date) => setStartDate(date)}
         mode="calendar"
       />
       <TouchableOpacity onPress={handleClick} style={styles.button}>
@@ -29,9 +31,9 @@ const StartDateScreen = () => {
     </View>
     // start date(next) -> end date(search) -> car tiles -> car details -> reservation
   );
-};
+}
 
-export default StartDateScreen
+export default StartDateScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,12 +46,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'black'
+    color: 'black',
   },
   subtitle: {
     fontSize: 20,
     marginBottom: 30,
-    color: 'black'
+    color: 'black',
   },
   picker: {
     height: '50%',
@@ -68,5 +70,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     letterSpacing: 5,
-}
-})
+  },
+});

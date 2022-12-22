@@ -1,68 +1,61 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { ScrollView } from 'react-native-gesture-handler'
-import ReservationsCard from './ReservationsCard'
-import { auth } from '../../../firebase'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import ReservationsCard from './ReservationsCard';
+import { auth } from '../../../firebase';
 
+function ReseravationsScreen() {
+  const [res, setRes] = useState();
 
-const ReseravationsScreen = () => {
+  useEffect(() => {
+    (
+      async () => {
+        try {
+          const responde = await fetch('http://localhost:5000/api/GetReservedCars', {
+            headers: new Headers({
+              Authorization: `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
+              'Content-Type': 'application/json',
+            }),
+          });
 
-    [res, setRes] = useState();
+          if (responde.ok) {
+            const content = await responde.json();
+            setRes(content);
+            console.log(content);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    )();
+  }, []);
 
-    useEffect(() => {
-        (
-            async () => {
-                try {
-                    const responde = await fetch('http://localhost:5000/api/GetReservedCars', {
-                        headers: new Headers({
-                            'Authorization': `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
-                            'Content-Type': 'application/json'
-                        }),
-                    });
+  const reservations = res?.map((r) => <ReservationsCard reservation={r} key={r.id} />);
 
-                    if (responde.ok) {
-                        const content = await responde.json();
-                        setRes(content);
-                        console.log(content)
-                    }
+  console.log(reservations);
 
-                } catch (error) {
-                    console.log(error)
-                }
-
-            }
-        )();
-
-    }, [])
-
-
-    const reservations = res?.map((r) => <ReservationsCard reservation={r} key={r.id} />)
-
-    console.log(reservations)
-
-    if (!reservations) {
-        return (
-            <View>
-                <Text style={styles.text}>No reservations</Text>
-            </View>
-        )
-    } else {
-        return (
-            <ScrollView>
-                {reservations}
-            </ScrollView>
-        )
-    }
+  if (!reservations) {
+    return (
+      <View>
+        <Text style={styles.text}>No reservations</Text>
+      </View>
+    );
+  }
+  return (
+    <ScrollView>
+      {reservations}
+    </ScrollView>
+  );
 }
 
-export default ReseravationsScreen
+export default ReseravationsScreen;
 
 const styles = StyleSheet.create({
-    text: {
-        color: 'black',
-        fontSize: 36,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 200,
-    }
-})
+  text: {
+    color: 'black',
+    fontSize: 36,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 200,
+  },
+});

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import {
+  StyleSheet, TouchableOpacity, Text, View,
+} from 'react-native';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
 
-const EndDateScreen = ({ route, navigation }) => {
-
+function EndDateScreen({ route, navigation }) {
   const { startDate } = route.params;
 
   const [endDate, setEndDate] = useState('');
@@ -11,10 +12,10 @@ const EndDateScreen = ({ route, navigation }) => {
   const handleClick = () => {
     if (!endDate) return alert('Please select end date');
     if (startDate >= endDate) return alert('End date must be after start date');
-    if (endDate < getToday()) return alert('End date must be after today')
+    if (endDate < getToday()) return alert('End date must be after today');
 
-    navigation.navigate('SearchResultsScreen', { startDate, endDate })
-  }
+    navigation.navigate('SearchResultsScreen', { startDate, endDate });
+  };
 
   return (
     <View style={styles.container}>
@@ -22,22 +23,22 @@ const EndDateScreen = ({ route, navigation }) => {
       <Text style={styles.subtitle}>Date you want to end rent your car</Text>
       <DatePicker
         style={styles.picker}
-        onSelectedChange={date => setEndDate(date)}
+        onSelectedChange={(date) => setEndDate(date)}
         mode="calendar"
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-        <Text style={styles.buttonText}>Go back</Text>
+          <Text style={styles.buttonText}>Go back</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleClick} style={styles.button}>
-        <Text style={styles.buttonText}>Next</Text>
+          <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-};
+}
 
-export default EndDateScreen
+export default EndDateScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -50,12 +51,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'black'
+    color: 'black',
   },
   subtitle: {
     fontSize: 20,
     marginBottom: 30,
-    color: 'black'
+    color: 'black',
   },
   picker: {
     height: '50%',
@@ -79,5 +80,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     letterSpacing: 3,
-}
-})
+  },
+});
