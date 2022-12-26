@@ -1,4 +1,4 @@
-﻿namespace CarRental.Data
+﻿namespace CarRental.Data.Models
 {
     public class Vehicle
     {
@@ -10,6 +10,6 @@
         public string? Color { get; set; }
         public string? Notes { get; set; }
         public VehicleStates? State { get; set; }
-        public String? User { get; set; }
+        public string? User { get; set; }
     }
 }

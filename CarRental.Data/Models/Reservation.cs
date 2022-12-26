@@ -1,4 +1,4 @@
-﻿namespace CarRental.Data
+﻿namespace CarRental.Data.Models
 {
     public class Reservation
     {

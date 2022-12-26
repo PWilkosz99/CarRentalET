@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Data
+namespace CarRental.Data.Models
 {
     public class Payment
     {

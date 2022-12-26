@@ -1,4 +1,6 @@
-using CarRental.Data;
+using CarRental.Data.Dal;
+using CarRental.Data.Dal.Repositories;
+using CarRental.Data.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<CarRentalContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("CarRentalDb")));
+builder.Services.AddScoped<IVehicleModelRepostiory, VehicleModelRepository>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 builder.Services.AddCors(options =>
     options.AddPolicy(

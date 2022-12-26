@@ -2,7 +2,7 @@
 {
     public class VehicleDto
     {
-        public int? ModelId { get; set; }
+        public int ModelId { get; set; }
         public int? Mileage { get; set; }
         //[DataType(DataType.Date)]
         public DateTime ProductionDate { get; set; }
