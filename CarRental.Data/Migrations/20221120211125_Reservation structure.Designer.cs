@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CarRental.Data.Migrations
 {
-    [DbContext(typeof(CarRentalContext))]
+    [DbContext(typeof(CarRentalDbContext))]
     [Migration("20221120211125_Reservation structure")]
     partial class Reservationstructure
     {

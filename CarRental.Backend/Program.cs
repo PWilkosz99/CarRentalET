@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<CarRentalContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("CarRentalDb")));
+builder.Services.AddDbContext<CarRentalDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("CarRentalDb")));
 builder.Services.AddScoped<IVehicleModelRepostiory, VehicleModelRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();

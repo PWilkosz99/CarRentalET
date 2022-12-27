@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CarRental.Data.Migrations
 {
-    [DbContext(typeof(CarRentalContext))]
+    [DbContext(typeof(CarRentalDbContext))]
     [Migration("20221112001405_Firebase auth adjustment")]
     partial class Firebaseauthadjustment
     {

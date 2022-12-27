@@ -1,4 +1,4 @@
-﻿namespace CarRentalET.Models
+﻿namespace CarRentalET.Dtos
 {
     public class VehicleDto
     {

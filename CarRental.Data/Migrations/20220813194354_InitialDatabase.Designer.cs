@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CarRental.Data.Migrations
 {
-    [DbContext(typeof(CarRentalContext))]
+    [DbContext(typeof(CarRentalDbContext))]
     [Migration("20220813194354_InitialDatabase")]
     partial class InitialDatabase
     {

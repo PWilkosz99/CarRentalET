@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CarRental.Data.Migrations
 {
-    [DbContext(typeof(CarRentalContext))]
+    [DbContext(typeof(CarRentalDbContext))]
     [Migration("20221022212519_Unique_email")]
     partial class Unique_email
     {

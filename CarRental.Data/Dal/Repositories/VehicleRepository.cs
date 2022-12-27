@@ -11,9 +11,9 @@ namespace CarRental.Data.Dal.Repositories
 {
     public class VehicleRepository : IVehicleRepository
     {
-        private readonly CarRentalContext _ctx;
+        private readonly CarRentalDbContext _ctx;
 
-        public VehicleRepository(CarRentalContext ctx)
+        public VehicleRepository(CarRentalDbContext ctx)
         {
             _ctx = ctx;
         }

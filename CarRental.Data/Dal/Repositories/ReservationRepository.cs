@@ -11,9 +11,9 @@ namespace CarRental.Data.Dal.Repositories
 {
     public class ReservationRepository : IReservationRepository
     {
-        private readonly CarRentalContext _ctx;
+        private readonly CarRentalDbContext _ctx;
 
-        public ReservationRepository(CarRentalContext ctx)
+        public ReservationRepository(CarRentalDbContext ctx)
         {
             _ctx = ctx;
         }

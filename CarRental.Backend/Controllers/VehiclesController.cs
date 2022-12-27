@@ -1,6 +1,6 @@
 ﻿using CarRental.Data.Interfaces;
 using CarRental.Data.Models;
-using CarRentalET.Models;
+using CarRentalET.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
