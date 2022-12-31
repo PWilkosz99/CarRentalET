@@ -4,11 +4,11 @@ import { useBlob } from '../../contexts/BlobContext';
 import styles from './Dashboard.module.css';
 
 export default function EditCarTile(props) {
-  const [car, setCar] = useState(props.car);
-  const [carModel, setCarModel] = useState(props.car.model);
+  const [car] = useState(props.car);
+  const [carModel] = useState(props.car.model);
   const [editMode, setEditMode] = useState(false);
 
-  const [id, setId] = useState(car.id);
+  const [id] = useState(car.id);
   const [mileage, setMileage] = useState(car.mileage);
   const [productionDate, setProductionDate] = useState(car.productionDate);
   const [costPerDay, setcostPerDay] = useState(car.costPerDay);

@@ -26,6 +26,7 @@ export default function Rent() {
       setUntilDate(state.untilDate);
       getCars(state.fromDate, state.untilDate);
     }
+    // eslint-disable-next-line
   }, []);
 
   const getCars = (fd, ud) => {

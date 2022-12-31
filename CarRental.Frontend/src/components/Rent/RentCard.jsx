@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { TbManualGearbox } from 'react-icons/tb';
 import { BsSnow } from 'react-icons/bs';
-import { GiCarSeat, GiCarDoor } from 'react-icons/gi';
+import { GiCarSeat } from 'react-icons/gi';
 import { RiGasStationFill } from 'react-icons/ri';
 import { IoSettings } from 'react-icons/io5';
 import styles from './Rent.module.css';
@@ -12,8 +12,8 @@ import { useBlob } from '../../contexts/BlobContext';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Rent(props) {
-  const [car, setCars] = useState(props.car);
-  const [model, setModel] = useState(props.car.model);
+  const [car] = useState(props.car);
+  const [model] = useState(props.car.model);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 

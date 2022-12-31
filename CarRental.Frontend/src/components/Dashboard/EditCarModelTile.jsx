@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useBlob } from '../../contexts/BlobContext';
 import styles from './Dashboard.module.css';
 
 export default function EditCarModelTile(props) {
-  const [id, setId] = useState(props.id);
+  const [id] = useState(props.id);
   const [Manufacturer, setManufacturer] = useState(props.manufacturer);
   const [Model, setModel] = useState(props.model);
   const [Type, setType] = useState(props.type);

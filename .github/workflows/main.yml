@@ -1,16 +1,42 @@
-name: .NET Core API tests
+name: App tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  test:
-    name: Run tests
+  prep-environment:
     runs-on: self-hosted
+    
     steps:
     - uses: actions/checkout@v2
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build
-    - name: Test
-      run: dotnet test
+      name: Checkout repository
+      
+    - name: Install dependencies
+      run: |
+        cd CarRental.Frontend
+        npm install
+        cd ../CarRental.Mobile
+        npm install
+        cd ../CarRental.Backend
+        dotnet restore
+        
+    - name: Build projects
+      run: |
+        cd CarRental.Frontend
+        npm run build
+        cd ../CarRental.Mobile
+        npm run build
+        cd ../CarRental.Backend
+        dotnet build --configuration Release
+        
+    - name: Test projects
+      run: |
+        cd ../CarRental.Backend
+        dotnet test --configuration Release
+        cd CarRental.Frontend
+        npm test
+        cd ../CarRental.Mobile
+        npm test

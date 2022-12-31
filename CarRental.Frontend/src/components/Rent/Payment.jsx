@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '../../contexts/AuthContext';
@@ -106,7 +106,7 @@ export default function Payment(props) {
         </div>
         <div className={styles.card_right}>
           <div className={styles.car_img}>
-            <img src={getImage(state.car.model.id)} />
+            <img src={getImage(state.car.model.id)} alt="car model"/>
           </div>
         </div>
       </div>
