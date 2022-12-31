@@ -53,8 +53,9 @@ jobs:
           cd ../CarRental.Mobile
           npm test
 
-  deploy:
-    name: Deploy projects
+
+  e2e:
+    name: E2E tests
     runs-on: self-hosted
     needs: [test]
         
@@ -63,13 +64,6 @@ jobs:
         run: |
           cd CarRental.Frontend
           npm start &
-
-  e2e:
-    name: E2E tests
-    runs-on: self-hosted
-    needs: [deploy]
-        
-    steps:
       - name: E2E tests
         run: |
           cd CarRental.Frontend
