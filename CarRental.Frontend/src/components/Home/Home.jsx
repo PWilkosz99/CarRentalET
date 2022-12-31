@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  Navigation, Pagination, Scrollbar, A11y,
+ Navigation, Pagination, Scrollbar, A11y,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useAuth } from '../../contexts/AuthContext';
 import Hero from '../Hero/Hero';
 import styles from './Home.module.css';
 

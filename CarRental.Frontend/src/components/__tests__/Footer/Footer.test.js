@@ -1,5 +1,4 @@
 import { render, screen, cleanup } from '@testing-library/react';
-import rederer from 'react-test-renderer';
 import Footer from '../../Footer/Footer';
 import '@testing-library/jest-dom';
 
