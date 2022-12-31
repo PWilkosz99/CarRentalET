@@ -87,7 +87,7 @@ namespace CarRentalET.Controllers
         [HttpPost("ReserveCar")]
         public async Task<IActionResult> ReserveCar(ReservationDto dto)
         {
-            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
+            var user = HttpContext?.User.Claims.FirstOrDefault(x => x.Type == "user_id")?.Value;
             if (user == null)
             {
                 return NotFound("User not found!");
