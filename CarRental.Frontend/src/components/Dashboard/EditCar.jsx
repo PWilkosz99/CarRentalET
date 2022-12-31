@@ -9,7 +9,7 @@ export default function EditCar() {
   useEffect(() => {
     (
       async () => {
-        const responde = await fetch('http://localhost:5000/api/GetCars', {
+        const responde = await fetch('http://localhost:5000/api/Vehicles/GetCars', {
           headers: { 'Content-Type': 'application/json' },
         });
 

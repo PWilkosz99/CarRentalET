@@ -42,7 +42,7 @@ export default function Hero() {
         </div>
         <div className={styles.search_btn}>
           <AiOutlineSearch onClick={handleSearch} size={25} className={styles.icon} />
-          <button onClick={handleSearch} className={styles.btn}>Search</button>
+          <button type="submit" onClick={handleSearch} className={styles.btn}>Search</button>
         </div>
       </form>
       <ToastContainer />

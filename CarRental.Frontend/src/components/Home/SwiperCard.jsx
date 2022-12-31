@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 function SwiperCard(props) {
   return (
     <div className={styles.card}>
-      <img src={props.img} />
+      <img src={props.img} alt="avaliable cars"/>
       <p>{props.desc}</p>
     </div>
   );

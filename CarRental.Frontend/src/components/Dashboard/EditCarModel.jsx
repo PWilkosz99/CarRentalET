@@ -12,7 +12,7 @@ export default function EditCarModel() {
     (
       async () => {
         const responde = await currentUser.getIdToken().then(
-          (token) => fetch('http://localhost:5000/api/GetCarModels', {
+          (token) => fetch('http://localhost:5000/api/VehicleModels/GetCarModels', {
             headers: new Headers({
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',

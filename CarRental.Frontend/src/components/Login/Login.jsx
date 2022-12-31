@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import styles from './Login.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Login(props) {
+export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();

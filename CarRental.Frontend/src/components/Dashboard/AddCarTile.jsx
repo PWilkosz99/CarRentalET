@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useBlob } from '../../contexts/BlobContext';
 import styles from './Dashboard.module.css';
 
 export default function AddCarTile(props) {
   const { getImage } = useBlob();
-  console.log(props);
   return (
     <div className={styles.dashboard_card}>
       <div className={styles.dashboard_title}>

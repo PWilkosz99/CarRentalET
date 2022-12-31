@@ -23,7 +23,7 @@ export default function AddCar() {
   useEffect(() => {
     (
       async () => {
-        const responde = await fetch('http://localhost:5000/api/GetCarModels', {
+        const responde = await fetch('http://localhost:5000/api/VehicleModels/GetCarModels', {
           headers: { 'Content-Type': 'application/json' },
         });
 
@@ -43,7 +43,7 @@ export default function AddCar() {
 
     await currentUser.getIdToken().then(
       (token) => {
-        fetch('http://localhost:5000/api/AddCar', {
+        fetch('http://localhost:5000/api/Vehicles/AddCar', {
           method: 'POST',
           headers: new Headers({
             Authorization: `Bearer ${token}`,
@@ -65,7 +65,9 @@ export default function AddCar() {
     setAddingMode(false);
   };
 
-  const carsModels = cars?.map((car) => <AddCarTile key={car.id} car={car} handleChoice={handleChoice} />);
+  const carsModels = cars?.map(
+    (car) => <AddCarTile key={car.id} car={car} handleChoice={handleChoice} />,
+  );
 
   if (!addingMode) {
     return (

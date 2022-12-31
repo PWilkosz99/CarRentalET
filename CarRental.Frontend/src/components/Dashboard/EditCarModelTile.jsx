@@ -24,7 +24,7 @@ export default function EditCarModelTile(props) {
     e.preventDefault();
 
     await currentUser.getIdToken().then(
-      (token) => fetch(`http://localhost:5000/api/EditCarModel/${id}`, {
+      (token) => fetch(`http://localhost:5000/api//VehicleModelsEditCarModel/${id}`, {
         method: 'POST',
         headers: new Headers({
           Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ export default function EditCarModelTile(props) {
     (
       async () => {
         await currentUser.getIdToken().then(
-          (token) => fetch(`http://localhost:5000/api/DeleteCarModel/${id}`, {
+          (token) => fetch(`http://localhost:5000/api//VehicleModels/DeleteCarModel/${id}`, {
             method: 'DELETE',
             headers: new Headers({
               Authorization: `Bearer ${token}`,
@@ -122,8 +122,8 @@ export default function EditCarModelTile(props) {
             <span className={styles.value} />
           </h2>
         </div>
-        <button className={styles.btns} onClick={() => setEditMode(!editMode)}>Edit</button>
-        <button className={styles.btns} onClick={() => deleteCarModel(props.id)}>Delete</button>
+        <button type="submit" className={styles.btns} onClick={() => setEditMode(!editMode)}>Edit</button>
+        <button type="submit" className={styles.btns} onClick={() => deleteCarModel(props.id)}>Delete</button>
       </div>
     );
   }

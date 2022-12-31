@@ -20,7 +20,6 @@ export function BlobProvider({ children }) {
       method: 'PUT',
       body: image,
     });
-    console.log(res);
     return res.ok;
   }
 

@@ -82,7 +82,7 @@ export default function RentDetails() {
         </div>
         <div className={styles.card_right}>
           <div className={styles.car_img}>
-            <img src={getImage(state.car.model.id)} />
+            <img src={getImage(state.car.model.id)} alt="selected car" />
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function RentDetails() {
               <span className={styles.reservation_label}>Driving license number: </span>
               <input type="number" required ref={drivingLicense} />
             </div>
-            <button className={styles.reserve_btn}>Next</button>
+            <button type="submit" className={styles.reserve_btn}>Next</button>
           </div>
         </form>
       </div>

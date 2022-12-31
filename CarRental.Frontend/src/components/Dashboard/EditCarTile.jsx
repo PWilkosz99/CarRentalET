@@ -23,7 +23,7 @@ export default function EditCarTile(props) {
     e.preventDefault();
 
     await currentUser.getIdToken().then(
-      (token) => fetch(`http://localhost:5000/api/EditCar/${id}`, {
+      (token) => fetch(`http://localhost:5000/api/VehicleModels/EditCar/${id}`, {
         method: 'POST',
         headers: new Headers({
           Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ export default function EditCarTile(props) {
     (
       async () => {
         await currentUser.getIdToken().then(
-          (token) => fetch(`http://localhost:5000/api/DeleteCar/${id}`, {
+          (token) => fetch(`http://localhost:5000/api/VehicleModels/DeleteCar/${id}`, {
             method: 'DELETE',
             headers: new Headers({
               Authorization: `Bearer ${token}`,

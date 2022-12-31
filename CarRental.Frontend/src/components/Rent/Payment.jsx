@@ -24,7 +24,7 @@ export default function Payment(props) {
     if (true) {
       // validation
       const response = await currentUser.getIdToken().then(
-        (token) => fetch('http://localhost:5000/api/ReserveCar', {
+        (token) => fetch('http://localhost:5000/Reservations/api/ReserveCar', {
           method: 'POST',
           headers: new Headers({
             Authorization: `Bearer ${token}`,

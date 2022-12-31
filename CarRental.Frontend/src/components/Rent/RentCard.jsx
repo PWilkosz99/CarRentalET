@@ -36,7 +36,7 @@ export default function Rent(props) {
 
   return (
     <div className={styles.rentCard}>
-      <img src={getImage(model.id)} className={styles.cardImg} />
+      <img src={getImage(model.id)} className={styles.cardImg} alt="selected car card" />
       <span className={styles.mark}>
         {model.manufacturer}
         {' '}
@@ -74,7 +74,7 @@ export default function Rent(props) {
           </span>
         </div>
       </div>
-      <button onClick={reserveCar} className={styles.rent_btn}>Rent</button>
+      <button type="submit" onClick={reserveCar} className={styles.rent_btn}>Rent</button>
     </div>
   );
 }

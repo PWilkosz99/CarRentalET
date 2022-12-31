@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Navigation, Pagination, Scrollbar, A11y,
 } from 'swiper';
@@ -10,12 +10,9 @@ import styles from './Home.module.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import Logo from '../../images/logo192.png'; // tmp
 import SwiperCard from './SwiperCard';
 
-export default function Home(props) {
-  const { currentUser } = useAuth();
-
+export default function Home() {
   // try {
   //   currentUser.getIdTokenResult()
   //     .then(function ({
@@ -27,10 +24,6 @@ export default function Home(props) {
   // } catch {
 
   // }
-
-  console.log(currentUser);
-
-  console.log(process.env.REACT_APP_BUCKET_ADDRESS);
 
   return (
     <div className={styles.mainPage}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   AiFillFacebook, AiFillTwitterCircle, AiFillInstagram, AiFillLinkedin,
 } from 'react-icons/ai';

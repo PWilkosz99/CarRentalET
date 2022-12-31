@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useBlob } from '../../contexts/BlobContext';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -12,7 +12,7 @@ export default function ReservationsTile(props) {
     (
       async () => {
         await currentUser.getIdToken().then(
-          (token) => fetch(`http://localhost:5000/api/DeleteReservation/${props.reservation.id}`, {
+          (token) => fetch(`http://localhost:5000/api/Reservations/DeleteReservation/${props.reservation.id}`, {
             headers: new Headers({
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -58,10 +58,10 @@ export default function ReservationsTile(props) {
       </div>
       <div className={styles.card_right}>
         <div className={styles.car_img}>
-          <img src={getImage(props.reservation.vehicle.model.id)} />
+          <img src={getImage(props.reservation.vehicle.model.id)} alt="reserved car" />
         </div>
       </div>
-      <button className={styles.cancel_btn} onClick={cancelReservation}>Cancel reservation</button>
+      <button type="submit" className={styles.cancel_btn} onClick={cancelReservation}>Cancel reservation</button>
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function Rent() {
         (
           async () => {
             try {
-              const responde = await fetch('http://localhost:5000/api/GetAvaliableCars', {
+              const responde = await fetch('http://localhost:5000/api/Reservations/GetAvaliableCars', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -83,7 +83,7 @@ export default function Rent() {
           </div>
           <div className={styles.search_btn}>
             <AiOutlineSearch onClick={selectDate} size={25} className={styles.icon} />
-            <button onClick={selectDate} className={styles.btn}>Search</button>
+            <button type="submit" onClick={selectDate} className={styles.btn}>Search</button>
           </div>
         </form>
         <div className={styles.wrapper}>

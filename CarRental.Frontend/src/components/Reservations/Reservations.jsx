@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import ReservationsTile from './ReservationsTile';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -16,7 +16,7 @@ export default function Reservations() {
     (
       async () => {
         const responde = await currentUser.getIdToken().then(
-          (token) => fetch('http://localhost:5000/api/GetReservedCars', {
+          (token) => fetch('http://localhost:5000/api/Reservations/GetReservedCars', {
             headers: new Headers({
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',

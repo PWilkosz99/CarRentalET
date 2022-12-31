@@ -23,7 +23,7 @@ export default function AddCarModel() {
     e.preventDefault();
 
     const response = await currentUser.getIdToken().then(
-      (token) => fetch('http://localhost:5000/api/AddCarModel', {
+      (token) => fetch('http://localhost:5000/api/VehicleModels/AddCarModel', {
         method: 'POST',
         headers: new Headers({
           Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ export default function AddCarModel() {
     );
     if (response.ok) {
       const id = await response.json();
-      saveImage(id, image) ? alert('Car model added') : alert('Car model added, but image not saved');
+      saveImage(id, image);
     }
   };
 
