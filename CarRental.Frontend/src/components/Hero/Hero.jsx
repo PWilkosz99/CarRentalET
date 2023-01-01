@@ -34,11 +34,11 @@ export default function Hero() {
         <div className={styles.from}>
           <span className={styles.border} />
           <label>From</label>
-          <input type="date" onChange={(e) => setFromDate(e.target.value)} />
+          <input type="date" className="fromDate" onChange={(e) => setFromDate(e.target.value)} />
         </div>
         <div className={styles.until}>
           <label>Until</label>
-          <input type="date" onChange={(e) => setUntilDate(e.target.value)} />
+          <input type="date" className="untilDate" onChange={(e) => setUntilDate(e.target.value)} />
         </div>
         <div className={styles.search_btn}>
           <AiOutlineSearch onClick={handleSearch} size={25} className={styles.icon} />
