@@ -42,7 +42,7 @@ function PaymentInfoScreen({ route, navigation }) {
     if (cvv.length < 3) return alert('Please provide a valid cvv');
 
     if (!cardholder) return alert('Please provide your cardholder');
-    const response = await fetch('http://localhost:5000/api/ReserveCar', {
+    const response = await fetch('http://localhost:5000/api/Reservations/ReserveCar', {
       method: 'POST',
       headers: new Headers({
         Authorization: `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
