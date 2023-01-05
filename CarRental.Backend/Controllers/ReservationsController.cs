@@ -30,7 +30,7 @@ namespace CarRentalET.Controllers
             var reservedBetweenDate = await _reservations.GetVehiclesReserverdBetweenAsync(startDateUTC, endDateUTC);
 
             List<Vehicle> availableCars = new();
-            if (await reservedBetweenDate.CountAsync() != 0)
+            if (reservedBetweenDate.Count() != 0)
             {
                 availableCars = await _vehicles.GetNotIncludedAsync(reservedBetweenDate);
             }
@@ -75,7 +75,6 @@ namespace CarRentalET.Controllers
         [HttpDelete("DeleteReservation/{id}")]
         public async Task<IActionResult> DeleteReservation(int id)
         {
-            //TODO: Add auth
             if (await _reservations.DeleteReservationAsync(id))
             {
                 return Ok();
@@ -136,7 +135,7 @@ namespace CarRentalET.Controllers
 
             }
 
-            return Created("aaa", "aaa");
+            return Created("Creted", "4");
         }
     }
 }

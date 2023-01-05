@@ -80,6 +80,80 @@ namespace CarRental.Tests
         }
 
         [Fact]
+        public async void GetCar_WhenCorrectData_ShouldReturnObject2()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+
+            var vehicleList = new List<Vehicle> {
+                {
+                    new Vehicle {
+                        Id = 1,
+                        Model = new VehicleModel { Id = 100, Manufacturer = "Example 123", Model = "Example 123", Type = "Hatchback", Fuel = "Petrol", Seats = 1, HPs = 50, Axes = "RWD", Gearbox = "Manual", AirConditioning = false },
+                        Mileage = 100000,
+                        ProductionDate = new DateTime(2015, 1, 1),
+                        CostPerDay = 100,
+                        Color = "Red",
+                        Notes = null,
+                        State = VehicleStates.ToCleaning,
+                        User = null,
+
+                    }
+                     }
+                };
+
+            mockVehicleRepo.Setup(repo => repo.GetAllVehiclesAsync()).ReturnsAsync(vehicleList);
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+            var result = await controller.GetCars();
+
+            var viewResult = Assert.IsType<OkObjectResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<Vehicle>>(viewResult.Value);
+            Assert.Equal(model.FirstOrDefault().Id, vehicleList.FirstOrDefault().Id);
+            Assert.Equal(model.FirstOrDefault().State, vehicleList.FirstOrDefault().State);
+            Assert.Equal(model.FirstOrDefault().CostPerDay, vehicleList.FirstOrDefault().CostPerDay);
+            Assert.Equal(model.FirstOrDefault().Color, vehicleList.FirstOrDefault().Color);
+            Assert.Equal(model.FirstOrDefault().ProductionDate, vehicleList.FirstOrDefault().ProductionDate);
+        }
+
+        [Fact]
+        public async void GetCar_WhenCorrectDataWithNullables_ShouldReturnObject()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+
+            var vehicleList = new List<Vehicle> {
+                {
+                    new Vehicle {
+                        Id = 1,
+                        Model = new VehicleModel { Id = 1, Manufacturer = null, Model = null, Type = null, Fuel = null, Seats = null, HPs = null, Axes = null, Gearbox = null, AirConditioning = null },
+                        Mileage = 100000,
+                        ProductionDate = new DateTime(2010, 1, 1),
+                        CostPerDay = 100,
+                        Color = "Black",
+                        Notes = null,
+                        State = VehicleStates.Good,
+                        User = null,
+
+                    }
+                     }
+                };
+
+            mockVehicleRepo.Setup(repo => repo.GetAllVehiclesAsync()).ReturnsAsync(vehicleList);
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+            var result = await controller.GetCars();
+
+            var viewResult = Assert.IsType<OkObjectResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<Vehicle>>(viewResult.Value);
+            Assert.Equal(model.FirstOrDefault().Id, vehicleList.FirstOrDefault().Id);
+            Assert.Equal(model.FirstOrDefault().State, vehicleList.FirstOrDefault().State);
+            Assert.Equal(model.FirstOrDefault().CostPerDay, vehicleList.FirstOrDefault().CostPerDay);
+            Assert.Equal(model.FirstOrDefault().Color, vehicleList.FirstOrDefault().Color);
+            Assert.Equal(model.FirstOrDefault().ProductionDate, vehicleList.FirstOrDefault().ProductionDate);
+        }
+
+        
+
+        [Fact]
         public async void AddCar_WhenWrongData_ShouldReturnNotFoundString()
         {
             var mockVehicleRepo = new Mock<IVehicleRepository>();
@@ -102,6 +176,8 @@ namespace CarRental.Tests
 
             var viewResult = Assert.IsType<NotFoundObjectResult>(result);
         }
+
+
 
         [Fact]
         public async void AddCar_WhenCorrectData_ShouldReturnOk()
@@ -129,27 +205,19 @@ namespace CarRental.Tests
         }
 
         [Fact]
-        public async void EditCar_WhenWrongData_ShouldReturnNotFoundString()
+        public async void AddCar_WhenCorrectDataWithNullables_ShouldReturnOk()
         {
             var mockVehicleRepo = new Mock<IVehicleRepository>();
             var mockModelRepo = new Mock<IVehicleModelRepostiory>();
-            mockVehicleRepo.Setup(repo => repo.GetVehicleByIdAsync(It.IsAny<int>())).ReturnsAsync(null as Vehicle);
+            mockModelRepo.Setup(repo => repo.GetVehicleModelByIdAsync(It.IsAny<int>())).ReturnsAsync(new VehicleModel { Id = 1, Manufacturer = null, Model = null, Type = null, Fuel = null, Seats = null, HPs = null, Axes = null, Gearbox = null, AirConditioning = null });
             mockModelRepo.Setup(repo => repo.SaveAsync());
+            mockVehicleRepo.Setup(repo => repo.InsertVehicleAsync(It.IsAny<Vehicle>()));
             var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
 
-            VehicleDto dto = new VehicleDto
-            {
-                ModelId = 1,
-                Mileage = 100000,
-                ProductionDate = new DateTime(2010, 1, 1),
-                CostPerDay = 100,
-                Color = "Black",
-                Notes = null,
-                State = "great",
-            };
-            var result = await controller.EditCar(1, dto);
+            VehicleDto dto = new VehicleDto();
+            var result = await controller.AddCar(dto);
 
-            var viewResult = Assert.IsType<NotFoundResult>(result);
+            var viewResult = Assert.IsType<OkResult>(result);
         }
 
         [Fact]
@@ -190,6 +258,121 @@ namespace CarRental.Tests
         }
 
         [Fact]
+        public async void EditCar_WhenPartOfDateNullable_ShouldReturnOk()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            var vehicleObj = new Vehicle
+            {
+                Id = 1,
+                Model = new VehicleModel { Id = 1, Manufacturer = "Example manufacturer", Model = "Example model", Type = "Sedan", Fuel = "Diesel", Seats = 5, HPs = 150, Axes = "AWD", Gearbox = "Automatic", AirConditioning = true },
+                Mileage = null,
+                ProductionDate = null,
+                CostPerDay = 100,
+                Color = "Black",
+                Notes = null,
+                State = VehicleStates.Good,
+                User = null,
+
+            };
+            mockVehicleRepo.Setup(repo => repo.GetVehicleByIdAsync(It.IsAny<int>())).ReturnsAsync(vehicleObj);
+            mockModelRepo.Setup(repo => repo.SaveAsync());
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+            VehicleDto dto = new VehicleDto
+            {
+                ModelId = 1,
+                Mileage = null,
+                ProductionDate = new DateTime(2010, 1, 1),
+                CostPerDay = 100,
+                Color = "Black",
+                Notes = null,
+                State = "great",
+            };
+            var result = await controller.EditCar(1, dto);
+
+            var viewResult = Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async void EditCar_WhenModelNotBounded_ShouldReturnOk()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            var vehicleObj = new Vehicle
+            {
+                Id = 1,
+                Model = null,
+                Mileage = null,
+                ProductionDate = null,
+                CostPerDay = 100,
+                Color = "Black",
+                Notes = null,
+                State = VehicleStates.Good,
+                User = null,
+
+            };
+            mockVehicleRepo.Setup(repo => repo.GetVehicleByIdAsync(It.IsAny<int>())).ReturnsAsync(vehicleObj);
+            mockModelRepo.Setup(repo => repo.SaveAsync());
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+            VehicleDto dto = new VehicleDto
+            {
+                ModelId = 1,
+                Mileage = null,
+                ProductionDate = new DateTime(2010, 1, 1),
+                CostPerDay = 100,
+                Color = "Black",
+                Notes = null,
+                State = "great",
+            };
+            
+            var result = await controller.EditCar(1, dto);
+
+            var viewResult = Assert.IsType<OkResult>(result);
+        }
+
+
+        [Fact]
+        public async void EditCar_WhenWrongData_ShouldReturnNotFoundString()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            mockVehicleRepo.Setup(repo => repo.GetVehicleByIdAsync(It.IsAny<int>())).ReturnsAsync(null as Vehicle);
+            mockModelRepo.Setup(repo => repo.SaveAsync());
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+            VehicleDto dto = new VehicleDto
+            {
+                ModelId = 1,
+                Mileage = 100000,
+                ProductionDate = new DateTime(2010, 1, 1),
+                CostPerDay = 100,
+                Color = "Black",
+                Notes = null,
+                State = "great",
+            };
+            var result = await controller.EditCar(1, dto);
+
+            var viewResult = Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async void EditCar_WhenNull_ShouldReturnNotFoundString()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            mockVehicleRepo.Setup(repo => repo.GetVehicleByIdAsync(It.IsAny<int>())).ReturnsAsync(null as Vehicle);
+            mockModelRepo.Setup(repo => repo.SaveAsync());
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+            VehicleDto dto = null;
+            var result = await controller.EditCar(1, dto);
+
+            var viewResult = Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
         public async void DeleteCar_WhenCorrectData_ShouldReturnOk()
         {
             var mockVehicleRepo = new Mock<IVehicleRepository>();
@@ -213,6 +396,33 @@ namespace CarRental.Tests
 
 
             var result = await controller.DeleteCar(1);
+
+            var viewResult = Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact]
+        public async void DeleteCar_WhenNevativeIndex_ShouldReturnBadRequest()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            mockVehicleRepo.Setup(repo => repo.DeleteVehicleAsync(It.IsAny<int>())).ReturnsAsync(false);
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+
+            var result = await controller.DeleteCar(-1);
+
+            var viewResult = Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact]
+        public async void DeleteCar_WhenBigIndex_ShouldReturnBadRequest()
+        {
+            var mockVehicleRepo = new Mock<IVehicleRepository>();
+            var mockModelRepo = new Mock<IVehicleModelRepostiory>();
+            mockVehicleRepo.Setup(repo => repo.DeleteVehicleAsync(It.IsAny<int>())).ReturnsAsync(false);
+            var controller = new VehiclesController(mockVehicleRepo.Object, mockModelRepo.Object);
+
+            var result = await controller.DeleteCar(50000000);
 
             var viewResult = Assert.IsType<BadRequestResult>(result);
         }
