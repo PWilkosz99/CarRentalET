@@ -82,10 +82,10 @@ function ReservationsCard({ reservation }) {
           <Text style={styles.text}>
             Cost:
             <Text style={styles.value}>
-  {reservation.cost}
-  {' '}
-  $
-</Text>
+              {reservation.cost}
+              {' '}
+              $
+            </Text>
           </Text>
         </View>
       </View>
