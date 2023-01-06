@@ -1,10 +1,10 @@
-import 'react-native-gesture-handler';
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './src/screens/LoginScreen';
-import DrawerContent from './src/screens/DrawerContent';
+import "react-native-gesture-handler";
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LoginScreen from "./src/screens/LoginScreen";
+import DrawerContent from "./src/screens/DrawerContent";
 // import { AuthProvider } from './src/contexts/AuthContext'
 
 const Stack = createNativeStackNavigator();

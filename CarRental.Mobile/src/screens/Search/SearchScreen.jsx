@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   StyleSheet, TouchableOpacity, Text, View,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StartDateScreen from './StartDateScreen';
-import EndDateScreen from './EndDateScreen';
-import SearchResultsScreen from './SearchResultsScreen';
-import UserDataScreen from './UserDataScreen';
-import PaymentInfoScreen from './PaymentInfoScreen';
-import CarDetailsScreen from './CarDetailsScreen';
-import HomeScreen from '../HomeScreen';
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import StartDateScreen from "./StartDateScreen";
+import EndDateScreen from "./EndDateScreen";
+import SearchResultsScreen from "./SearchResultsScreen";
+import UserDataScreen from "./UserDataScreen";
+import PaymentInfoScreen from "./PaymentInfoScreen";
+import CarDetailsScreen from "./CarDetailsScreen";
+import HomeScreen from "../HomeScreen";
 
 function SearchScreen() {
   const Stack = createNativeStackNavigator();

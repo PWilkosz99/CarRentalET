@@ -1,18 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
-import HomeScreen from './HomeScreen';
-import ReseravationsScreen from './Reservations/ReseravationsScreen';
-import CustomDrawer from './CustomDrawer';
-import SearchScreen from './Search/SearchScreen';
+import { StyleSheet, Text, View } from "react-native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import React from "react";
+import Icon from "react-native-vector-icons/Ionicons";
+import HomeScreen from "./HomeScreen";
+import ReseravationsScreen from "./Reservations/ReseravationsScreen";
+import CustomDrawer from "./CustomDrawer";
+import SearchScreen from "./Search/SearchScreen";
+import ContactUsScreen from "./ContactUsScreen";
 
 function DrawerContent() {
   const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
-      screenOptions={{ headerShown: true, drawerLabelStyle: styles.drawerLabel, drawerActiveTintColor: 'blue' }}
+      screenOptions={{ headerShown: true, drawerLabelStyle: styles.drawerLabel, drawerActiveTintColor: "blue" }}
     >
       <Drawer.Screen
         name="Home"
@@ -50,6 +51,15 @@ function DrawerContent() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="Contact us"
+        component={ContactUsScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Icon name="help" style={styles.icon} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -63,6 +73,6 @@ const styles = StyleSheet.create({
   drawerLabel: {
     marginLeft: 5,
     fontSize: 18,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: "Roboto-Medium",
   },
 });

@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { StyleSheet, Text, View } from "react-native";
+import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from "react-native-vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ export default function CustomDrawer(props) {
   const handleLogOut = () => {
     signOut(auth)
       .then(() => {
-        navigation.replace('Login');
+        navigation.replace("Login");
       })
       .catch((error) => alert(error.message));
   };
@@ -23,7 +23,7 @@ export default function CustomDrawer(props) {
       <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
         {/* <ImageBackground source={require('../assets/images/DrawerBackground.jpg')} style={styles.image}>
                     <Image /> */}
-        <Text style={styles.text}>test@testa.aaa</Text>
+        <Text style={styles.text}>{auth.currentUser?.email}</Text>
         {/* </ImageBackground> */}
         <View style={styles.drawerItem}>
           <DrawerItemList {...props} />
@@ -46,26 +46,26 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
   },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginTop: 20,
   },
   drawerItem: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginTop: 20,
   },
   footer:
     {
       padding: 20,
       borderTopWidth: 1,
-      borderTopColor: 'lightgray',
-      color: 'black',
+      borderTopColor: "lightgray",
+      color: "black",
     },
   button:
     {
@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
   logout:
     {
       fontSize: 22,
-      fontFamily: 'Roboto-Medium',
+      fontFamily: "Roboto-Medium",
       marginLeft: 15,
-      color: 'black',
+      color: "black",
     },
   btnContent:
     {
-      flexDirection: 'row',
-      alignItems: 'center',
+      flexDirection: "row",
+      alignItems: "center",
     },
 });

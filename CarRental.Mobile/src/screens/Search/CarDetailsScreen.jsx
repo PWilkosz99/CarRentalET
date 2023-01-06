@@ -1,8 +1,8 @@
 import {
   StyleSheet, Text, View, TouchableOpacity, Image,
-} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+} from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React from "react";
 
 function CarDetailsScreen({ route, navigation }) {
   const { car, startDate, endDate } = route.params;
@@ -10,7 +10,7 @@ function CarDetailsScreen({ route, navigation }) {
   console.log(car);
 
   const handleClick = () => {
-    navigation.navigate('UserDataScreen', {
+    navigation.navigate("UserDataScreen", {
       car, startDate, endDate, cost,
     });
   };
@@ -34,7 +34,7 @@ function CarDetailsScreen({ route, navigation }) {
       <View style={styles.card}>
         <Text style={styles.title}>
           {car.model.manufacturer}
-          {' '}
+          {" "}
           {car.model.model}
         </Text>
         <Image style={styles.image} source={{ uri: `https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/m5ndEg9KfkvjeJs149ntmrL205mZTMOctjPNO2pQqqaVPlz52NRgDNJT6QUDCLpb/n/fre7obdqx6ap/b/car-rental-bucket/o/${car.model.id}.jpg` }} />
@@ -58,7 +58,7 @@ function CarDetailsScreen({ route, navigation }) {
             <Text style={styles.text}>
               Duration:
               <Text style={styles.value}>{duration}</Text>
-              {' '}
+              {" "}
               days
             </Text>
           </View>
@@ -67,9 +67,9 @@ function CarDetailsScreen({ route, navigation }) {
             <Text style={styles.text}>
               Cost per day:
               <Text style={styles.value}>
-  {car.costPerDay}
-  $
-</Text>
+                {car.costPerDay}
+                $
+              </Text>
               /day
             </Text>
           </View>
@@ -78,9 +78,9 @@ function CarDetailsScreen({ route, navigation }) {
             <Text style={styles.text}>
               Summary cost:
               <Text style={styles.value}>
-  {cost}
-  $
-</Text>
+                {cost}
+                $
+              </Text>
             </Text>
           </View>
         </View>
@@ -97,70 +97,70 @@ export default CarDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: "100%",
   },
   card: {
     flex: 1,
-    width: '90%',
-    backgroundColor: 'white',
+    width: "90%",
+    backgroundColor: "white",
     margin: 20,
     borderRadius: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     padding: 20,
-    color: 'black',
+    color: "black",
   },
   textContainer: {
     flex: 1,
-    flexWrap: 'wrap',
-    width: '90%',
+    flexWrap: "wrap",
+    width: "90%",
     marginTop: 20,
   },
   text: {
     paddingVertical: 7,
     fontSize: 20,
-    color: 'black',
-    fontWeight: '400',
+    color: "black",
+    fontWeight: "400",
   },
   icon: {
-    color: 'black',
+    color: "black",
     fontSize: 30,
     marginRight: 10,
     paddingTop: 5,
   },
   image: {
     height: 180,
-    width: '90%',
-    resizeMode: 'contain',
+    width: "90%",
+    resizeMode: "contain",
   },
   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
+    backgroundColor: "#0782F9",
+    width: "60%",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 15,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 5,
   },
   row: {
-    width: '90%',
+    width: "90%",
     padding: 1,
-    color: 'black',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    color: "black",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   value: {
-    fontWeight: '900',
+    fontWeight: "900",
   },
 });

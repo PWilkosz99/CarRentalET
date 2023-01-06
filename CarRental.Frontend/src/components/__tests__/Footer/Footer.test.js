@@ -9,7 +9,7 @@ afterEach(() => {
 describe('Footer component', () => {
   it('should render Footer component', () => {
     render(<Footer />);
-    const footer = screen.getByText('Some interesting text');
+    const footer = screen.getByText('Contact informations XXX');
 
     expect(footer).toBeInTheDocument();
   });

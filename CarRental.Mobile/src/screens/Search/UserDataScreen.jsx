@@ -1,31 +1,31 @@
 import {
   StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView,
-} from 'react-native';
-import React from 'react';
+} from "react-native";
+import React from "react";
 
 function UserDataScreen({ route, navigation }) {
   const {
     car, startDate, endDate, cost,
   } = route.params;
 
-  const [firstname, setFirstname] = React.useState('');
-  const [lastname, setLastname] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [address, setAddress] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [country, setCountry] = React.useState('');
-  const [postalCode, setPostalCode] = React.useState('');
-  const [drivingLicense, setDrivingLicense] = React.useState('');
+  const [firstname, setFirstname] = React.useState("");
+  const [lastname, setLastname] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [country, setCountry] = React.useState("");
+  const [postalCode, setPostalCode] = React.useState("");
+  const [drivingLicense, setDrivingLicense] = React.useState("");
 
   const handleClick = () => {
-    if (!firstname) return alert('Please provide your firstname');
-    if (!lastname) return alert('Please provide your lastname');
-    if (!phone) return alert('Please provide your phone number');
-    if (!address) return alert('Please provide your address');
-    if (!city) return alert('Please provide your city');
-    if (!country) return alert('Please provide your country');
-    if (!postalCode) return alert('Please provide your postal code');
-    if (!drivingLicense) return alert('Please provide your driving license');
+    if (!firstname) return alert("Please provide your firstname");
+    if (!lastname) return alert("Please provide your lastname");
+    if (!phone) return alert("Please provide your phone number");
+    if (!address) return alert("Please provide your address");
+    if (!city) return alert("Please provide your city");
+    if (!country) return alert("Please provide your country");
+    if (!postalCode) return alert("Please provide your postal code");
+    if (!drivingLicense) return alert("Please provide your driving license");
 
     const user = {
       firstname,
@@ -38,7 +38,7 @@ function UserDataScreen({ route, navigation }) {
       drivingLicense,
     };
 
-    navigation.navigate('PaymentInfoScreen', {
+    navigation.navigate("PaymentInfoScreen", {
       user, car, startDate, endDate, cost,
     });
   };
@@ -126,67 +126,67 @@ export default UserDataScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: "100%",
   },
   card: {
-    width: '90%',
-    backgroundColor: 'white',
+    width: "90%",
+    backgroundColor: "white",
     margin: 40,
     borderRadius: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingVertical: 30,
-    color: 'black',
+    color: "black",
   },
   inputContaier: {
-    width: '80%',
+    width: "80%",
     marginBottom: 30,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
+    backgroundColor: "#0782F9",
+    width: "60%",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 15,
   },
   input: {
-    backgroundColor: '#f0f6f6',
+    backgroundColor: "#f0f6f6",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 10,
     marginTop: 10,
-    color: 'black',
+    color: "black",
     borderWidth: 1,
-    borderColor: '#000000',
-    width: '100%',
+    borderColor: "#000000",
+    width: "100%",
     height: 50,
   },
   inputSmall: {
-    backgroundColor: '#f0f6f6',
+    backgroundColor: "#f0f6f6",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 10,
     marginTop: 10,
-    color: 'black',
+    color: "black",
     borderWidth: 1,
-    borderColor: '#000000',
-    width: '45%',
+    borderColor: "#000000",
+    width: "45%",
     height: 50,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 3,
   },
 });

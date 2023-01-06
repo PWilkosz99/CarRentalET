@@ -1,18 +1,18 @@
 import {
   StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity,
-} from 'react-native';
-import React from 'react';
-import { auth } from '../../../firebase';
+} from "react-native";
+import React from "react";
+import { auth } from "../../../firebase";
 
 function PaymentInfoScreen({ route, navigation }) {
   const {
     user, car, startDate, endDate, cost,
   } = route.params;
 
-  const [cardNumber, setCardNumber] = React.useState('');
-  const [expirationDate, setExpirationDate] = React.useState('');
-  const [cvv, setCvv] = React.useState('');
-  const [cardholder, setCardHolder] = React.useState('');
+  const [cardNumber, setCardNumber] = React.useState("");
+  const [expirationDate, setExpirationDate] = React.useState("");
+  const [cvv, setCvv] = React.useState("");
+  const [cardholder, setCardHolder] = React.useState("");
 
   const handleClick = async () => {
     const fd = new Date();
@@ -27,26 +27,26 @@ function PaymentInfoScreen({ route, navigation }) {
 
     const exp = (`${20 + expirationDate.substring(3, 7)}-${expirationDate.substring(0, 2)}`);
 
-    if (!cardNumber) return alert('Please provide your card number');
-    if (cardNumber.length < 16) return alert('Please provide a valid card number');
+    if (!cardNumber) return alert("Please provide your card number");
+    if (cardNumber.length < 16) return alert("Please provide a valid card number");
 
-    if (!expirationDate) return alert('Please provide your expiration date');
-    if (expirationDate.length < 5) return alert('Please provide a valid expiration date');
-    if (expirationDate[2] !== '/') return alert('Please provide a valid expiration date');
-    if (expirationDate[0] > 1) return alert('Please provide a valid expiration date');
-    if (expirationDate[0] === 1 && expirationDate[1] > 2) return alert('Please provide a valid expiration date');
-    if (expirationDate[3] > 2) return alert('Please provide a valid expiration date');
-    if (expirationDate[3] === 2 && expirationDate[4] > 3) return alert('Please provide a valid expiration date');
+    if (!expirationDate) return alert("Please provide your expiration date");
+    if (expirationDate.length < 5) return alert("Please provide a valid expiration date");
+    if (expirationDate[2] !== "/") return alert("Please provide a valid expiration date");
+    if (expirationDate[0] > 1) return alert("Please provide a valid expiration date");
+    if (expirationDate[0] === 1 && expirationDate[1] > 2) return alert("Please provide a valid expiration date");
+    if (expirationDate[3] > 2) return alert("Please provide a valid expiration date");
+    if (expirationDate[3] === 2 && expirationDate[4] > 3) return alert("Please provide a valid expiration date");
 
-    if (!cvv) return alert('Please provide your cvv');
-    if (cvv.length < 3) return alert('Please provide a valid cvv');
+    if (!cvv) return alert("Please provide your cvv");
+    if (cvv.length < 3) return alert("Please provide a valid cvv");
 
-    if (!cardholder) return alert('Please provide your cardholder');
-    const response = await fetch('http://localhost:5000/api/Reservations/ReserveCar', {
-      method: 'POST',
+    if (!cardholder) return alert("Please provide your cardholder");
+    const response = await fetch("http://localhost:5000/api/Reservations/ReserveCar", {
+      method: "POST",
       headers: new Headers({
         Authorization: `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       }),
       body: JSON.stringify({
 
@@ -78,13 +78,13 @@ function PaymentInfoScreen({ route, navigation }) {
     console.log(response.json());
 
     if (response.status === 201) {
-      alert('Car reserved successfully');
+      alert("Car reserved successfully");
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Drawer' }],
+        routes: [{ name: "Drawer" }],
       });
     } else {
-      alert('Something went wrong');
+      alert("Something went wrong");
     }
   };
 
@@ -139,67 +139,67 @@ export default PaymentInfoScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: "100%",
   },
   card: {
-    width: '90%',
-    backgroundColor: 'white',
+    width: "90%",
+    backgroundColor: "white",
     margin: 40,
     borderRadius: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingVertical: 30,
-    color: 'black',
+    color: "black",
   },
   inputContaier: {
-    width: '80%',
+    width: "80%",
     marginBottom: 30,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
+    backgroundColor: "#0782F9",
+    width: "60%",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 15,
   },
   input: {
-    backgroundColor: '#f0f6f6',
+    backgroundColor: "#f0f6f6",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 10,
     marginTop: 10,
-    color: 'black',
+    color: "black",
     borderWidth: 1,
-    borderColor: '#000000',
-    width: '100%',
+    borderColor: "#000000",
+    width: "100%",
     height: 50,
   },
   inputSmall: {
-    backgroundColor: '#f0f6f6',
+    backgroundColor: "#f0f6f6",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 10,
     marginTop: 10,
-    color: 'black',
+    color: "black",
     borderWidth: 1,
-    borderColor: '#000000',
-    width: '45%',
+    borderColor: "#000000",
+    width: "45%",
     height: 50,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 3,
   },
 });

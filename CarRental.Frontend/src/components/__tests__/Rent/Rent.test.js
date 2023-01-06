@@ -48,4 +48,18 @@ describe('Rent component', () => {
             </BlobProvider>);
         expect(container).toMatchSnapshot();
     });
+
+    it('should redner user data text', () => {
+        render(
+            <BlobProvider>
+            <Router>
+                <RentDetails />
+            </Router>
+            </BlobProvider>);
+        const footer = screen.getByText('Phone:');
+        const footer2 = screen.getByText('Country:');
+
+        expect(footer).toBeInTheDocument();
+        expect(footer2).toBeInTheDocument();
+    });
 });

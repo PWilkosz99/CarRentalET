@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import ReservationsCard from './ReservationsCard';
-import { auth } from '../../../firebase';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import ReservationsCard from "./ReservationsCard";
+import { auth } from "../../../firebase";
 
 function ReseravationsScreen() {
   const [res, setRes] = useState();
@@ -11,10 +11,10 @@ function ReseravationsScreen() {
     (
       async () => {
         try {
-          const responde = await fetch('http://localhost:5000/api/GetReservedCars', {
+          const responde = await fetch("http://localhost:5000/api/GetReservedCars", {
             headers: new Headers({
               Authorization: `Bearer ${auth.currentUser.stsTokenManager.accessToken}`,
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             }),
           });
 
@@ -52,10 +52,10 @@ export default ReseravationsScreen;
 
 const styles = StyleSheet.create({
   text: {
-    color: 'black',
+    color: "black",
     fontSize: 36,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginTop: 200,
   },
 });

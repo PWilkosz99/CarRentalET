@@ -19,6 +19,26 @@ describe('Hero component', () => {
         expect(hero).toBeInTheDocument();
     });
 
+    it('should redner From text', () => {
+        render(
+            <Router>
+                <Hero />
+            </Router>);
+        const footer = screen.getByText('From');
+
+        expect(footer).toBeInTheDocument();
+    });
+
+    it('should redner Until text', () => {
+        render(
+            <Router>
+                <Hero />
+            </Router>);
+        const footer = screen.getByText('Until');
+
+        expect(footer).toBeInTheDocument();
+    });
+
     it('matches snapshot', () => {
         const { container } =
             render(

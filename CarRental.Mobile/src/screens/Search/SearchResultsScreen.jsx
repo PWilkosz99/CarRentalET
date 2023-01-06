@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
-import SearchResultsCard from './SearchResultsCard';
+import { StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import SearchResultsCard from "./SearchResultsCard";
 
 function SearchResultsScreen({ route, navigation }) {
   const [cars, setCars] = useState();
@@ -21,9 +21,9 @@ function SearchResultsScreen({ route, navigation }) {
           ud.setMonth(endDate.substring(5, 7) - 1);
           ud.setDate(endDate.substring(8, 10));
 
-          const responde = await fetch('http://localhost:5000/api/Reservations/GetAvaliableCars', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          const responde = await fetch("http://localhost:5000/api/Reservations/GetAvaliableCars", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               startDate: fd,
               endDate: ud,

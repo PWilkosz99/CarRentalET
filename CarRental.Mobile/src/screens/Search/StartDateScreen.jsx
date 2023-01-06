@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet, TouchableOpacity, Text, View,
-} from 'react-native';
-import DatePicker, { getToday } from 'react-native-modern-datepicker';
+} from "react-native";
+import DatePicker, { getToday } from "react-native-modern-datepicker";
 
 function StartDateScreen() {
-  const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState("");
 
   const navigation = useNavigation();
 
   const handleClick = () => {
-    if (!startDate) return alert('Please select start date');
-    if (startDate < getToday()) return alert('Start date must be after today');
-    navigation.navigate('EndDateScreen', { startDate });
+    if (!startDate) return alert("Please select start date");
+    if (startDate < getToday()) return alert("Start date must be after today");
+    navigation.navigate("EndDateScreen", { startDate });
   };
 
   return (
@@ -38,37 +38,37 @@ export default StartDateScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
   },
   title: {
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
-    color: 'black',
+    color: "black",
   },
   subtitle: {
     fontSize: 20,
     marginBottom: 30,
-    color: 'black',
+    color: "black",
   },
   picker: {
-    height: '50%',
-    width: '100%',
+    height: "50%",
+    width: "100%",
   },
   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
+    backgroundColor: "#0782F9",
+    width: "60%",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 40,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 5,
   },
 });
