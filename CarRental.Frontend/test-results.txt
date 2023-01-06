@@ -1,0 +1,34 @@
+ PASS  src/components/__tests__/Register/Register.test.js
+ PASS  src/components/__tests__/Dashboard/Dashboard.test.js
+ PASS  src/components/__tests__/Reservations/Reservations.test.js
+ PASS  src/components/__tests__/Login/Login.test.js
+ PASS  src/components/__tests__/Footer/Footer.test.js
+ PASS  src/components/__tests__/Home/Home.test.js
+ PASS  src/components/__tests__/Navbar/Navbar.test.js
+ PASS  src/components/__tests__/Hero/Hero.test.js
+ PASS  src/components/__tests__/Rent/Rent.test.js
+ 
+
+Test Suites: 9 passed, 9 total
+Tests:       27 passed, 27 total
+Snapshots:   10 passed, 10 total
+Time:        2.553 s
+Ran all test suites.
+ PASS  src/components/__tests__/Reservations/Reservations.test.js
+ PASS  src/components/__tests__/Footer/Footer.test.js
+ PASS  src/components/__tests__/Home/Home.test.js
+ PASS  src/components/__tests__/Login/Login.test.js
+ PASS  src/components/__tests__/Register/Register.test.js
+ PASS  src/components/__tests__/Navbar/Navbar.test.js
+ PASS  src/components/__tests__/Dashboard/Dashboard.test.js
+ PASS  src/components/__tests__/Hero/Hero.test.js
+ PASS  src/components/__tests__/Rent/Rent.test.js
+  ÔŚĆ Console
+
+
+
+Test Suites: 9 passed, 9 total
+Tests:       27 passed, 27 total
+Snapshots:   10 passed, 10 total
+Time:        2.413 s
+Ran all test suites.

@@ -16,7 +16,6 @@ export default function AddCar() {
   const [color, setColor] = useState();
   const [notes, setNotes] = useState();
 
-  // #TODO: change to useRef to use onhover and optimaze, validation
 
   const { currentUser } = useAuth();
 

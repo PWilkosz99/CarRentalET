@@ -1,0 +1,17 @@
+PASS __tests__/SearchScreen.test.js
+PASS __tests__/HomeScreen.test.js
+PASS __tests__/DrawerContent.test.js
+PASS __tests__/EndDateScreen.test.js
+PASS __tests__/StartDateScreen.test.js
+PASS __tests__/UserDataScreen.test.js
+PASS __tests__/PaymentInfoScreen.test.js
+PASS __tests__/LoginScreen.test.js
+PASS __tests__/ReservationsScreen.test.js
+PASS __tests__/CarDetailsScreen.test.js
+PASS __tests__/SearchResultScreen.test.js
+
+Test Suites: 11 passed, 11 total
+Tests:       46 passed, 46 total
+Snapshots:   24 passed, 24 total
+Time:        1.604 s, estimated 2 s
+Ran all test suites.

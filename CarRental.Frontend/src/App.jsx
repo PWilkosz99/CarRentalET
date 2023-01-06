@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Dashboard from './components/Dashboard/Dashboard';

@@ -43,6 +43,8 @@ test('should display an warning toast when from date is after until date', async
   const btn = await page.waitForSelector('div[class*=Hero_search_btn]');
   await btn.click();
 
+  await page.waitForTimeout(3000);
+
   const toast = await page.$('div[class*=Toastify__toast--warning]');
   expect(toast).toBeTruthy();
   const toastText = await page.evaluate(toast => toast.textContent, toast);
@@ -56,6 +58,8 @@ test('should display an info toast when date is empty', async ({ page }) => {
 
   const btn = await page.waitForSelector('div[class*=Hero_search_btn]');
   await btn.click();
+
+  await page.waitForTimeout(3000);
 
   const toast = await page.$('div[class*=Toastify__toast--info]');
   expect(toast).toBeTruthy();
@@ -73,6 +77,8 @@ test('should display an warning toast when from date is before today date', asyn
 
   const btn = await page.waitForSelector('div[class*=Hero_search_btn]');
   await btn.click();
+  
+  await page.waitForTimeout(3000);
 
   const toast = await page.$('div[class*=Toastify__toast--warning]');
   expect(toast).toBeTruthy();
