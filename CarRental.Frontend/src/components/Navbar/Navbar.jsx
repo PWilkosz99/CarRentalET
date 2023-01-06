@@ -64,16 +64,16 @@ export default function Navbar() {
               <AiOutlineUser size={25} className={styles.icon} />
             </div>
             {
-                                currentUser
-                                  ? (
-                                    <span className={styles.userStatus}>
-                                      {' '}
-                                      User:
-                                      {currentUser.email}
-                                    </span>
-                                  )
-                                  : <span className={styles.userStatus}> Please log in</span>
-                            }
+              currentUser
+                ? (
+                  <span className={styles.userStatus}>
+                    {' '}
+                    User:
+                    {currentUser.email}
+                  </span>
+                )
+                : <span className={styles.userStatus}> Please log in</span>
+            }
 
           </li>
         </ul>

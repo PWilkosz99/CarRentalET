@@ -96,7 +96,7 @@ test('fill login form', async ({ page }) => {
   await page.click('button[type="submit"]');
 });
 
-test('login correctly', async ({ page }) => {
+test('should be able to login and redirect to home page', async ({ page }) => {
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[type="email"]', 'aa@aa.bb');

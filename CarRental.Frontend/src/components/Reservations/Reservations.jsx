@@ -62,10 +62,7 @@ export default function Reservations() {
       <div className={styles.reservations_title}>
         <h1>Your reservations:</h1>
       </div>
-      {/* <h2>Upcoming:</h2> */}
       {reservationsTiles}
-      {/* <h2>Past:</h2> */}
-      {/* TODO: Add past reservations */}
     </div>
   );
 }

@@ -20,7 +20,6 @@ export default function Rent(props) {
   const { getImage } = useBlob();
 
   const reserveCar = async () => {
-    console.log(currentUser);
     if (!currentUser) {
       toast.warn('You must be logged in to reserve a car!', { position: 'bottom-right', theme: 'colored' });
     } else {

@@ -8,22 +8,42 @@ afterEach(() => {
   cleanup();
 });
 
-test('should render Dashboard component', () => {
-  render(
-    <Router>
-      <Dashboard />
-    </Router>);
-  const dashboard = screen.getByText('Add new car');
+describe('Dashboard component', () => {
+  it('should render Dashboard component', () => {
+    render(
+      <Router>
+        <Dashboard />
+      </Router>);
+    const dashboard = screen.getByText('Add new car');
 
-  expect(dashboard).toBeInTheDocument();
+    expect(dashboard).toBeInTheDocument();
+  });
+
+  it('matches snapshot', () => {
+    const { container } = render(
+      <Router>
+        <Dashboard />
+      </Router>);
+    expect(container).toMatchSnapshot();
+  });
 });
 
-test('should render SideMenu component', () => {
-  render(
-    <Router>
-      <SideMenu />
-    </Router>);
-  const sideMenu = screen.getByText('Add new car');
+describe('SideMenu component', () => {
+  it('should render SideMenu component', () => {
+    render(
+      <Router>
+        <SideMenu />
+      </Router>);
+    const sideMenu = screen.getByText('Add new car');
 
-  expect(sideMenu).toBeInTheDocument();
+    expect(sideMenu).toBeInTheDocument();
+  });
+
+  it('matches snapshot', () => {
+    const { container } = render(
+      <Router>
+        <SideMenu />
+      </Router>);
+    expect(container).toMatchSnapshot();
+  });
 });

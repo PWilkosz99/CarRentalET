@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.container}>
-        <h1>Some interesting text</h1>
+        <h1>Contact informations XXX</h1>
         <div className={styles.socials}>
           <a href="https://google.com"><AiFillFacebook className={styles.icon} size={46} /></a>
           <a href="https://google.com"><AiFillTwitterCircle className={styles.icon} size={46} /></a>

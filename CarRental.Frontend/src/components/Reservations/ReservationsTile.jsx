@@ -40,7 +40,7 @@ export default function ReservationsTile(props) {
         </div>
         <div className={styles.reservation_details_row}>
           <span className={styles.reservation_label}>End date: </span>
-          <span className={styles.reservation_value}>20.22.22</span>
+          <span className={styles.reservation_value}>{(new Date(props.reservation.endDate)).toLocaleDateString()}</span>
         </div>
         <div className={styles.reservation_details_row}>
           <span className={styles.reservation_label}>Payment method: </span>
@@ -53,7 +53,6 @@ export default function ReservationsTile(props) {
             {' '}
             zł
           </span>
-          {/* TODO: Fix cost calculation */}
         </div>
       </div>
       <div className={styles.card_right}>

@@ -6,9 +6,16 @@ afterEach(() => {
   cleanup();
 });
 
-test('should render Footer component', () => {
-  render(<Footer />);
-  const footer = screen.getByText('Some interesting text');
+describe('Footer component', () => {
+  it('should render Footer component', () => {
+    render(<Footer />);
+    const footer = screen.getByText('Some interesting text');
 
-  expect(footer).toBeInTheDocument();
+    expect(footer).toBeInTheDocument();
+  });
+
+  it('matches snapshot', () => {
+    const { container } = render(<Footer />);
+    expect(container).toMatchSnapshot();
+  });
 });
