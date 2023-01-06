@@ -1,6 +1,6 @@
 .rentPage{
     min-height: 90%;
-    background-color: rgb(115, 103, 128);
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
 }
 
 .wrapper {

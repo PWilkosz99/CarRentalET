@@ -1,5 +1,6 @@
 .mainPage{
     min-height: 90%;
+    background: linear-gradient(0deg, #e2e2e2, #383838);
 }
 
 .slider{

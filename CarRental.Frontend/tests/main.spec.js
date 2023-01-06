@@ -6,6 +6,8 @@ test('homepage has title and links to intro page', async ({ page }) => {
   await expect(page).toHaveTitle("React App");
 });
 
+
+
 test('show display toast when account not exist', async ({ page }) => {
   await page.goto('http://localhost:3000/login');
 
@@ -16,6 +18,8 @@ test('show display toast when account not exist', async ({ page }) => {
   const incorrectPasswordToast = await page.$('.Toastify');
   await expect(incorrectPasswordToast).toBeTruthy();
 });
+
+
 
 test('show display toast when login password is wrong', async ({ page }) => {
   await page.goto('http://localhost:3000/login');
@@ -46,6 +50,7 @@ test('should display an warning toast when from date is after until date', async
 });
 
 
+
 test('should display an info toast when date is empty', async ({ page }) => {
   await page.goto('http://localhost:3000');
 
@@ -57,6 +62,7 @@ test('should display an info toast when date is empty', async ({ page }) => {
   const toastText = await page.evaluate(toast => toast.textContent, toast);
   expect(toastText).toBe("Please select dates");
 });
+
 
 
 test('should display an warning toast when from date is before today date', async ({ page }) => {
@@ -73,6 +79,8 @@ test('should display an warning toast when from date is before today date', asyn
   const toastText = await page.evaluate(toast => toast.textContent, toast);
   expect(toastText).toBe("From date can't be before today's date");
 });
+
+
 
 test('should redirect to rent page when data correct', async ({ page }) => {
   await page.goto('http://localhost:3000');
@@ -95,6 +103,8 @@ test('fill login form', async ({ page }) => {
   await page.fill('input[type="password"]', 'test');
   await page.click('button[type="submit"]');
 });
+
+
 
 test('should be able to login and redirect to home page', async ({ page }) => {
   await page.goto('http://localhost:3000/login');

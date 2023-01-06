@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    background-color: purple;
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
     min-height: 90%;
 }
 
@@ -166,7 +166,7 @@
 
 .form_row>input:focus,
 .form_row>input:valid {
-    border-color: #9b59b6
+    border-color: rgb(115, 103, 128);
 }
 
 .form_row>select {
@@ -222,7 +222,7 @@
     .container {
         display: flex;
         flex-direction: column;
-        background-color: purple;
+        background-color: rgb(115, 103, 128);
     }
 
     .navigation {
